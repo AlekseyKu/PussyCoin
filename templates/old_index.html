@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrt
+xUkn" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600" rel="stylesheet">
+
+     <!-- Ionic icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!--    <link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">-->
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='{{') }} url_for ('static', filename='css/style.css') }}">
+
+    <title>PussyCoin</title>
+</head>
+<body>
+    <div class="app_container">
+<!--- MENU --->
+        <ul class="nav nav-pills nav-justified fixed-bottom" role="tablist">
+            <li class="active nav-item">
+                <a class="nav-link" href="#home" data-toggle="pill">
+                    <svg version="1.1" viewBox="0 0 800 800" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                        <path  transform="translate(391,1)" d="m0 0h18l30 2 29 4 29 6 27 8 20 7 25 11 24 12 17 10 18 12 19 14 13 11 14 12 19 19 9 11 13 15 10 14 12 18 13 22 9 17 14 32
+11 33 7 29 5 31 2 22 1 22v13l-2 31-4 28-7 34-11 35-12 29-8 17-13 23-14 22-13 17-8 10-12 14-14 15-17 16-11 9-18 14-18 12-20 12-16 9-31 14-28 10-24 7-28 6-27 4-22 2h-37l-25-2-29-4-29-6-3
+0-9-31-12-29-14-19-11-24-16-12-9-11-9-14-12-9-8v-2l-4-2-14-15-9-10-11-14-12-16-13-20-13-23-11-23-11-28-8-24-8-34-5-33-2-25v-34l3-33 5-30 7-29 12-36 11-25 11-22 12-20 12-18 12-16 11-13
+7-8 9-10 18-18 11-9 13-11 18-13 17-11 21-12 19-10 31-13 31-10 29-7 25-4 23-3zm9 144-11 6-14 12-9 7-16 13-14 11-16 13-14 11-16 13-14 11-10 8-16 13-17 13-21 18-2 8v256l2 7 7 6h116l6-5 2-
+7v-158l121 1 1 160 4 7 4 2h117l6-5 2-8v-260l-4-6-15-12-14-11-17-13-26-20-18-14-13-10-14-11-17-13-18-14-13-10-18-14-9-5z" fill="currentColor"/>
+                    </svg>
+                    <h5>Home</h5>
+                </a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="#tasks" data-toggle="pill">
+                    <svg version="1.1" viewBox="0 0 800 800" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                        <path transform="translate(367)" d="m0 0h65l34 5 29 6 26 7 28 10 29 13 19 10 23 14 18 13 17 13 13 12 10 9 17 17 7 8 11 13 9 12 14 20 9 15 10 18 13 27 10 26 7 22
+ 7 29 6 35 2 17v57l-5 37-8 38-9 29-11 28-14 29-12 21-10 15-12 17-14 17-9 10-14 15-5 5h-2l-1 3-8 7-10 9-13 10-18 13-19 12-25 14-21 10-23 9-21 7-27 7-31 6-28 4h-59l-34-5-31-6-26-7-31-11-
+24-11-25-13-21-13-17-12-14-11-15-13-13-12-14-14-7-8-11-13-15-20-14-21-12-21-8-16-11-24-9-25-8-29-4-18-5-30-2-16v-65l7-44 8-33 11-33 12-28 12-23 12-20 15-22 11-14 11-13 11-12 21-21 8-7
+12-10 16-12 21-14 24-14 31-15 27-10 26-8 31-7 31-5zm-136 123-15 4-10 6-10 9-6 7-7 14-2 8-1 19v428l2 15 4 11 7 11 8 8 10 7 13 5 9 2 148 1h34l148-1 15-4 12-6 11-9 7-10 5-11 3-14v-328l-15
+6-1-1-171zm270 24-1 2 1 105h96l-4-6-9-9-9-11-13-14-7-8-11-12-7-8-9-10-7-8-11-12-7-8z" fill="currentColor"/>
+                        <path transform="translate(354,543)" d="m0 0h192l1 2v39l-2 1h-191l-1-1v-40z" fill="#A1A1A1"/>
+                        <path transform="translate(353,345)" d="m0 0h193l1 1v39l-1 1h-192l-1-1z" fill="#A0A0A0"/>
+                        <path transform="translate(354,444)" d="m0 0h191l2 2v38l-3 2h-190l-1-1v-40z" fill="#A2A2A2"/>
+                        <path transform="translate(297,337)" d="m0 0 4 1 12 12 4 3-1 5-22 22-7 8-16 16-5-2v-2l-4-2-25-25 2-4 16-16 4 2 9 9 4-1 6-7 5-5z" fill="#A2A2A2"/>
+                        <path transform="translate(298,535)" d="m0 0 7 6 12 11-1 5-3 1-2 4-35 35-5 6-4-2-11-11-8-7-11-11 1-4 8-7 8-9 5 1 7 8 4 2 21-21 5-6z" fill="#A2A2A2"/>
+                        <path transform="translate(297,436)" d="m0 0 4 1v2h2l14 14-1 5-5 4-5 6h-2l-2 4-28 28-2 3-5-1-14-14-8-7-8-8 2-5 10-9 6-7 4 2 7 8 4 2 23-23z" fill="#A1A1A1"/>
+                    </svg>
+                    <h5>Tasks</h5>
+                </a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="#friends" data-toggle="pill">
+                    <svg version="1.1" viewBox="0 0 800 800" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                        <path transform="translate(381)" d="m0 0h36l30 3 36 6 32 8 27 9 26 11 24 12 17 10 24 16 13 10 16 13 13 12 23 23 9 11 10 12 11 15 10 15 14 24 8 15 12 27 10 28 8
+30 6 31 4 31v55l-3 25-4 24-6 27-7 24-11 29-12 26-13 23-12 19-13 18-13 16-7 8-12 13-16 16-8 7-13 11-12 9-20 14-22 13-27 14-21 9-28 10-30 8-31 6-21 3-9 1h-57l-22-3-30-5-26-6-36-12-24-10-
+16-8-19-10-19-12-17-12-14-11-13-11-13-12-18-18-9-11-9-10-14-19-10-15-12-20-14-27-10-24-12-36-7-29-5-31-3-30v-37l4-35 5-28 8-32 11-32 11-25 10-20 13-22 11-16 14-19 13-15 7-8 12-13 5-5h2
+v-2l8-7 14-12 13-10 17-12 19-12 16-9 16-8 17-8 30-11 28-8 35-7 30-4zm-31 172-20 3-18 6-19 10-14 11-11 11-10 14-8 16-5 14-3 17v19l3 17 7 19 6 11 9 12 9 10 11 9 8 5 1 2-9 2-21 9-20 11-14
+ 10-14 11-17 17-9 11-9 13-9 15-8 17-8 24-4 20-1 8v17l3 5 5 4 5 1h389l7-3 4-5 1-2v-12l-2-18-5-21-6-17-8-18-11-18-9-12-12-14-10-10-11-9-15-11-15-9-16-8-22-8h-2v-2l5-2 11-8 14-14 10-14 8-
+17 4-14 2-9 1-18-2-17-6-20-7-14-9-13-11-12-12-10-15-9-16-7-15-4-16-2zm159 71-9 2 1 7 3 12 1 8v24l-5 25-6 16-10 19-9 11v3l20 12 16 12 11 9 20 20 13 17 10 15 10 19 8 20 7 24 4 25v28h82l6
+-4 3-5v-10l-4-24-7-21-9-19-10-15-9-11-10-11-8-7-16-12-17-10-16-7-10-3 1-3 11-8 11-11 10-15 6-15 3-14v-24l-4-17-8-16-7-10-9-10-14-11-16-8-17-5-12-2z" fill="currentColor"/>
+                    </svg>
+                    <h5>Friends</h5>
+                </a></li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+
+<!--- HOME PAGE --->
+            <div class="tab-pane active show fade in" id="home" role="tabpanel">
+                <div class="container-fluid main">
+                    <div>
+                        <h4>Don`t pet</h4>
+                        <img class="logo" src="{{ url_for('static', filename='static/img/logo.png') }}">
+                        <h3> {balance} PussyCoin</h3>
+                    </div>
+                    <div class="block_join_us">
+                        <h5>PUSSY COIN COMMUNITY</h5>
+                        <h6>Home for telegram</h6>
+                        <button type="button" class="btn-black"> Join us for 1000 Pussies</button>
+                    </div>
+
+                    <div class="container-justified block_rewards">
+                        <h4>Your rewards</h4>
+                        <div class="row mb-2 d-flex flex-row align-items-center">
+                            <div class="col text-left">
+                                <img class="icon" src="{{ url_for('static', filename='static/img/age.svg') }}" alt="Bootstrap" width="20" height="20">
+                                Account age
+                            </div>
+                            <div class="col text-right" align="Right">
+                                {c_aa}
+                                <img class="icon" src="{{ url_for('static', filename='static/img/icon_small.png') }}" width="20" height="20">
+                            </div>
+                        </div>
+                        <div class="row mb-2 d-flex flex-row align-items-center">
+                            <div class="col text-left">
+                                <img class="icon" src="{{ url_for('static', filename='static/img/farming.svg') }}" alt="Bootstrap" width="20" height="20">
+                                Mine Pussies
+                            </div>
+                            <div class="col text-right">
+                                {c_mp}
+                                <img class="icon" src="{{ url_for('static', filename='static/img/icon_small.png') }}" alt="Bootstrap" width="20" height="20">
+                            </div>
+                        </div>
+                        <div class="row mb-2 d-flex flex-row align-items-center">
+                            <div class="col text-left">
+                                <img class="icon" src="{{ url_for('static', filename='static/img/friends.svg') }}" alt="Bootstrap" width="20" height="20">
+                                Invite friends
+                            </div>
+                            <div class="col text-right">
+                                {c_if}
+                                <img class="icon" src="{{ url_for('static', filename='static/img/icon_small.png') }}" width="20" height="20">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row block_farming flex-row align-items-center">
+                        <div class="col text-center">
+                            Farming {c_f} / 800
+                        </div>
+                        <div class="col-4 text-left">
+                            {time_f}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!--- TASKS PAGE --->
+            <div class="tab-pane fade" id="tasks" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="container main">
+                    <div class="block_tasks_header">
+                        <h4>Don`t pet</h4>
+                        <svg class="logo" version="1.1" viewBox="0 0 800 800" width="150" height="150" xmlns="http://www.w3.org/2000/svg">
+                            <path transform="translate(367)" d="m0 0h65l34 5 29 6 26 7 28 10 29 13 19 10 23 14 18 13 17 13 13 12 10 9 17 17 7 8 11 13 9 12 14 20 9 15 10 18 13 27 10 26
+7 22 7 29 6 35 2 17v57l-5 37-8 38-9 29-11 28-14 29-12 21-10 15-12 17-14 17-9 10-14 15-5 5h-2l-1 3-8 7-10 9-13 10-18 13-19 12-25 14-21 10-23 9-21 7-27 7-31 6-28 4h-59l-34-5-31-6-26-7-31
+-11-24-11-25-13-21-13-17-12-14-11-15-13-13-12-14-14-7-8-11-13-15-20-14-21-12-21-8-16-11-24-9-25-8-29-4-18-5-30-2-16v-65l7-44 8-33 11-33 12-28 12-23 12-20 15-22 11-14 11-13 11-12 21-21
+8-7 12-10 16-12 21-14 24-14 31-15 27-10 26-8 31-7 31-5zm-136 123-15 4-10 6-10 9-6 7-7 14-2 8-1 19v428l2 15 4 11 7 11 8 8 10 7 13 5 9 2 148 1h34l148-1 15-4 12-6 11-9 7-10 5-11 3-14v-328
+l-156-1-1-171zm270 24-1 2 1 105h96l-4-6-9-9-9-11-13-14-7-8-11-12-7-8-9-10-7-8-11-12-7-8z" fill="#614c8d"/>
+                            <path transform="translate(354,543)" d="m0 0h192l1 2v39l-2 1h-191l-1-1v-40z" fill="#614c8d"/>
+                            <path transform="translate(353,345)" d="m0 0h193l1 1v39l-1 1h-192l-1-1z" fill="#614c8d"/>
+                            <path transform="translate(354,444)" d="m0 0h191l2 2v38l-3 2h-190l-1-1v-40z" fill="#614c8d"/>
+                            <path transform="translate(297,337)" d="m0 0 4 1 12 12 4 3-1 5-22 22-7 8-16 16-5-2v-2l-4-2-25-25 2-4 16-16 4 2 9 9 4-1 6-7 5-5z" fill="#614c8d"/>
+                            <path transform="translate(298,535)" d="m0 0 7 6 12 11-1 5-3 1-2 4-35 35-5 6-4-2-11-11-8-7-11-11 1-4 8-7 8-9 5 1 7 8 4 2 21-21 5-6z" fill="#614c8d"/>
+                            <path transform="translate(297,436)" d="m0 0 4 1v2h2l14 14-1 5-5 4-5 6h-2l-2 4-28 28-2 3-5-1-14-14-8-7-8-8 2-5 10-9 6-7 4 2 7 8 4 2 23-23z" fill="#614c8d"/>
+                    </svg>
+                        <h3>Tasks</h3>
+                        <h5>Complete tasks to earn PussyCoin</h5>
+                    </div>
+                    <div class="block_tasks scroll-container">
+                        <div class="container_task">
+                            <div class="row_task d-flex bd-highlight align-items-center">
+                                <div class="p-3 bd-highlight">
+                                    <svg class="i_task" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                    width="40" height="40" viewBox="0 0 360.000000 360.000000"
+                                    preserveAspectRatio="xMidYMid meet">
+
+                                        <g transform="translate(0.000000,360.000000) scale(0.100000,-0.100000)"
+                                        fill="currentColor" stroke="none">
+                                        <path d="M1585 3584 c-769 -99 -1370 -646 -1540 -1402 -106 -466 -9 -976 260
+                                        -1377 95 -141 192 -254 302 -350 485 -424 1144 -561 1746 -364 314 103 586
+                                        280 795 519 601 687 598 1705 -8 2388 -384 432 -986 659 -1555 586z m1005
+                                        -1077 c45 -22 52 -72 35 -216 -38 -305 -147 -984 -195 -1203 -31 -143 -66
+                                        -188 -148 -188 -60 0 -106 26 -422 240 -302 205 -330 228 -330 283 0 44 -5 39
+                                        398 426 171 164 222 218 220 235 -2 11 -11 22 -22 24 -11 3 -169 -97 -415
+                                        -261 -218 -145 -414 -273 -436 -284 -87 -44 -163 -37 -399 36 -152 48 -184 64
+                                        -192 98 -13 52 14 73 211 159 588 258 1016 440 1291 549 286 114 348 130 404
+                                        102z"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="flex-grow-1 bd-highlight text-left">
+                                    Subscribe to <br> PussyCoin Community
+                                    <div class="text_highlight_color">+1200 Pussy Coin</div>
+                                </div>
+                                <div class="p-3 bd-highlight">
+                                    <svg class="i_task_todo" fill="currentColor" width="40px" height="40px" viewBox="0 0 24 24" id="d9090658-f907-4d85-8bc1-743b70378e93" data-name="Liv
+ello 1" xmlns="http://www.w3.org/2000/svg"><title>prime</title><path id="70fa6808-131f-4233-9c3a-fc089fd0c1c4" data-name="done circle" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0ZM11.5
+2,17L6,12.79l1.83-2.37L11.14,13l4.51-5.08,2.24,2Z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container_task">
+                            <div class="row_task d-flex bd-highlight align-items-center">
+                                <div class="p-3 bd-highlight">
+                                    <svg class="i_task" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                    width="40" height="40" viewBox="0 0 360.000000 360.000000"
+                                    preserveAspectRatio="xMidYMid meet">
+
+                                        <g transform="translate(0.000000,360.000000) scale(0.100000,-0.100000)"
+                                        fill="currentColor" stroke="none">
+                                        <path d="M1585 3584 c-769 -99 -1370 -646 -1540 -1402 -106 -466 -9 -976 260
+                                        -1377 95 -141 192 -254 302 -350 485 -424 1144 -561 1746 -364 314 103 586
+                                        280 795 519 601 687 598 1705 -8 2388 -384 432 -986 659 -1555 586z m1005
+                                        -1077 c45 -22 52 -72 35 -216 -38 -305 -147 -984 -195 -1203 -31 -143 -66
+                                        -188 -148 -188 -60 0 -106 26 -422 240 -302 205 -330 228 -330 283 0 44 -5 39
+                                        398 426 171 164 222 218 220 235 -2 11 -11 22 -22 24 -11 3 -169 -97 -415
+                                        -261 -218 -145 -414 -273 -436 -284 -87 -44 -163 -37 -399 36 -152 48 -184 64
+                                        -192 98 -13 52 14 73 211 159 588 258 1016 440 1291 549 286 114 348 130 404
+                                        102z"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="flex-grow-1 bd-highlight text-left">
+                                    Subscribe to <br> PussyCoin YouTube
+                                    <div class="text_highlight_color">+1000 Pussy Coin</div>
+                                </div>
+                                <div class="p-3 bd-highlight">
+                                    <svg class="i_task_todo" fill="currentColor" width="40px" height="40px" viewBox="0 0 24 24" id="d9090658-f907-4d85-8bc1-743b70378e93" data-name="Liv
+ello 1" xmlns="http://www.w3.org/2000/svg"><title>prime</title><path id="70fa6808-131f-4233-9c3a-fc089fd0c1c4" data-name="done circle" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0ZM11.5
+2,17L6,12.79l1.83-2.37L11.14,13l4.51-5.08,2.24,2Z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container_task">
+                            <div class="row_task d-flex bd-highlight align-items-center">
+                                <div class="p-3 bd-highlight">
+                                    <svg class="i_task" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                    width="40" height="40" viewBox="0 0 360.000000 360.000000"
+                                    preserveAspectRatio="xMidYMid meet">
+
+                                        <g transform="translate(0.000000,360.000000) scale(0.100000,-0.100000)"
+                                        fill="currentColor" stroke="none">
+                                        <path d="M1585 3584 c-769 -99 -1370 -646 -1540 -1402 -106 -466 -9 -976 260
+                                        -1377 95 -141 192 -254 302 -350 485 -424 1144 -561 1746 -364 314 103 586
+                                        280 795 519 601 687 598 1705 -8 2388 -384 432 -986 659 -1555 586z m1005
+                                        -1077 c45 -22 52 -72 35 -216 -38 -305 -147 -984 -195 -1203 -31 -143 -66
+                                        -188 -148 -188 -60 0 -106 26 -422 240 -302 205 -330 228 -330 283 0 44 -5 39
+                                        398 426 171 164 222 218 220 235 -2 11 -11 22 -22 24 -11 3 -169 -97 -415
+                                        -261 -218 -145 -414 -273 -436 -284 -87 -44 -163 -37 -399 36 -152 48 -184 64
+                                        -192 98 -13 52 14 73 211 159 588 258 1016 440 1291 549 286 114 348 130 404
+                                        102z"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="flex-grow-1 bd-highlight text-left">
+                                    Subscribe to <br> SEO Channel
+                                    <div class="text_highlight_color">+800 Pussy Coin</div>
+                                </div>
+                                <div class="p-3 bd-highlight">
+                                    <svg class="i_task_todo" fill="currentColor" width="40px" height="40px" viewBox="0 0 24 24" id="d9090658-f907-4d85-8bc1-743b70378e93" data-name="Liv
+ello 1" xmlns="http://www.w3.org/2000/svg"><title>prime</title><path id="70fa6808-131f-4233-9c3a-fc089fd0c1c4" data-name="done circle" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0ZM11.5
+2,17L6,12.79l1.83-2.37L11.14,13l4.51-5.08,2.24,2Z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container_task">
+                            <div class="row_task d-flex bd-highlight align-items-center">
+                                <div class="p-3 bd-highlight">
+                                    <svg class="i_task" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                    width="40" height="40" viewBox="0 0 360.000000 360.000000"
+                                    preserveAspectRatio="xMidYMid meet">
+
+                                        <g transform="translate(0.000000,360.000000) scale(0.100000,-0.100000)"
+                                        fill="currentColor" stroke="none">
+                                        <path d="M1585 3584 c-769 -99 -1370 -646 -1540 -1402 -106 -466 -9 -976 260
+                                        -1377 95 -141 192 -254 302 -350 485 -424 1144 -561 1746 -364 314 103 586
+                                        280 795 519 601 687 598 1705 -8 2388 -384 432 -986 659 -1555 586z m1005
+                                        -1077 c45 -22 52 -72 35 -216 -38 -305 -147 -984 -195 -1203 -31 -143 -66
+                                        -188 -148 -188 -60 0 -106 26 -422 240 -302 205 -330 228 -330 283 0 44 -5 39
+                                        398 426 171 164 222 218 220 235 -2 11 -11 22 -22 24 -11 3 -169 -97 -415
+                                        -261 -218 -145 -414 -273 -436 -284 -87 -44 -163 -37 -399 36 -152 48 -184 64
+                                        -192 98 -13 52 14 73 211 159 588 258 1016 440 1291 549 286 114 348 130 404
+                                        102z"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="flex-grow-1 bd-highlight text-left">
+                                    Subscribe to <br> {parsChannel}
+                                    <div class="text_highlight_color">+1000 Pussy Coin</div>
+                                </div>
+                                <div class="p-3 bd-highlight">
+                                    <svg class="i_task_todo" fill="currentColor" width="40px" height="40px" viewBox="0 0 24 24" id="d9090658-f907-4d85-8bc1-743b70378e93" data-name="Liv
+ello 1" xmlns="http://www.w3.org/2000/svg"><title>prime</title><path id="70fa6808-131f-4233-9c3a-fc089fd0c1c4" data-name="done circle" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0ZM11.5
+2,17L6,12.79l1.83-2.37L11.14,13l4.51-5.08,2.24,2Z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container_task">
+                            <div class="row_task d-flex bd-highlight align-items-center">
+                                <div class="p-3 bd-highlight">
+                                    <svg class="i_task" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                    width="40" height="40" viewBox="0 0 360.000000 360.000000"
+                                    preserveAspectRatio="xMidYMid meet">
+
+                                        <g transform="translate(0.000000,360.000000) scale(0.100000,-0.100000)"
+                                        fill="currentColor" stroke="none">
+                                        <path d="M1585 3584 c-769 -99 -1370 -646 -1540 -1402 -106 -466 -9 -976 260
+                                        -1377 95 -141 192 -254 302 -350 485 -424 1144 -561 1746 -364 314 103 586
+                                        280 795 519 601 687 598 1705 -8 2388 -384 432 -986 659 -1555 586z m1005
+                                        -1077 c45 -22 52 -72 35 -216 -38 -305 -147 -984 -195 -1203 -31 -143 -66
+                                        -188 -148 -188 -60 0 -106 26 -422 240 -302 205 -330 228 -330 283 0 44 -5 39
+                                        398 426 171 164 222 218 220 235 -2 11 -11 22 -22 24 -11 3 -169 -97 -415
+                                        -261 -218 -145 -414 -273 -436 -284 -87 -44 -163 -37 -399 36 -152 48 -184 64
+                                        -192 98 -13 52 14 73 211 159 588 258 1016 440 1291 549 286 114 348 130 404
+                                        102z"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="flex-grow-1 bd-highlight text-left">
+                                    Subscribe to <br> {parsChannel}
+                                    <div class="text_highlight_color">+600 Pussy Coin</div>
+                                </div>
+                                <div class="p-3 bd-highlight">
+                                    <svg class="i_task_todo" fill="currentColor" width="40px" height="40px" viewBox="0 0 24 24" id="d9090658-f907-4d85-8bc1-743b70378e93" data-name="Liv
+ello 1" xmlns="http://www.w3.org/2000/svg"><title>prime</title><path id="70fa6808-131f-4233-9c3a-fc089fd0c1c4" data-name="done circle" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0ZM11.5
+2,17L6,12.79l1.83-2.37L11.14,13l4.51-5.08,2.24,2Z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!--- FRIENDS PAGE --->
+            <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
+                <div class="container-fluid main">
+                    <div>
+                        <h4>Don`t pet</h4>
+                        <img class="logo" src="{{ url_for('static', filename='static/img/logo.png') }}">
+                        <h4>Invite friends to get <br>more <span class="text_highlight_color">PussyCoin</span></h4>
+                    </div>
+                    <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-fill bd-highlight text-left">{Count friends}</div>
+                        <div class="p-2 flex-fill bd-highlight text-right">Referal bonuses</div>
+                    </div>
+                    <!-- Р”РёРЅР°РјРёС‡РµСЃРєРѕРµ РґРѕР±Р°РІР»РµРЅРёРµ РёР· DB -->
+                    <div class="d-flex bd-highlight">
+                        <div class="col-2 p-2 flex-fill bd-highlight text-left">{AVA}</div>
+                        <div class="p-2 flex-fill bd-highlight text-left">{NAME}</div>
+                        <div class="p-2 flex-fill bd-highlight text-right">{BONUS}</div>
+                    </div>
+                </div>
+                <div class="container fixed-bottom block-invite">
+                    <div class="d-flex bd-highlight">
+                        <button type="button" class="btn-invite_friends">
+                            Invite friends
+                        </button>
+                        <button type="button" class="btn-copy_invite ml-auto">
+                            <i class="bi bi-link-45deg" style="font-size: 1.5rem; color: #fff;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="ano
+nymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" cross
+origin="anonymous"></script>
+
+</body>
+</html>

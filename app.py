@@ -18,9 +18,7 @@ from _back.keyboards import start_menu, get_url
 from _back.database.models import async_main
 from _back.database.query import get_account_info_from_DB
 
-
 load_dotenv()
-
 
 token = os.environ.get('BOT_TOKEN')
 bot = Bot(token=token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
@@ -30,24 +28,24 @@ random_token = os.urandom(12).hex()
 app = Flask(__name__)
 app.secret_key = random_token
 
-
 # Убедимся, что включаем маршрутизатор только один раз
 dp.include_router(router)
-    
+
 
 @app.route('/')
 def index():
     user_id = request.args.get('user_id')
     balance, account_age = get_account_info_from_DB(user_id)
 
-    return render_template("index.html", 
-                           static_url_path='/static', 
-                           user_id=user_id, 
-                           balance = balance,
-                           account_age = account_age, 
-                        #    balance=get_user_balance(user_id),
-                        #    account_age=get_account_age(user_id)
-    )
+    return render_template("index.html",
+                           static_url_path='/static',
+                           user_id=user_id,
+                           balance=balance,
+                           account_age=account_age,
+                           #    balance=get_user_balance(user_id),
+                           #    account_age=get_account_age(user_id)
+                           )
+
 
 # TODO кодировка user_id, если не работает secret key / проверить
 # https://habr.com/ru/articles/706446/
@@ -71,10 +69,3 @@ if __name__ == '__main__':
         asyncio.run(main())
     except KeyboardInterrupt:
         print('Exit')
-
-
-
-
-
-
-
