@@ -8,7 +8,6 @@ from _back.database.models import User
 
 DATABASE_URL = 'sqlite:///db.sqlite3'
 
-# Создайте движок базы данных и сессию
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
 
@@ -16,7 +15,6 @@ Session = sessionmaker(bind=engine)
 def account_age():
     result = randint(2000, 7000)
     return result
-
 
 def get_account_info_from_DB(id_tg):
     session = Session()

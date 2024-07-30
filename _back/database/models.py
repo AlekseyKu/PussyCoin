@@ -1,6 +1,8 @@
-from sqlalchemy import BigInteger, String
+from datetime import datetime
+from sqlalchemy import BigInteger, String, DateTime
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
+
 
 engine = create_async_engine(url='sqlite+aiosqlite:///db.sqlite3')
 
@@ -28,7 +30,17 @@ class Mining(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(25))
+    counter: Mapped[int] = mapped_column()
     coins: Mapped[int] = mapped_column()
+
+
+class Counter(Base):
+    __tablename__ = 'counters'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(unique=True)
+    counter: Mapped[int] = mapped_column(default=0)
+    last_updated: Mapped[str] = mapped_column(DateTime, default=datetime.now)
 
 
 async def async_main():

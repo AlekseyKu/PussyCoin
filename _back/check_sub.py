@@ -18,6 +18,8 @@ def update_button(user_id):
     # Обновите базу данных и установите/снимите соответствующий тумблер
     return button_text
 
+# TODO: добавить в HTML кнопку с текстом "Join us"
+
 # Пример использования функции update_button
 user_id = 'USER_ID'
 button_text = update_button(user_id)

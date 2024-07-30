@@ -1,9 +1,11 @@
 import asyncio
 import multiprocessing
 import os
+from datetime import datetime, timedelta
+import sqlite3
 
-from flask import request
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
 
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram import Bot, Dispatcher, types
@@ -15,8 +17,9 @@ from dotenv import load_dotenv
 
 from _back.handlers import router
 from _back.keyboards import start_menu, get_url
-from _back.database.models import async_main
+from _back.database.models import async_main, Counter, User
 from _back.database.query import get_account_info_from_DB
+
 
 load_dotenv()
 
@@ -32,10 +35,16 @@ app.secret_key = random_token
 dp.include_router(router)
 
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+db = SQLAlchemy(app)
+
 @app.route('/')
 def index():
     user_id = request.args.get('user_id')
     balance, account_age = get_account_info_from_DB(user_id)
+
+
+
 
     return render_template("index.html",
                            static_url_path='/static',
@@ -49,6 +58,39 @@ def index():
 
 # TODO кодировка user_id, если не работает secret key / проверить
 # https://habr.com/ru/articles/706446/
+
+@app.route('/update_counter/<id_tg>', methods=['POST'])
+def update_counter(id_tg):
+    user = User.query.filter_by(id_tg=id_tg).first()
+    print('update_counter:' + user)
+    if not user:
+        return jsonify({"message": "User not found"}), 404
+    time_diff = datetime.utcnow() - user.last_updated
+    seconds_passed = time_diff.total_seconds()
+    new_count = int(seconds_passed / 72)
+    user.counter += new_count
+    user.last_updated = datetime.utcnow()
+    db.session.commit()
+    return jsonify({"counter": user.counter})
+
+@app.route('/get_counter/<id_tg>', methods=['GET'])
+def get_counter(id_tg):
+    user = User.query.filter_by(id_tg=id_tg).first()
+    print('get_counter:' + user)
+    if not user:
+        return jsonify({"message": "User not found"}), 404
+    return jsonify({"counter": user.counter})
+
+@app.route('/reset_counter/<id_tg>', methods=['POST'])
+def reset_counter(id_tg):
+    user = User.query.filter_by(id_tg=id_tg).first()
+    print('reset_counter:' + user)
+    if not user:
+        return jsonify({"message": "User not found"}), 404
+    user.counter = 0
+    user.last_updated = datetime.utcnow()
+    db.session.commit()
+    return jsonify({"message": "Counter reset"})
 
 def run_flask():
     app.run(ssl_context=(

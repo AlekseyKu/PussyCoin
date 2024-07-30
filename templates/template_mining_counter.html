@@ -1,0 +1,136 @@
+{% extends ''index.html'' %}
+
+{% block_mining_counter %}
+
+<script>
+    let user_id = 'user1'; // Уникальный идентификатор пользователя
+    let counter = 0;
+    let lastReset = null;
+
+    $(document).ready(function() {
+        $.getJSON('/get_state?user_id=' + user_id, function(data) {
+            counter = data.counter;
+            lastReset = new Date();
+            document.getElementById('counter').textContent = counter;
+        });
+    });
+
+    function updateTime() {
+        let now = new Date();
+        let elapsed = Math.floor((now - lastReset) / 1000);
+        let hours = Math.floor(elapsed / 3600);
+        let minutes = Math.floor((elapsed % 3600) / 60);
+        let seconds = elapsed % 60;
+
+        document.getElementById('time').textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+        if ((elapsed % 72) === 0) {
+            counter++;
+            document.getElementById('counter').textContent = counter;
+            lastReset = new Date();
+            $.ajax({
+                url: '/get_state',
+                data: {user_id: user_id},
+                type: 'GET',
+                success: function(response) {
+                    console.log('Counter updated');
+                },
+                error: function(error) {
+                    console.error('Error updating counter:', error);
+                }
+            });
+        }
+    }
+
+    setInterval(updateTime, 1000);
+
+    $('#reset').click(function() {
+        $.ajax({
+            url: '/reset',
+            data: {user_id: user_id},
+            type: 'POST',
+            success: function(response) {
+                console.log('Counter reset');
+            },
+            error: function(error) {
+                console.error('Error resetting counter:', error);
+            }
+        });
+    });
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Current Time: <span id="time">00:00:00</span></h1>
+    <h2>Counter: <span id="counter">0</span></h2>
+    <button id="reset">Reset Counter</button>
+
+    <script>
+        let user_id = 'user1'; // TODO Уникальный идентификатор пользователя
+        let counter = 0;
+        let lastReset = null;
+
+        $(document).ready(function() {
+            $.getJSON('/get_state?user_id=' + user_id, function(data) {
+                counter = data.counter;
+                lastReset = new Date();
+                document.getElementById('counter').textContent = counter;
+            });
+        });
+
+        function updateTime() {
+            let now = new Date();
+            let elapsed = Math.floor((now - lastReset) / 1000);
+            let hours = Math.floor(elapsed / 3600);
+            let minutes = Math.floor((elapsed % 3600) / 60);
+            let seconds = elapsed % 60;
+
+            document.getElementById('time').textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            if ((elapsed % 72) === 0) {
+                counter++;
+                document.getElementById('counter').textContent = counter;
+                lastReset = new Date();
+                $.ajax({
+                    url: '/get_state',
+                    data: {user_id: user_id},
+                    type: 'GET',
+                    success: function(response) {
+                        console.log('Counter updated');
+                    },
+                    error: function(error) {
+                        console.error('Error updating counter:', error);
+                    }
+                });
+            }
+        }
+
+        setInterval(updateTime, 1000);
+
+        $('#reset').click(function() {
+            $.ajax({
+                url: '/reset',
+                data: {user_id: user_id},
+                type: 'POST',
+                success: function(response) {
+                    console.log('Counter reset');
+                },
+                error: function(error) {
+                    console.error('Error resetting counter:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

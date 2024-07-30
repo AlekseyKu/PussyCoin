@@ -70,47 +70,94 @@
                         <a href="https://t.me/+8K1Wfb_o_3NhNjk1" class="btn-black"> Join us for 1000 Pussies</a>
                     </div>
 
-                    <div class="container-justified block_rewards">
-                        <h4>Your rewards</h4>
-                        <div class="row mb-2 d-flex flex-row align-items-center">
-                            <div class="col text-left">
-                                <img class="icon" src="static/img/age.svg" alt="Bootstrap" width="20" height="20">
-                                Account age
-                            </div>
-                            <div class="col text-right">
-                                {{ account_age }}
-                                <img class="icon" src="static/img/icon_small.png" width="20" height="20">
-                            </div>
-                        </div>
-                        <div class="row mb-2 d-flex flex-row align-items-center">
-                            <div class="col text-left">
-                                <img class="icon" src="static/img/farming.svg" alt="Bootstrap" width="20" height="20">
-                                Mine Pussies
-                            </div>
-                            <div class="col text-right">
-                                { mine_pussies}
-                                <img class="icon" src="static/img/icon_small.png" alt="Bootstrap" width="20" height="20">
-                            </div>
-                        </div>
-                        <div class="row mb-2 d-flex flex-row align-items-center">
-                            <div class="col text-left">
-                                <img class="icon" src="static/img/friends.svg" alt="Bootstrap" width="20" height="20">
-                                Invite friends
-                            </div>
-                            <div class="col text-right">
-                                { invite_friends}
-                                <img class="icon" src="static/img/icon_small.png" width="20" height="20">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row block_farming flex-row align-items-center">
+<!--                    <div class="container-justified block_rewards">-->
+<!--                        <h4>Your rewards</h4>-->
+<!--                        <div class="row mb-2 d-flex flex-row align-items-center">-->
+<!--                            <div class="col text-left">-->
+<!--                                <img class="icon" src="static/img/age.svg" alt="Bootstrap" width="20" height="20">-->
+<!--                                Account age-->
+<!--                            </div>-->
+<!--                            <div class="col text-right">-->
+<!--                                {{ account_age }}-->
+<!--                                <img class="icon" src="static/img/icon_small.png" width="20" height="20">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row mb-2 d-flex flex-row align-items-center">-->
+<!--                            <div class="col text-left">-->
+<!--                                <img class="icon" src="static/img/farming.svg" alt="Bootstrap" width="20" height="20">-->
+<!--                                Mine Pussies-->
+<!--                            </div>-->
+<!--                            <div class="col text-right">-->
+<!--                                { mine_pussies}-->
+<!--                                <img class="icon" src="static/img/icon_small.png" alt="Bootstrap" width="20" height="20">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row mb-2 d-flex flex-row align-items-center">-->
+<!--                            <div class="col text-left">-->
+<!--                                <img class="icon" src="static/img/friends.svg" alt="Bootstrap" width="20" height="20">-->
+<!--                                Invite friends-->
+<!--                            </div>-->
+<!--                            <div class="col text-right">-->
+<!--                                { invite_friends}-->
+<!--                                <img class="icon" src="static/img/icon_small.png" width="20" height="20">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div class="row btn-maining flex-row align-items-center" id="reset">
                         <div class="col text-center">
-                            Mine Pussies {c_f} / 800
+                             <h5>Mine Pussies <span id="counter">0</span> / 800</h5>
                         </div>
                         <div class="col-4 text-left">
-                            {time_f}
+                            <h5><span id="time">00:00:00</span></h5>
                         </div>
                     </div>
+
+                    <script>
+                        const id_tg = {{ id_tg }};
+                        let timer;
+
+                        function updateCounter() {
+                            $.ajax({
+                                url: `/update_counter/${id_tg}`,
+                                method: "POST",
+                                success: function(data) {
+                                    $('#counter').text(data.counter);
+                                }
+                            });
+                        }
+
+                        $(document).ready(function() {
+                            // Загрузка начального значения счетчика
+                            $.ajax({
+                                url: `/get_counter/${id_tg}`,
+                                method: "GET",
+                                success: function(data) {
+                                    $('#counter').text(data.counter);
+                                    timer = setInterval(updateCounter, 72 * 1000); // Обновление каждые 72 секунды
+                                }
+                            });
+
+                            $('#reset').click(function() {
+                                clearInterval(timer);
+                                $.ajax({
+                                    url: `/reset_counter/${id_tg}`,
+                                    method: "POST",
+                                    success: function() {
+                                        $('#counter').text("0");
+                                        timer = setInterval(updateCounter, 72 * 1000);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+<!--                    <div class="row block_farming flex-row align-items-center">-->
+<!--                        <div class="col text-center">-->
+<!--                            Mine Pussies {c_f} / 800-->
+<!--                        </div>-->
+<!--                        <div class="col-4 text-left">-->
+<!--                            {time_f}-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
 
