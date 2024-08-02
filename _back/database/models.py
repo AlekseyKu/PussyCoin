@@ -5,9 +5,9 @@ from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_
 
 
 engine = create_async_engine(url='sqlite+aiosqlite:///db.sqlite3')
-
 async_session = async_sessionmaker(engine)
 
+# Base.query = db_session.query_property()
 
 class Base(AsyncAttrs, DeclarativeBase):
     pass
@@ -23,6 +23,7 @@ class User(Base):
     balance: Mapped[int] = mapped_column(default=0)
     account_age: Mapped[int] = mapped_column(default=0)
     count_friends: Mapped[int] = mapped_column(default=0)
+    var_task_main: Mapped[int] = mapped_column(default=0)
 
 
 class Mining(Base):

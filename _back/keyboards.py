@@ -4,12 +4,12 @@ from aiogram.types.web_app_info import WebAppInfo
 from aiogram import types
 from aiogram.types import BotCommand
 from _front.templates import *
-
-
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 start_menu = [
     BotCommand(command='start', description='PLAY'),
 ]
+
 
 # bot_menu_button =
 # url = "https://printy.top/telegram.html"
@@ -28,6 +28,20 @@ def get_url(user_id):
     ]
     play_kb = types.InlineKeyboardMarkup(inline_keyboard=rows_play_kb)
     return play_kb
+
+
+# def get_urls(user_id):
+#     web_app = f'https://127.0.0.1:443?user_id={user_id}'
+#     button_webapp = InlineKeyboardButton(text="Open Web App", web_app=web_app)
+#     markup = InlineKeyboardMarkup().add(button_webapp)
+
+
+# def get_urls(user_id):
+#     url = f'https://127.0.0.1:443?user_id={user_id}'
+#     markkup = (
+#         InlineKeyboardBuilder()
+#         .button(text="Start App", web_app=WebAppInfo(url=url))
+#     ).as_markup()
 
 
 #--- Start Keyboard ---

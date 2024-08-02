@@ -14,6 +14,7 @@ body {
     color: #fff;
     background: linear-gradient(#181220 10%,  #21111f, #181220 90%);
     padding: 20px 5px 80px 5px;
+    overflow: hidden;
 
 /*    color: var(--tg-theme-text-color);*/
 /*    background: var(--tg-theme-bg-color);*/
@@ -93,12 +94,37 @@ h6 {
 /*    text-align: center;*/
 }
 
+/*.tab-content {*/
+/*    max-height: 90vh;*/
+/*}*/
+
+
+.task_page {
+/*    display: grid;*/
+/*    grid-template-rows: auto 1fr 8vh*/
+    max-height: 90vh;
+    overflow: hidden;
+}
+
 .block_tasks_header {
     padding-bottom: 10px;
 }
-/* .block_tasks { */
-/*    overflow: auto;*/
-/* } */
+.block_tasks {
+/*    height: 100vh;*/
+    overflow-y: auto;
+    height: calc(90vh - 50px);
+ }
+
+.scroll-container {
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    bottom: 0;*/
+/*    right: 0;*/
+/*    height:320px;*/
+/*    overflow-y: scroll;*/
+}
+
 .container_task {
     height: 80px;
     border-radius: 10px;
@@ -110,15 +136,9 @@ h6 {
 .row_task {
     height: 80px;
 }
-.scroll-container {
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    bottom: 0;*/
-/*    right: 0;*/
-    height:320px;
-    overflow-y: scroll;
-}
+
+
+
 .block-invite {
     margin-bottom: 100px;
 }

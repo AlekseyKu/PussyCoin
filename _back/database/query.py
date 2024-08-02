@@ -1,8 +1,11 @@
 from random import random, randint
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import sessionmaker
+from werkzeug.utils import redirect
 
-from flask import session, current_app
+import requests
+
+from flask import session, current_app, jsonify, url_for
 
 from _back.database.models import User
 
@@ -10,14 +13,14 @@ DATABASE_URL = 'sqlite:///db.sqlite3'
 
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
-
+session = Session()
 
 def account_age():
     result = randint(2000, 7000)
     return result
 
-def get_account_info_from_DB(id_tg):
-    session = Session()
+
+def get_account_info_from_db(id_tg):
     user = session.query(User).filter_by(id_tg=id_tg).first()
     if user:
         balance = user.balance
@@ -30,6 +33,136 @@ def get_account_info_from_DB(id_tg):
 
 
 
+async def process_tg_user_id(tg_user_id):
+    print({'id_tg': tg_user_id})
+
+
+
+
+
+
+
+
+
+# Обновление БД после проверки на подписку канала в tg
+
+# def check_subs(id_tg):
+#     user = session.query(User).filter_by(id_tg=id_tg).first()
+#     if user.var_task_main == 0:
+#         user.var_task_main = 1
+#         user.balance += 1000
+#         session.commit()
+#         session.close()
+#         return redirect('https://t.me/+8K1Wfb_o_3NhNjk1')
+#     return redirect('https://t.me/+8K1Wfb_o_3NhNjk1')
+
+
+
+def check_sub(id_tg):
+    session = Session()
+    user = session.query(User).filter_by(id_tg=id_tg).first()
+    if user.var_task_main == 0:
+        update_database(id_tg)
+    else:
+        pass
+        
+def update_database(id_tg):
+    session = Session()
+    user = session.query(User).filter_by(id_tg=id_tg).first()
+    user.var_task_main = 1
+    user.balance += 1000
+    print('обновление базы данных')
+    session.commit()
+    session.close()
+
+
+
+
+
+
+
+
+
+
+#
+# from random import random, randint
+# from sqlalchemy import create_engine, select
+# from sqlalchemy.orm import sessionmaker
+# import requests
+#
+# from flask import session, current_app, jsonify
+#
+# from _back.database.models import User
+#
+# DATABASE_URL = 'sqlite:///db.sqlite3'
+#
+# engine = create_engine(DATABASE_URL)
+# Session = sessionmaker(bind=engine)
+#
+#
+# def account_age():
+#     result = randint(2000, 7000)
+#     return result
+#
+#
+# def get_account_info_from_db(id_tg):
+#     session = Session()
+#     user = session.query(User).filter_by(id_tg=id_tg).first()
+#     if user:
+#         balance = user.balance
+#         account_age = user.account_age
+#     else:
+#         balance = None
+#         account_age = None
+#     session.close()
+#     return balance, account_age
+#
+#
+# # Обновление БД после проверки на подписку канала в tg
+#
+# def check_sub(id_tg):
+#     session = Session()
+#     user = session.query(User).filter_by(id_tg=id_tg).first()
+#     if user.var_task_main == 0:
+#         update_database(id_tg)
+#     else:
+#         pass
+#
+#
+# def update_database(id_tg):
+#     session = Session()
+#     user = session.query(User).filter_by(id_tg=id_tg).first()
+#     user.var_task_main = 1
+#     user.balance += 1000
+#     print('обновление базы данных')
+#     session.commit()
+#     session.close()
+
+
+
+
+
+
+
+
+
+
+# def check_subscription(id_tg):
+#     session = Session()
+#     tg_id = session.query(User).filter_by(id_tg=id_tg).first()
+#     url = f'https://t.me/+8K1Wfb_o_3NhNjk1'
+#     response = requests.get(url)
+#     data = response.json()
+#     is_subscribed = data['result']['status'] == 'member'
+#
+#     if is_subscribed:
+#         user = User.query.filter_by(tg_id=tg_id).first()
+#         if user:
+#             user.var_task_main = 1
+#             user.balance += 1000
+#             session.commit()
+#
+#     return jsonify({'is_subscribed': is_subscribed})
 
 
 # Работающие варианты. обЪединены в get_account_info_from_DB
@@ -52,7 +185,7 @@ def get_account_info_from_DB(id_tg):
 #         account_age = None
 #     session.close()
 #     return account_age
-    
+
 
 # get_tg_id from DB by num
 # def get_tg_id():
@@ -61,8 +194,6 @@ def get_account_info_from_DB(id_tg):
 #         data = info.balance
 #         print(data)
 #         return data
-
-
 
 
 # Stack: Python Aiogram 3 (бот telegram), Flask (webapp), Sqlite+Sqlalchemy
@@ -86,7 +217,6 @@ def get_account_info_from_DB(id_tg):
 
 # TODO: # Postgres - заменить sqlite
 # telegram api - проверка на пользователя
-
 
 
 #______________________________________________TEST CODE_____________
