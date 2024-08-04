@@ -14,12 +14,13 @@ from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart
 
 from dotenv import load_dotenv
+from sqlalchemy import create_engine, literal_column
+from sqlalchemy.orm import sessionmaker
 
 from _back.handlers import router
 from _back.keyboards import start_menu, get_url
 from _back.database.models import async_main, Counter, User
 from _back.database.query import get_account_info_from_DB
-
 
 load_dotenv()
 
@@ -34,23 +35,49 @@ app.secret_key = random_token
 # Убедимся, что включаем маршрутизатор только один раз
 dp.include_router(router)
 
-
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 db = SQLAlchemy(app)
+
+DATABASE_URL = 'sqlite:///db.sqlite3'
+
+engine = create_engine(DATABASE_URL)
+Session = sessionmaker(bind=engine)
+
 
 @app.route('/')
 def index():
     user_id = request.args.get('user_id')
     balance, account_age = get_account_info_from_DB(user_id)
+    # session = Session()
+    # user = session.query(User).filter_by(id_tg=user_id).first()
+    # if user.var_main_task == 0:
+    #     print(user.var_main_task)
+    #     user.balance += 1000
+    #     user_update = user.var_main_task
+    #     user.var_main_task = 1
+    #     session.commit()
+    #     session.close()
+    #     return user_update
+    # session.close()
 
+    # curr_usr = db.session.query("current_user")
+    # for usr in curr_usr:
+    #     user = usr[0]
+    #     print('usr:', user)
 
-
+    # session = Session()
+    # user = session.query(literal_column("current_user"))
+    # user_id_tg = user.first()
+    # print(user_id_tg)
+    # session.close()
 
     return render_template("index.html",
                            static_url_path='/static',
                            user_id=user_id,
                            balance=balance,
                            account_age=account_age,
+                           # user=user.var_main_task
+                           # user=user_update
                            #    balance=get_user_balance(user_id),
                            #    account_age=get_account_age(user_id)
                            )
@@ -58,6 +85,48 @@ def index():
 
 # TODO кодировка user_id, если не работает secret key / проверить
 # https://habr.com/ru/articles/706446/
+
+# @app.route('/getVarMainTask', methods=['GET'])
+# def get_var_main_task():
+#     session = Session()
+#     user = session.query(User).first()  # Предположим, что в таблице только одна запись
+#     var_main_task_value = user.var_main_task if user else 0
+#     session.close()
+#     return jsonify({'var_main_task': var_main_task_value})
+#
+#
+# @app.route('/updateVarMainTask', methods=['POST'])
+# def update_var_main_task():
+#     data = request.get_json()
+#     var_main_task_value = data.get('var_main_task')
+#
+#     # Обновление значения var_main_task в базе данных
+#     session = Session()
+#     user = session.query(User).first()  # Предположим, что в таблице только одна запись
+#     if user:
+#         user.var_main_task = var_main_task_value
+#         session.commit()
+#
+#     session.close()
+
+    # return jsonify({'status': 'success'})
+
+
+@app.route('/update_button', methods=['POST'])
+def update_button():
+    user_id = request.args.get('user_id')
+    session = Session()
+    user = session.query(User).filter_by(id_tg=user_id).first()
+    if user.var_main_task == 0:
+        print(user.var_main_task)
+        user.balance += 1000
+        user_update = user.var_main_task
+        user.var_main_task = 1
+        session.commit()
+        session.close()
+        return user_update
+    session.close()
+
 
 @app.route('/update_counter/<id_tg>', methods=['POST'])
 def update_counter(id_tg):
@@ -73,6 +142,7 @@ def update_counter(id_tg):
     db.session.commit()
     return jsonify({"counter": user.counter})
 
+
 @app.route('/get_counter/<id_tg>', methods=['GET'])
 def get_counter(id_tg):
     user = User.query.filter_by(id_tg=id_tg).first()
@@ -80,6 +150,7 @@ def get_counter(id_tg):
     if not user:
         return jsonify({"message": "User not found"}), 404
     return jsonify({"counter": user.counter})
+
 
 @app.route('/reset_counter/<id_tg>', methods=['POST'])
 def reset_counter(id_tg):
@@ -91,6 +162,7 @@ def reset_counter(id_tg):
     user.last_updated = datetime.utcnow()
     db.session.commit()
     return jsonify({"message": "Counter reset"})
+
 
 def run_flask():
     app.run(ssl_context=(
