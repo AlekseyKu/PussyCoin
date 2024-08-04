@@ -4,6 +4,7 @@ import requests
 bot_token = 'YOUR_BOT_TOKEN'
 channel_id = 'YOUR_CHANNEL_ID'
 
+
 # Функция для проверки подписки пользователя на канал
 def check_subscription(user_id):
     url = f'https://api.telegram.org/bot{bot_token}/getChatMember?chat_id={channel_id}&user_id={user_id}'
@@ -11,12 +12,14 @@ def check_subscription(user_id):
     data = response.json()
     return data['result']['status'] == 'member'
 
+
 # Функция для обновления кнопки
 def update_button(user_id):
     is_subscribed = check_subscription(user_id)
     button_text = 'Join us for 1000 Pussies' if not is_subscribed else 'Join us'
-    # Обновите базу данных и установите/снимите соответствующий тумблер
+    # TODO Обновить базу данных и установить соответствующий тумблер
     return button_text
+
 
 # TODO: добавить в HTML кнопку с текстом "Join us"
 
