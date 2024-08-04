@@ -93,35 +93,36 @@ h6 {
 /*    text-align: center;*/
 }
 
+/* --------------------------------------2*/
+
 .block_tasks_header {
     padding-bottom: 10px;
 }
-/* .block_tasks { */
-/*    overflow: auto;*/
-/* } */
+
+.block_tasks {
+    height: 50vh;
+    overflow-y: auto;
+    padding-bottom: 10vh;
+}
+
 .container_task {
-    height: 80px;
+/*    height: 80px;*/
     border-radius: 10px;
     border: 2px solid;
     border-color: #614c8d;
     color: #fff;
     margin-bottom: 10px;
 }
-.row_task {
-    height: 80px;
+
+/* --------------------------------------3*/
+
+.block_invite_links {
+    margin-bottom: 10vh;
 }
-.scroll-container {
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    bottom: 0;*/
-/*    right: 0;*/
-    height:320px;
-    overflow-y: scroll;
-}
-.block-invite {
-    margin-bottom: 100px;
-}
+
+
+
+
 
 /* --- BUTTONS --- */
 .btn {

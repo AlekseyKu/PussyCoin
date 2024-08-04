@@ -64,11 +64,72 @@
                         <img class="logo" src="static/img/logo.png"/>
                         <h3> {{ balance }} PussyCoin</h3>
                     </div>
+
                     <div class="block_join_us">
                         <h5>PUSSY COIN COMMUNITY</h5>
-                        <h6>Home for telegram</h6>                        
-                        <a href="https://t.me/+8K1Wfb_o_3NhNjk1" class="btn-black"> Join us for 1000 Pussies</a>
+                        <h6>Home for telegram</h6>
+
+<!--                        <button id="joinUsButton" class="btn-black">Join us</button>-->
+                        <a href="https://t.me/+8K1Wfb_o_3NhNjk1" class="btn-black"> Join us</a>
+
                     </div>
+
+
+<!--                   <script>           document.addEventListener('DOMContentLoaded', function() {-->
+<!--                           // Проверка значения var_main_task при загрузке страницы-->
+<!--                           checkVarMainTask();-->
+<!--                       });-->
+
+<!--                       document.getElementById('joinUsButton').addEventListener('click', function() {-->
+<!--                           this.textContent = 'THx';-->
+<!--                           sendDataToServer(1); // Отправка данных на сервер-->
+<!--                       });-->
+
+<!--                       function checkVarMainTask() {-->
+<!--                           fetch('/getVarMainTask', {-->
+<!--                               method: 'GET'-->
+<!--                           })-->
+<!--                           .then(response => response.json())-->
+<!--                           .then(data => {-->
+<!--                               const button = document.getElementById('joinUsButton');-->
+<!--                               if (data.var_main_task === 1) {-->
+<!--                                   button.textContent = 'THx';-->
+<!--                               } else {-->
+<!--                                   button.textContent = 'Join us';-->
+<!--                               }-->
+<!--                           })-->
+<!--                           .catch(error => console.error('Error:', error));-->
+<!--                       }-->
+
+<!--                       function sendDataToServer(value) {-->
+<!--                           fetch('/updateVarMainTask', {-->
+<!--                               method: 'POST',-->
+<!--                               headers: {-->
+<!--                                   'Content-Type': 'application/json'-->
+<!--                               },-->
+<!--                               body: JSON.stringify({ var_main_task: value })-->
+<!--                           })-->
+<!--                           .then(response => response.json())-->
+<!--                           .then(data => console.log(data))-->
+<!--                           .catch(error => console.error('Error:', error));-->
+<!--                       }-->
+<!--                   </script>-->
+
+
+
+<!--                    <div class="block_join_us">-->
+<!--                        <h5>PUSSY COIN COMMUNITY</h5>-->
+<!--                        <h6>Home for telegram</h6>                        -->
+
+<!--                        {% if(user == 0) %}-->
+<!--                            <a href="https://t.me/+8K1Wfb_o_3NhNjk1" class="btn-black"> Join us</a>-->
+<!--                        {% else %}-->
+<!--                            <a href="https://t.me/+8K1Wfb_o_3NhNjk1" class="btn-black"> THx</a>-->
+<!--                        {% endif %}-->
+<!--                    </div>-->
+
+
+
 
 <!--                    <div class="container-justified block_rewards">-->
 <!--                        <h4>Your rewards</h4>-->
@@ -163,7 +224,7 @@
 
 <!--- TASKS PAGE --->
             <div class="tab-pane fade" id="tasks" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="container main">
+                <div class="main">
                     <div class="block_tasks_header">
                         <h4>Don`t pet</h4>
                         <svg class="logo" version="1.1" viewBox="0 0 800 800" width="150" height="150" xmlns="http://www.w3.org/2000/svg">
@@ -178,7 +239,7 @@
                         <h3>Tasks</h3>
                         <h5>Complete tasks to earn PussyCoin</h5>
                     </div>
-                    <div class="block_tasks scroll-container">
+                    <div class="container block_tasks">
                         <div class="container_task">
                             <div class="row_task d-flex bd-highlight align-items-center">
                                 <div class="p-3 bd-highlight">
@@ -336,7 +397,7 @@
 <!--- FRIENDS PAGE --->
             <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
                 <div class="container-fluid main">
-                    <div>
+                    <div class="container">
                         <h4>Don`t pet</h4>
                         <img class="logo" src="static/img/logo.png">
                         <h4>Invite friends to get <br>more <span class="text_highlight_color">PussyCoin</span></h4>
@@ -352,7 +413,7 @@
                         <div class="p-2 flex-fill bd-highlight text-right">{BONUS}</div>
                     </div>
                 </div>
-                <div class="container fixed-bottom block-invite">
+                <div class="fixed-bottom block_invite_links">
                     <div class="d-flex bd-highlight">
                         <button type="button" class="btn-invite_friends">
                             Invite friends

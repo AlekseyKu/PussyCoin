@@ -28,6 +28,10 @@ def get_account_info_from_DB(id_tg):
     session.close()
     return balance, account_age
 
+def test(id_tg):
+    session = Session()
+    user = session.query(User).filter_by(id_tg=id_tg).first()
+
 
 
 

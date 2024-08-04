@@ -23,6 +23,7 @@ class User(Base):
     balance: Mapped[int] = mapped_column(default=0)
     account_age: Mapped[int] = mapped_column(default=0)
     count_friends: Mapped[int] = mapped_column(default=0)
+    var_main_task: Mapped[int] = mapped_column(default=0)
 
 
 class Mining(Base):
