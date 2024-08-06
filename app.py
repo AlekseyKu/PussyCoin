@@ -20,7 +20,7 @@ from sqlalchemy.orm import sessionmaker
 from _back.handlers import router
 from _back.keyboards import start_menu, get_url
 from _back.database.models import async_main, Counter, User
-from _back.database.query import get_account_info_from_DB
+from _back.database.query import get_account_info_from_db
 
 load_dotenv()
 
@@ -47,7 +47,7 @@ Session = sessionmaker(bind=engine)
 @app.route('/')
 def index():
     user_id = request.args.get('user_id')
-    balance, account_age = get_account_info_from_DB(user_id)
+    balance, account_age = get_account_info_from_db(user_id)
     # session = Session()
     # user = session.query(User).filter_by(id_tg=user_id).first()
     # if user.var_main_task == 0:
