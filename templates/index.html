@@ -18,6 +18,7 @@
     <!-- Custom styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <title>PussyCoin</title>
 </head>
@@ -59,173 +60,69 @@
 <!--- HOME PAGE --->
             <div class="tab-pane active show fade in" id="home" role="tabpanel">
                 <div class="container-fluid main">
-                    <div>
-                        <h4>Don`t pet</h4>
-                        <img class="logo" src="static/img/logo.png"/>
-                        <h3> {{ balance }} PussyCoin</h3>
+                    <div class="header d-flex flex-column align-items-center">
+                        <h4 class="row">Don`t pet</h4>
+                        <img class="row logo" src="static/img/logo.png"/>
+                        <h3 class="row"> {{ balance }} PussyCoin</h3>
                     </div>
 
-                    <div class="block_join_us">
-                        <h5>PUSSY COIN COMMUNITY</h5>
-                        <h6>Home for telegram</h6>
+                    <div class="block_join_us d-flex flex-column align-items-center justify-content-center">
+                        <h5 class="row">PUSSY COIN COMMUNITY</h5>
+                        <h6 class="row">Home for telegram</h6>
 
 <!--                        <button id="joinUsButton" class="btn-black">Join us</button>-->
-                        <a href="https://t.me/+8K1Wfb_o_3NhNjk1" class="btn-black"> Join us</a>
-
+                        <a href="https://t.me/+8K1Wfb_o_3NhNjk1" id="joinUsButton" class="btn-black"> Join us</a>
                     </div>
 
+                    <div class="block_rewards container-justified d-flex flex-column justify-content-center">
+                        <h4>Your rewards</h4>
+                        <div class="row mb-2 d-flex flex-row align-items-center row_block_rewards">
+                            <div class="col text-left">
+                                <img class="icon" src="static/img/age.svg" alt="Bootstrap" width="20" height="20">
+                                Account age
+                            </div>
+                            <div class="col text-right">
+                                {{ account_age }}
+                                <img class="icon" src="static/img/icon_small.png" width="20" height="20">
+                            </div>
+                        </div>
+                        <div class="row mb-2 d-flex flex-row align-items-center row_block_rewards">
+                            <div class="col text-left">
+                                <img class="icon" src="static/img/farming.svg" alt="Bootstrap" width="20" height="20">
+                                Mine Pussies
+                            </div>
+                            <div class="col text-right">
+                                {{ mine_pussies }}
+                                <img class="icon" src="static/img/icon_small.png" alt="Bootstrap" width="20" height="20">
+                            </div>
+                        </div>
+                        <div class="row mb-2 d-flex flex-row align-items-center row_block_rewards">
+                            <div class="col text-left">
+                                <img class="icon" src="static/img/friends.svg" alt="Bootstrap" width="20" height="20">
+                                Invite friends
+                            </div>
+                            <div class="col text-right">
+                                {{ mine_friends }}
+                                <img class="icon" src="static/img/icon_small.png" width="20" height="20">
+                            </div>
+                        </div>
+                    </div>
 
-<!--                   <script>           document.addEventListener('DOMContentLoaded', function() {-->
-<!--                           // Проверка значения var_main_task при загрузке страницы-->
-<!--                           checkVarMainTask();-->
-<!--                       });-->
-
-<!--                       document.getElementById('joinUsButton').addEventListener('click', function() {-->
-<!--                           this.textContent = 'THx';-->
-<!--                           sendDataToServer(1); // Отправка данных на сервер-->
-<!--                       });-->
-
-<!--                       function checkVarMainTask() {-->
-<!--                           fetch('/getVarMainTask', {-->
-<!--                               method: 'GET'-->
-<!--                           })-->
-<!--                           .then(response => response.json())-->
-<!--                           .then(data => {-->
-<!--                               const button = document.getElementById('joinUsButton');-->
-<!--                               if (data.var_main_task === 1) {-->
-<!--                                   button.textContent = 'THx';-->
-<!--                               } else {-->
-<!--                                   button.textContent = 'Join us';-->
-<!--                               }-->
-<!--                           })-->
-<!--                           .catch(error => console.error('Error:', error));-->
-<!--                       }-->
-
-<!--                       function sendDataToServer(value) {-->
-<!--                           fetch('/updateVarMainTask', {-->
-<!--                               method: 'POST',-->
-<!--                               headers: {-->
-<!--                                   'Content-Type': 'application/json'-->
-<!--                               },-->
-<!--                               body: JSON.stringify({ var_main_task: value })-->
-<!--                           })-->
-<!--                           .then(response => response.json())-->
-<!--                           .then(data => console.log(data))-->
-<!--                           .catch(error => console.error('Error:', error));-->
-<!--                       }-->
-<!--                   </script>-->
-
-
-
-<!--                    <div class="block_join_us">-->
-<!--                        <h5>PUSSY COIN COMMUNITY</h5>-->
-<!--                        <h6>Home for telegram</h6>                        -->
-
-<!--                        {% if(user == 0) %}-->
-<!--                            <a href="https://t.me/+8K1Wfb_o_3NhNjk1" class="btn-black"> Join us</a>-->
-<!--                        {% else %}-->
-<!--                            <a href="https://t.me/+8K1Wfb_o_3NhNjk1" class="btn-black"> THx</a>-->
-<!--                        {% endif %}-->
-<!--                    </div>-->
-
-
-
-
-<!--                    <div class="container-justified block_rewards">-->
-<!--                        <h4>Your rewards</h4>-->
-<!--                        <div class="row mb-2 d-flex flex-row align-items-center">-->
-<!--                            <div class="col text-left">-->
-<!--                                <img class="icon" src="static/img/age.svg" alt="Bootstrap" width="20" height="20">-->
-<!--                                Account age-->
-<!--                            </div>-->
-<!--                            <div class="col text-right">-->
-<!--                                {{ account_age }}-->
-<!--                                <img class="icon" src="static/img/icon_small.png" width="20" height="20">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="row mb-2 d-flex flex-row align-items-center">-->
-<!--                            <div class="col text-left">-->
-<!--                                <img class="icon" src="static/img/farming.svg" alt="Bootstrap" width="20" height="20">-->
-<!--                                Mine Pussies-->
-<!--                            </div>-->
-<!--                            <div class="col text-right">-->
-<!--                                { mine_pussies}-->
-<!--                                <img class="icon" src="static/img/icon_small.png" alt="Bootstrap" width="20" height="20">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="row mb-2 d-flex flex-row align-items-center">-->
-<!--                            <div class="col text-left">-->
-<!--                                <img class="icon" src="static/img/friends.svg" alt="Bootstrap" width="20" height="20">-->
-<!--                                Invite friends-->
-<!--                            </div>-->
-<!--                            <div class="col text-right">-->
-<!--                                { invite_friends}-->
-<!--                                <img class="icon" src="static/img/icon_small.png" width="20" height="20">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-                    <div class="row btn-maining flex-row align-items-center" id="reset">
-                        <div class="col text-center">
+                    <div class="block_farming d-flex flex-column align-items-center justify-content-center" id="collect_coin">
+                        <div class="row text-center">
                              <h5>Mine Pussies <span id="counter">0</span> / 800</h5>
                         </div>
-                        <div class="col-4 text-left">
-                            <h5><span id="time">00:00:00</span></h5>
-                        </div>
-                    </div>
-
-                    <script>
-                        const id_tg = {{ id_tg }};
-                        let timer;
-
-                        function updateCounter() {
-                            $.ajax({
-                                url: `/update_counter/${id_tg}`,
-                                method: "POST",
-                                success: function(data) {
-                                    $('#counter').text(data.counter);
-                                }
-                            });
-                        }
-
-                        $(document).ready(function() {
-                            // Загрузка начального значения счетчика
-                            $.ajax({
-                                url: `/get_counter/${id_tg}`,
-                                method: "GET",
-                                success: function(data) {
-                                    $('#counter').text(data.counter);
-                                    timer = setInterval(updateCounter, 72 * 1000); // Обновление каждые 72 секунды
-                                }
-                            });
-
-                            $('#reset').click(function() {
-                                clearInterval(timer);
-                                $.ajax({
-                                    url: `/reset_counter/${id_tg}`,
-                                    method: "POST",
-                                    success: function() {
-                                        $('#counter').text("0");
-                                        timer = setInterval(updateCounter, 72 * 1000);
-                                    }
-                                });
-                            });
-                        });
-                    </script>
-<!--                    <div class="row block_farming flex-row align-items-center">-->
-<!--                        <div class="col text-center">-->
-<!--                            Mine Pussies {c_f} / 800-->
-<!--                        </div>-->
 <!--                        <div class="col-4 text-left">-->
-<!--                            {time_f}-->
+<!--                            <h5><span id="time">00:00:00</span></h5>-->
 <!--                        </div>-->
-<!--                    </div>-->
+                    </div>
                 </div>
             </div>
 
 <!--- TASKS PAGE --->
             <div class="tab-pane fade" id="tasks" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="main">
-                    <div class="block_tasks_header">
+                <div class="container-fluid main">
+                    <div class="header d-flex flex-column align-items-center">
                         <h4>Don`t pet</h4>
                         <svg class="logo" version="1.1" viewBox="0 0 800 800" width="150" height="150" xmlns="http://www.w3.org/2000/svg">
                             <path transform="translate(367)" d="m0 0h65l34 5 29 6 26 7 28 10 29 13 19 10 23 14 18 13 17 13 13 12 10 9 17 17 7 8 11 13 9 12 14 20 9 15 10 18 13 27 10 26 7 22 7 29 6 35 2 17v57l-5 37-8 38-9 29-11 28-14 29-12 21-10 15-12 17-14 17-9 10-14 15-5 5h-2l-1 3-8 7-10 9-13 10-18 13-19 12-25 14-21 10-23 9-21 7-27 7-31 6-28 4h-59l-34-5-31-6-26-7-31-11-24-11-25-13-21-13-17-12-14-11-15-13-13-12-14-14-7-8-11-13-15-20-14-21-12-21-8-16-11-24-9-25-8-29-4-18-5-30-2-16v-65l7-44 8-33 11-33 12-28 12-23 12-20 15-22 11-14 11-13 11-12 21-21 8-7 12-10 16-12 21-14 24-14 31-15 27-10 26-8 31-7 31-5zm-136 123-15 4-10 6-10 9-6 7-7 14-2 8-1 19v428l2 15 4 11 7 11 8 8 10 7 13 5 9 2 148 1h34l148-1 15-4 12-6 11-9 7-10 5-11 3-14v-328l-156-1-1-171zm270 24-1 2 1 105h96l-4-6-9-9-9-11-13-14-7-8-11-12-7-8-9-10-7-8-11-12-7-8z" fill="#614c8d"/>
@@ -239,9 +136,12 @@
                         <h3>Tasks</h3>
                         <h5>Complete tasks to earn PussyCoin</h5>
                     </div>
-                    <div class="container block_tasks">
+                    <div class="block_tasks">
                         <div class="container_task">
-                            <div class="row_task d-flex bd-highlight align-items-center">
+                            <a class="row_task task_1 d-flex bd-highlight align-items-center"
+                               href="https://t.me/+8K1Wfb_o_3NhNjk1"
+                               data-user-id="{{ user_id }}"
+                               target="_blank">
                                 <div class="p-3 bd-highlight">
                                     <svg class="i_task" version="1.0" xmlns="http://www.w3.org/2000/svg"
                                     width="40" height="40" viewBox="0 0 360.000000 360.000000"
@@ -262,13 +162,13 @@
                                     </svg>
                                 </div>
                                 <div class="flex-grow-1 bd-highlight text-left">
-                                    Subscribe to <br> PussyCoin Community
+                                    <h5> Subscribe to <br> PussyCoin Telegram Community </h5>
                                     <div class="text_highlight_color">+1200 Pussy Coin</div>
                                 </div>
                                 <div class="p-3 bd-highlight">
-                                    <svg class="i_task_todo" fill="currentColor" width="40px" height="40px" viewBox="0 0 24 24" id="d9090658-f907-4d85-8bc1-743b70378e93" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg"><title>prime</title><path id="70fa6808-131f-4233-9c3a-fc089fd0c1c4" data-name="done circle" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0ZM11.52,17L6,12.79l1.83-2.37L11.14,13l4.51-5.08,2.24,2Z"/></svg>
+                                    <svg class="i_task_todo i_task_1" fill="currentColor" width="40px" height="40px" viewBox="0 0 24 24" id="d9090658-f907-4d85-8bc1-743b70378e93" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg"><title>prime</title><path id="70fa6808-131f-4233-9c3a-fc089fd0c1c4" data-name="done circle" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0ZM11.52,17L6,12.79l1.83-2.37L11.14,13l4.51-5.08,2.24,2Z"/></svg>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="container_task">
                             <div class="row_task d-flex bd-highlight align-items-center">
@@ -397,13 +297,13 @@
 <!--- FRIENDS PAGE --->
             <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
                 <div class="container-fluid main">
-                    <div class="container">
+                    <div class="header d-flex flex-column align-items-center">
                         <h4>Don`t pet</h4>
                         <img class="logo" src="static/img/logo.png">
                         <h4>Invite friends to get <br>more <span class="text_highlight_color">PussyCoin</span></h4>
                     </div>
                     <div class="d-flex bd-highlight">
-                        <div class="p-2 flex-fill bd-highlight text-left">{Count friends}</div>
+                        <div class="p-2 flex-fill bd-highlight text-left">{{ count_friends }}</div>
                         <div class="p-2 flex-fill bd-highlight text-right">Referal bonuses</div>
                     </div>
                     <!-- Динамическое добавление из DB -->
@@ -413,9 +313,9 @@
                         <div class="p-2 flex-fill bd-highlight text-right">{BONUS}</div>
                     </div>
                 </div>
-                <div class="fixed-bottom block_invite_links">
+                <div class="block_invite_links fixed-bottom container-fluid">
                     <div class="d-flex bd-highlight">
-                        <button type="button" class="btn-invite_friends">
+                        <button type="button" class="btn-invite_friends" id="invite_big">
                             Invite friends
                         </button>
                         <button type="button" class="btn-copy_invite ml-auto">
@@ -426,11 +326,80 @@
             </div>
         </div>
     </div>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+    </script>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script> // JS для обработки обновления баланса из тасков(2)+иконки
+    document.addEventListener("DOMContentLoaded", function() {
+        // Находим кнопку
+        const button = document.querySelector('.task_1');
+        // Получаем var_main_task из данных, переданных в шаблон
+        const varMainTask = {{ var_main_task }};
+        // Находим иконку
+        const icon = document.querySelector('.i_task_1');
+        // Проверяем значение var_main_task и меняем цвет иконки
+        if (varMainTask === 1) {
+            icon.style.color = '#614c8d';
+        }
+
+        // Добавляем обработчик события клика
+        button.addEventListener('click', function(event) {
+            // Получаем user_id (предполагаем, что он передается в качестве атрибута data-user-id)
+            const userId = this.getAttribute('data-user-id');
+
+            // Получаем var_main_task из данных, переданных в шаблон
+            const varMainTask = {{ var_main_task }};
+
+            // Проверяем, можно ли обновлять баланс
+            if (varMainTask !== 1) {
+                // Отправляем AJAX-запрос
+                fetch(`/update_balance/${userId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ action: 'increment' })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Открываем канал Telegram после успешного обновления баланса
+                        window.open('https://t.me/+8K1Wfb_o_3NhNjk1', '_blank');
+                    } else {
+                        // Открываем канал Telegram даже в случае ошибки
+                        window.open('https://t.me/+8K1Wfb_o_3NhNjk1', '_blank');
+                        // Выводим сообщение об ошибке в консоль
+                        console.error('Ошибка при обновлении баланса:', data.message);
+                    }
+                })
+                .catch(error => {
+                    // Открываем канал Telegram даже в случае ошибки
+                    window.open('https://t.me/+8K1Wfb_o_3NhNjk1', '_blank');
+                    // Выводим сообщение об ошибке в консоль
+                    console.error('Ошибка:', error);
+                });
+            } else {
+                window.open('https://t.me/+8K1Wfb_o_3NhNjk1', '_blank');
+                console.error('Вы не можете обновить свой баланс.:', error);
+                // Если обновление баланса невозможно, выводим сообщение пользователю
+//                alert('Вы не можете обновить свой баланс.');
+            }
+        });
+    });
+    </script>
+
+
+
+
     <!-- jQuery first, then Bootstrap JS -->
+<!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+
 
 </body>
 </html>

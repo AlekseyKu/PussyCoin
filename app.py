@@ -39,7 +39,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 db = SQLAlchemy(app)
 
 DATABASE_URL = 'sqlite:///db.sqlite3'
-
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
 
@@ -110,6 +109,28 @@ def index():
 #     session.close()
 
     # return jsonify({'status': 'success'})
+@app.route('/update_var_main_task', methods=['GET'])
+def update_var_main_task():
+    user_id = request.args.get('user_id')
+
+    # Создаем сессию для работы с базой данных
+    session = Session()
+
+    # Ищем пользователя по user_id
+    user = session.query(User).filter_by(id=user_id).first()
+
+    # Проверяем, что пользователь существует и его var_main_task равно 0
+    if user and user.var_main_task == 0:
+        # Обновляем значения для пользователя
+        user.var_main_task = 1
+        user.balance += 1000
+        print('user.var_main_task:', user.var_main_task)
+        print('user.balance:', user.balance)
+
+        session.commit()
+    session.close()
+
+    return jsonify({'status': 'success'})
 
 
 @app.route('/update_button', methods=['POST'])

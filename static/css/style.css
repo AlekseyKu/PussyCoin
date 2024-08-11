@@ -6,7 +6,8 @@
 }
 
 body {
-    height:90vh;
+    height: 100vh;
+/*    height:100vh;*/
     font-family: 'Titillium Web', sans-serif;
     font-size: 15px;
     font-weight: 200;
@@ -20,18 +21,19 @@ body {
 }
 
 .main {
-/*    width: 100%;*/
+    min-height: 90vh;
     text-align: center;
-/*    height: 85vh;*/
 }
 
 /* --- TEXT --- */
 a{
 /*    font-family: 'Titillium Web', sans-serif;*/
-    font-size: 20px;
+    font-size: 3vh;
+    font-weight: 200;
+    color: #ffffff;;
 }
 a:hover {
-    color: #9e66d3;
+    color: #ffffff;
     text-decoration: none;
 }
 
@@ -49,43 +51,54 @@ h2 {
     font-size: 44px;
     font-weight: 400;}
 h3 {
-    font-size: 33px;
+    font-size: 4vh;
     font-weight: 300;}
 h4 {
-    font-size: 22px;
+    font-size: 3vh;
     font-weight: 200;
     color: #bebebe;}
 h5 {
-    font-size: 12px;
-    font-weight: 200;}
+    font-size: 2vh;
+    font-weight: 200;
+    margin: 0}
 h6 {
-    font-size: 12px;
+    font-size: 1.8vh;
     font-weight: 200;}
 .text_highlight_color{
     color: #9e66d3;
 }
 
 /* --- BLOCKS --- */
+.header {
+    padding-top: 2vh;
+    height: 35vh;
+}
+
 .block_menu {
-    height: 8vh;
+    height: 9vh;
 }
 
 .block_join_us {
-    height: 100px;
+    height: 15vh;
     background-image: url('../../static/img/bg_popup.png');
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 10px;
     padding: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+/*    margin-top: 20px;*/
+/*    margin-bottom: 20px;*/
     text-align: center;
 }
 .block_rewards {
-    margin-bottom: 20px;
+    height: 25vh;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+}
+.row_block_rewards {
+    height: 33vh;
 }
 .block_farming {
-    height: 60px;
+    height: 10vh;
     background: #110d17;
     border-radius: 10px;
     padding: 10px;
@@ -102,7 +115,7 @@ h6 {
 .block_tasks {
     height: 50vh;
     overflow-y: auto;
-    padding-bottom: 10vh;
+/*    padding-bottom: 10vh;*/
 }
 
 .container_task {
@@ -115,14 +128,9 @@ h6 {
 }
 
 /* --------------------------------------3*/
-
 .block_invite_links {
     margin-bottom: 10vh;
 }
-
-
-
-
 
 /* --- BUTTONS --- */
 .btn {
@@ -137,13 +145,7 @@ h6 {
     font-size: 18px;
     border: 0;
 }
-.btn-maining {
-    height: 60px;
-    background: #110d17;
-    border-radius: 10px;
-    padding: 10px;
-    margin: auto;
-}
+
 .btn-task {
     padding: 2px 20px 2px 20px;
     color: #000;
@@ -162,6 +164,7 @@ h6 {
     padding-right: 20px;
 }
 .btn-copy_invite {
+/*    width: 15vh;*/
     padding: 2px 10px 2px 10px;
     color: #fff;
     background: #db5d5d;
@@ -230,3 +233,5 @@ input:focus {
     display: none;
     text-align: center;
 }
+
+@media (max-width: 768px) {}

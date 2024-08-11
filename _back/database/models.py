@@ -18,12 +18,20 @@ class User(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     id_tg = mapped_column(BigInteger)
+    id_refer: Mapped[int] = mapped_column(default=0)
     first_name: Mapped[str] = mapped_column(String(25), default='')
     last_name: Mapped[str] = mapped_column(String(25), default='')
     balance: Mapped[int] = mapped_column(default=0)
     account_age: Mapped[int] = mapped_column(default=0)
+
+    mine_friends: Mapped[int] = mapped_column(default=0)
+    mine_pussies: Mapped[int] = mapped_column(default=0)
+
     count_friends: Mapped[int] = mapped_column(default=0)
     var_main_task: Mapped[int] = mapped_column(default=0)
+
+
+
 
 
 class Mining(Base):

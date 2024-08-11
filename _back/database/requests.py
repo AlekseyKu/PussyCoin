@@ -13,7 +13,7 @@ async def set_user(id_tg, first_name, last_name):
             user_account_age = get_account_age()
             session.add(User(id_tg=id_tg, first_name=first_name, last_name=last_name,
                              account_age=user_account_age, balance=user_account_age,
-                             count_friends=0, var_task_main=0))
+                             count_friends=0, var_main_task=0))
             await session.commit()
 
         # if user.first_name != first_name or user.last_name != last_name:
