@@ -110,7 +110,7 @@
 
                     <div class="block_farming d-flex flex-column align-items-center justify-content-center" id="collect_coin">
                         <div class="row text-center">
-                             <h5>Mine Pussies <span id="counter">0</span> / 800</h5>
+                             <h5>Mine Pussies <span id="counter">0</span> / 480</h5>
                         </div>
 <!--                        <div class="col-4 text-left">-->
 <!--                            <h5><span id="time">00:00:00</span></h5>-->
@@ -315,7 +315,7 @@
                 </div>
                 <div class="block_invite_links fixed-bottom container-fluid">
                     <div class="d-flex bd-highlight">
-                        <button type="button" class="btn-invite_friends" id="invite_big">
+                        <button type="button" class="btn-invite_friends" id="invite_big" onclick="sendInviteMessage()">
                             Invite friends
                         </button>
                         <button type="button" class="btn-copy_invite ml-auto">
@@ -390,6 +390,36 @@
     });
     </script>
 
+
+    <script> // JS для отправки сообщения с реферальной ссылкой TODO Потестить на деплое
+        function sendInviteMessage() {
+        const referralLink = document.getElementById('referral_link').innerText;
+        if (referralLink) {
+            // Открываем диалог и отправляем сообщение с реферальной ссылкой
+            window.Telegram.WebApp.sendData(referralLink);
+        } else {
+            alert('User or referral code is not defined.');
+        }
+    }
+    </script>
+
+    <script> // JS для обновления счетчика активности
+        async function updateCounter() {
+            const userId = "{{ user_id }}"; // Предполагается, что переменная user_id доступна в шаблоне
+            const response = await fetch(`/get_activity_counter/${userId}`);
+            const data = await response.json();
+
+            if (response.ok) {
+                document.getElementById('counter').innerText = data.current_activity_counter;
+                console.log(data.current_activity_counter);
+            } else {
+                console.error(data.error);
+            }
+        }
+
+        // Обновление счетчика раз в 1 секунду (настройте интервал по своему усмотрению)
+        setInterval(updateCounter, 1000);
+    </script>
 
 
 

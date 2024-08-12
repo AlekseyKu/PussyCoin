@@ -1,7 +1,10 @@
 import os
 import requests
+import asyncio
+import threading
+from datetime import datetime
 
-from flask import Flask, render_template, session, request, jsonify
+from flask import Flask, render_template, session, request, jsonify, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 from sqlalchemy import create_engine
@@ -33,26 +36,38 @@ async def index():
         # Находим пользователя по user_id
         result = await session.execute(select(User).where(User.id_tg == user_id))
         user = result.scalar_one_or_none()
-        # balance, account_age = await get_account_info_from_db(user_id)
-        var_main_task = user.var_main_task
-        balance = user.balance
-        account_age = user.account_age
-        id_refer = user.id_refer
-        mine_friends = user.mine_friends
-        mine_pussies = user.mine_pussies
-        count_friends = user.count_friends
 
-        return render_template("index.html",
-                               static_url_path='/static',
-                               user_id=user_id,
-                               balance=balance,
-                               account_age=account_age,
-                               var_main_task=var_main_task,
-                               id_refer=id_refer,
-                               mine_friends=mine_friends,
-                               mine_pussies=mine_pussies,
-                               count_friends=count_friends,
-                               )
+        if user:
+            asyncio.create_task(mining_pussies(user, session))
+
+            # balance, account_age = await get_account_info_from_db(user_id)
+            var_main_task = user.var_main_task
+            balance = user.balance
+            account_age = user.account_age
+            id_refer = user.id_refer
+            mine_friends = user.mine_friends
+            mine_pussies = user.mine_pussies
+            count_friends = user.count_friends
+            activity_counter = user.activity_counter
+
+            referral_link = generate_referral_link(user)
+            print(referral_link)
+
+            return render_template("index.html",
+                                   static_url_path='/static',
+                                   user_id=user_id,
+                                   balance=balance,
+                                   account_age=account_age,
+                                   var_main_task=var_main_task,
+                                   id_refer=id_refer,
+                                   mine_friends=mine_friends,
+                                   mine_pussies=mine_pussies,
+                                   count_friends=count_friends,
+                                   referral_link=referral_link,
+                                   activity_counter=activity_counter,
+                                   )
+        else:
+            return "Пользователь не найден."
 
 @app.route('/update_balance/<int:user_id>', methods=['POST'])
 async def update_balance(user_id):
@@ -72,6 +87,85 @@ async def update_balance(user_id):
         else:
             # Возвращаем ответ, если пользователь не найден
             return jsonify({'success': False, 'message': 'Пользователь не найден.'}), 404
+
+
+@app.route('/invite/<referral_code>')
+def invite(referral_code):
+    # Логика обработки приглашения по реферальному коду
+    return f"Invite page for referral code: {referral_code}"
+
+
+def generate_referral_link(user):
+    if user and user.referral_code:
+        return url_for('invite', referral_code=user.referral_code, _external=True)
+    return None
+
+
+
+@app.route('/get_activity_counter/<int:user_id>', methods=['GET'])
+async def get_activity_counter(user_id):
+    async with async_session() as session:
+        result = await session.execute(select(User).where(User.id_tg == user_id))
+        user = result.scalar_one_or_none()
+        if user:
+            return jsonify(activity_counter=user.activity_counter)
+        else:
+            return jsonify(error="User not found"), 404
+
+
+
+async def record_last_activity(user, session):
+    user.last_activity_time = datetime.now()
+    session.add(user)
+    # await session.commit()
+
+
+async def calculate_time_since_last_activity(user):
+    current_time = datetime.now()
+    time_since_last_activity = (current_time - user.last_activity_time).total_seconds() / 60
+    return time_since_last_activity
+
+
+async def update_activity_counter(user, minutes_passed):
+    # Если activity_counter не задан, устанавливаем его в 0
+    if user.activity_counter is None:
+        user.activity_counter = 0
+
+    # Обновляем счетчик активности
+    new_counter_value = min(480, user.activity_counter + minutes_passed)
+    user.activity_counter = new_counter_value
+
+    # Сохраняем изменения в базе данных
+    async with async_session() as session:
+        session.add(user)
+        await session.commit()
+
+
+async def dynamic_points_addition(user, interval=1):  # Интервал в минутах
+    while True:
+        # Расчет времени с момента последней активности
+        minutes_passed = await calculate_time_since_last_activity(user)
+
+        # Обновляем счетчик активности
+        await update_activity_counter(user, minutes_passed)
+
+        # Ждем интервал перед следующим обновлением
+        await asyncio.sleep(interval)
+
+
+# использование
+async def mining_pussies(user, session):
+    if user:
+        await record_last_activity(user, session)
+
+        # Запуск фонового процесса для динамического добавления поинтов
+        task = asyncio.create_task(dynamic_points_addition(user, session))
+
+        # При выходе пользователя из приложения
+        # Отменяем задачу
+        task.cancel()
+        await task
+
 
 
 

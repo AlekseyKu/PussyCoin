@@ -1,8 +1,8 @@
 from datetime import datetime
-from sqlalchemy import BigInteger, String, DateTime
+from sqlalchemy import BigInteger, String, DateTime, JSON
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
-
+from sqlalchemy.sql import text
 
 engine = create_async_engine(url='sqlite+aiosqlite:///db.sqlite3')
 
@@ -30,28 +30,62 @@ class User(Base):
     count_friends: Mapped[int] = mapped_column(default=0)
     var_main_task: Mapped[int] = mapped_column(default=0)
 
+    # Поля для реферальной системы
+    referral_code: Mapped[str] = mapped_column(String(10), default=None)
+    referred_by: Mapped[str] = mapped_column(String(20), default=None)  # Идентификатор пользователя, который пригласил
+    referred_users: Mapped[list] = mapped_column(JSON, default=lambda: [])  # Список идентификаторов приглашенных пользователей
+
+    # Поля для отслеживания активности (для счетчика)
+    last_activity_time: Mapped[datetime] = mapped_column(DateTime, default=0)
+    activity_counter: Mapped[int] = mapped_column(default=0)
 
 
+# Базы не используются, в БД записи уже есть
+# class Mining(Base):
+#     __tablename__ = 'mining'
+#
+#     id: Mapped[int] = mapped_column(primary_key=True)
+#     name: Mapped[str] = mapped_column(String(25))
+#     counter: Mapped[int] = mapped_column()
+#     coins: Mapped[int] = mapped_column()
+#
+#
+# class Counter(Base):
+#     __tablename__ = 'counters'
+#
+#     id: Mapped[int] = mapped_column(primary_key=True)
+#     user_id: Mapped[int] = mapped_column(unique=True)
+#     counter: Mapped[int] = mapped_column(default=0)
+#     last_updated: Mapped[str] = mapped_column(DateTime, default=datetime.now)
 
 
-class Mining(Base):
-    __tablename__ = 'mining'
+# async def async_main():
+#     async with engine.begin() as conn:
+#         # Проверяем, существуют ли столбцы, и добавляем их, если они отсутствуют
+#         await add_missing_columns(conn)
+#
+#
+# async def add_missing_columns(conn):
+#     # Проверяем наличие столбцов и добавляем их, если они отсутствуют
+#     columns = await conn.execute(text("PRAGMA table_info(users);"))
+#     columns = [column[1] for column in columns.fetchall()]
+#
+#     if 'referral_code' not in columns:
+#         await conn.execute(text("ALTER TABLE users ADD COLUMN referral_code TEXT DEFAULT NULL;"))
+#
+#     if 'referred_by' not in columns:
+#         await conn.execute(text("ALTER TABLE users ADD COLUMN referred_by TEXT DEFAULT NULL;"))
+#
+#     if 'referred_users' not in columns:
+#         await conn.execute(text("ALTER TABLE users ADD COLUMN referred_users JSON DEFAULT '[]';"))
+#
+#     if 'last_activity_time' not in columns:
+#         await conn.execute(text("ALTER TABLE users ADD COLUMN last_activity_time DATETIME"))
+#
+#     if 'activity_counter' not in columns:
+#         await conn.execute(text("UPDATE users SET last_activity_time = CURRENT_TIMESTAMP"))
 
-    id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(String(25))
-    counter: Mapped[int] = mapped_column()
-    coins: Mapped[int] = mapped_column()
-
-
-class Counter(Base):
-    __tablename__ = 'counters'
-
-    id: Mapped[int] = mapped_column(primary_key=True)
-    user_id: Mapped[int] = mapped_column(unique=True)
-    counter: Mapped[int] = mapped_column(default=0)
-    last_updated: Mapped[str] = mapped_column(DateTime, default=datetime.now)
-
-
+# работающая функция без проверки отсутствующих столбцов в БД
 async def async_main():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)

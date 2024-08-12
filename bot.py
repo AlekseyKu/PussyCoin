@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 from _back.handlers import router
 from _back.keyboards import start_menu, get_url
-from _back.database.models import async_main, Counter, User
+from _back.database.models import async_main, User
 
 load_dotenv()
 
