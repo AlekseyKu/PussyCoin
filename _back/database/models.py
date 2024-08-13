@@ -5,8 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_
 from sqlalchemy.sql import text
 
 engine = create_async_engine(url='sqlite+aiosqlite:///db.sqlite3')
-
-async_session = async_sessionmaker(engine)
+async_session = async_sessionmaker(engine, expire_on_commit=False)
 
 
 class Base(AsyncAttrs, DeclarativeBase):
@@ -36,7 +35,7 @@ class User(Base):
     referred_users: Mapped[list] = mapped_column(JSON, default=lambda: [])  # Список идентификаторов приглашенных пользователей
 
     # Поля для отслеживания активности (для счетчика)
-    last_activity_time: Mapped[datetime] = mapped_column(DateTime, default=0)
+    last_activity_time: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.utcnow)
     activity_counter: Mapped[int] = mapped_column(default=0)
 
 

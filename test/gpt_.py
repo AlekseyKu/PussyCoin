@@ -6,6 +6,9 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 
+from _back.database.models import User, async_session
+
+
 # Configurations
 random_token = os.urandom(12).hex()
 app = Flask(__name__)
@@ -103,9 +106,12 @@ async def manage_user_activity(user):
 
 
 if __name__ == '__main__':
-	app.run(ssl_context=(
-		'path/to/localhost.crt', 'path/to/localhost.key'),
-		host='0.0.0.0', port=443)
+	try:
+		app.run(ssl_context=(
+			'path/to/localhost.crt', 'path/to/localhost.key'),
+			host='0.0.0.0', port=443)
+	except KeyboardInterrupt:
+		print("Exit Flask")
 
 # import asyncio
 # from datetime import datetime
