@@ -22,6 +22,7 @@ class User(Base):
     last_name: Mapped[str] = mapped_column(String(25), default='')
     balance: Mapped[int] = mapped_column(default=0)
     account_age: Mapped[int] = mapped_column(default=0)
+    show_preloader_age: Mapped[int] = mapped_column(default=0)
 
     mine_friends: Mapped[int] = mapped_column(default=0)
     mine_pussies: Mapped[int] = mapped_column(default=0)

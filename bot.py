@@ -1,15 +1,15 @@
 import asyncio
 import os
 
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 
 from dotenv import load_dotenv
 
 from _back.handlers import router
-from _back.keyboards import start_menu, get_url
-from _back.database.models import async_main, User
+from _back.keyboards import start_menu
+from _back.database.models import async_main
 
 load_dotenv()
 

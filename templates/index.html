@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,8 +21,53 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <title>PussyCoin</title>
+
+
 </head>
 <body>
+
+    <div id="preloader">
+        <div class="container d-flex flex-column align-items-center">
+            <div class="preloader_text">Don`t pet</div>
+            <img class="row logo_preloader" src="static/img/logo_preloader.png"/>
+            <div class="preloader_text" style="padding-bottom:10vh">Mine Pussies...</div>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <div id="preloader-age" class="d-none">
+        <div class="container-preloader-age d-flex flex-column align-items-center justify-content-between" style="min-height: 100vh;">
+            <div class="container d-flex flex-column align-items-center">
+                <div class="congrats_text">Congratulations!!!</div>
+                <h4>You won</h4>
+            </div>
+
+            <div class="container-congrats d-flex flex-column align-items-center">
+                <div class="congrats_num"> {{ account_age }} </div>
+
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+
+                <h3>PussyCoin</h3>
+            </div>
+
+            <div class="container d-flex flex-column align-items-center">
+                <button id="continue-button" class="btn btn-primary mt-4">Continue</button>
+                <h4>for age of your telegram account!</h4>
+            </div>
+
+        </div>
+    </div>
+
+
     <div class="app_container main">
 <!--- MENU --->
         <ul class="nav nav-pills nav-justified fixed-bottom align-items-center block_menu" role="tablist">
@@ -63,7 +108,7 @@
                     <div class="header d-flex flex-column align-items-center">
                         <h4 class="row">Don`t pet</h4>
                         <img class="row logo" src="static/img/logo.png"/>
-                        <h3 class="row"> {{ balance }} PussyCoin</h3>
+                        <h3 class="row"> <span id="balance"> {{ balance }} </span> PussyCoin</h3>
                     </div>
 
                     <div class="block_join_us d-flex flex-column align-items-center justify-content-center">
@@ -92,8 +137,8 @@
                                 Mine Pussies
                             </div>
                             <div class="col text-right">
-                                {{ mine_pussies }}
-                                <img class="icon" src="static/img/icon_small.png" alt="Bootstrap" width="20" height="20">
+                                <span id="mine_pussies"> {{ mine_pussies }} </span>
+                                <img class="icon" src="static/img/icon_small.png" width="20" height="20">
                             </div>
                         </div>
                         <div class="row mb-2 d-flex flex-row align-items-center row_block_rewards">
@@ -108,9 +153,9 @@
                         </div>
                     </div>
 
-                    <div class="block_farming d-flex flex-column align-items-center justify-content-center" id="collect_coin">
+                    <div class="block_farming d-flex flex-column align-items-center justify-content-center" id="button_mine_pussies" data-user-id="{{ user_id }}">
                         <div class="row text-center">
-                             <h5>Mine Pussies <span id="counter">0</span> / 480</h5>
+                             <h5>Mine Pussies <span id="activity_counter">{{ activity_counter }}</span> / 480</h5>
                         </div>
 <!--                        <div class="col-4 text-left">-->
 <!--                            <h5><span id="time">00:00:00</span></h5>-->
@@ -326,12 +371,56 @@
             </div>
         </div>
     </div>
+
+<!--    Preloader-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Устанавливаем минимальное время отображения первого прелоадера
+            setTimeout(function() {
+                var showPreloaderAge = {{ show_preloader_age }};
+
+                if (showPreloaderAge === 0) {
+                    // Показываем второй прелоадер
+                    document.getElementById('preloader').style.display = 'none';
+                    document.getElementById('preloader-age').classList.remove('d-none');
+                } else {
+                    // Показываем контент и скрываем первый прелоадер
+                    document.getElementById('preloader').style.display = 'none';
+                    document.getElementById('content').classList.remove('d-none');
+                }
+            }, 3000); // 3 секунды
+
+            // Обработка клика на кнопке второго прелоадера
+            document.getElementById('continue-button').addEventListener('click', function() {
+                document.getElementById('preloader-age').style.display = 'none';
+                document.getElementById('content').classList.remove('d-none');
+            });
+        });
+    </script>
+
+    <script> // обновления show_preloader_age в БД
+        document.getElementById('continue-button').addEventListener('click', function() {
+            const userId = "{{ user_id }}";  // Подставляем user_id из шаблона Flask
+
+            // Отправляем POST-запрос на сервер для обновления show_preloader_age
+            fetch(`/update-preloader-age/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+        });
+    </script>
+
+
+<!--    Telegram API full screen webapp-->
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
     </script>
 
-    <script> // JS для обработки обновления баланса из тасков(2)+иконки
+<!--    JS для обработки обновления баланса из тасков(2)+иконки-->
+    <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Находим кнопку
         const button = document.querySelector('.task_1');
@@ -390,8 +479,8 @@
     });
     </script>
 
-
-    <script> // JS для отправки сообщения с реферальной ссылкой TODO Потестить на деплое
+<!--    JS для отправки сообщения с реферальной ссылкой TODO Потестить на деплое-->
+    <script>
         function sendInviteMessage() {
         const referralLink = document.getElementById('referral_link').innerText;
         if (referralLink) {
@@ -403,24 +492,121 @@
     }
     </script>
 
-    <script> // JS для обновления счетчика активности
-        async function updateCounter() {
-            const userId = "{{ user_id }}"; // Предполагается, что переменная user_id доступна в шаблоне
-            const response = await fetch(`/get_activity_counter/${userId}`);
-            const data = await response.json();
+<!--    JS для обновления счетчика активности-->
+    <script>
+            document.addEventListener("DOMContentLoaded", function() {
+        // Функция для обновления счетчика активности
+        function updateData() {
+            const userId = document.getElementById('button_mine_pussies').getAttribute('data-user-id');
 
-            if (response.ok) {
-                document.getElementById('counter').innerText = data.current_activity_counter;
-                console.log(data.current_activity_counter);
-            } else {
-                console.error(data.error);
-            }
+            fetch(`/get_activity_counter/${userId}`, {
+                method: 'GET',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if ('mine_pussies' in data && 'activity_counter' in data && 'balance' in data) {
+                    // Обновление значений на странице
+                    document.getElementById('mine_pussies').innerText = data.mine_pussies;
+                    document.getElementById('activity_counter').innerText = data.activity_counter;
+                    document.getElementById('balance').innerText = data.balance;
+                } else if ('error' in data) {
+                    console.error(data.error);
+                }
+            })
+            .catch(error => console.error('Ошибка:', error));
         }
 
-        // Обновление счетчика раз в 1 секунду (настройте интервал по своему усмотрению)
-        setInterval(updateCounter, 1000);
+        // Обновление при нажатии на кнопку
+        document.getElementById('button_mine_pussies').addEventListener('click', updateData);
+    });
     </script>
 
+<!--    JS для обновления значения activity_counter с сервера, периодично.-->
+    <script>
+                document.addEventListener("DOMContentLoaded", function() {
+        // Функция для обновления значения activity_counter с сервера
+        function updateActivityCounter() {
+            const userId = document.getElementById('button_mine_pussies').getAttribute('data-user-id');
+
+            fetch(`/get_and_update_activity_counter/${userId}`, {
+                method: 'GET',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if ('activity_counter' in data) {
+                    // Обновление значения activity_counter на странице
+                    document.getElementById('activity_counter').innerText = data.activity_counter;
+                } else if ('error' in data) {
+                    console.error(data.error);
+                }
+            })
+            .catch(error => console.error('Ошибка:', error));
+        }
+
+        // Автоматическое обновление activity_counter каждые 60 секунд
+//        updateActivityCounter();  // Первое обновление при загрузке страницы
+        setInterval(updateActivityCounter, 60000);  // Обновление каждые 60 секунд (60000 миллисекунд)
+    });
+
+
+    </script>
+
+<!--    JS анимации кнопки-->
+    <script>
+        document.getElementById('button_mine_pussies').addEventListener('click', function() {
+            this.classList.toggle('active');
+            setTimeout(() => {
+            this.classList.remove('active');
+          }, 700);
+        });
+    </script>
+
+<!--    JS для обновления закраски кнопки-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const buttonMinePussies = document.getElementById('button_mine_pussies');
+
+        function updateActivityCounter() {
+            const userId = buttonMinePussies.getAttribute('data-user-id');
+
+            fetch(`/get_and_update_activity_counter/${userId}`, {
+                method: 'GET',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if ('activity_counter' in data) {
+                    const activityCounter = data.activity_counter;
+                    const maxPoints = 480;
+                    const percentage = (activityCounter / maxPoints) * 100;
+
+                    // Обновление значения activity_counter на странице
+                    document.getElementById('activity_counter').innerText = activityCounter;
+
+                    // Обновление закраски кнопки
+                    buttonMinePussies.style.backgroundSize = `${percentage}% 100%`;
+                } else if ('error' in data) {
+                    console.error(data.error);
+                }
+            })
+            .catch(error => console.error('Ошибка:', error));
+        }
+
+        // Обработчик клика по кнопке
+        buttonMinePussies.addEventListener('click', function() {
+            // Сброс градиента до начального состояния
+            buttonMinePussies.style.backgroundSize = '0% 100%';
+
+            // Дополнительно: Вы можете вызвать любую другую логику здесь,
+            // например, отправку запроса на сервер, чтобы обновить другие данные.
+        });
+
+        // Автоматическое обновление activity_counter каждые 60 секунд
+        updateActivityCounter();  // Первое обновление при загрузке страницы
+        setInterval(updateActivityCounter, 60000);  // Обновление каждые 60 секунд (60000 миллисекунд)
+    });
+
+
+    </script>
 
 
     <!-- jQuery first, then Bootstrap JS -->
@@ -428,8 +614,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-
-
 
 </body>
 </html>
