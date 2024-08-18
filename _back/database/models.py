@@ -1,8 +1,7 @@
 from datetime import datetime
-from sqlalchemy import BigInteger, String, DateTime, JSON
+from sqlalchemy import BigInteger, String, DateTime, JSON, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
-from sqlalchemy.sql import text
 
 engine = create_async_engine(url='sqlite+aiosqlite:///db.sqlite3')
 async_session = async_sessionmaker(engine, expire_on_commit=False)
@@ -29,16 +28,29 @@ class User(Base):
 
     count_friends: Mapped[int] = mapped_column(default=0)
     var_main_task: Mapped[int] = mapped_column(default=0)
+    var_task_2: Mapped[int] = mapped_column(default=0)
+    var_task_3: Mapped[int] = mapped_column(default=0)
+    var_task_4: Mapped[int] = mapped_column(default=0)
+    var_task_5: Mapped[int] = mapped_column(default=0)
+    var_task_6: Mapped[int] = mapped_column(default=0)
+    var_task_7: Mapped[int] = mapped_column(default=0)
 
     # Поля для реферальной системы
     referral_code: Mapped[str] = mapped_column(String(10), default=None)
-    referred_by: Mapped[str] = mapped_column(String(20), default=None)  # Идентификатор пользователя, который пригласил
+    referred_by: Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=True)  # Идентификатор пользователя, который пригласил
     referred_users: Mapped[list] = mapped_column(JSON, default=lambda: [])  # Список идентификаторов приглашенных пользователей
 
     # Поля для отслеживания активности (для счетчика)
     last_activity_time: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.utcnow)
     activity_counter: Mapped[int] = mapped_column(default=0)
 
+class Task(Base):
+    __tablename__ = 'tasks'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(25))
+    coins: Mapped[int] = mapped_column()
+    link: Mapped[str] = mapped_column(String(50))
 
 # Базы не используются, в БД записи уже есть
 # class Mining(Base):

@@ -1,10 +1,7 @@
-from aiogram.types import Message, URLInputFile, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, \
-    KeyboardButton, ReplyKeyboardRemove
+from aiogram.types import InlineKeyboardButton, ReplyKeyboardRemove
 from aiogram.types.web_app_info import WebAppInfo
 from aiogram import types
 from aiogram.types import BotCommand
-from _front.templates import *
-from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 start_menu = [
     BotCommand(command='start', description='PLAY'),
@@ -14,8 +11,10 @@ start_menu = [
 # bot_menu_button =
 # url = "https://printy.top/telegram.html"
 # url = 'https://192.168.0.100:443'
+# url = 'https://dexstudioapp.site'
 
 def get_url(user_id):
+    # url = f'https://dexstudioapp.site?user_id={user_id}'
     url = f'https://127.0.0.1:443?user_id={user_id}'
 
     rows_play_kb = [
@@ -65,18 +64,18 @@ del_kb = ReplyKeyboardRemove()
 
 # --- Subscribe Inline Buttons ---
 
-sub_kb = [
-    [
-        InlineKeyboardButton(text='1 Day: 100K VND', callback_data='sub1day'),
-    ],
-    [
-        InlineKeyboardButton(text='7 Days: 400K VND', callback_data='sub7days'),
-    ],
-    [
-        InlineKeyboardButton(text='1 Month: 1M VND', callback_data='sub1month'),
-    ],
-    [
-        InlineKeyboardButton(text='FOREVER: 10M VND', callback_data='subForever'),
-    ],
-]
-sub_keyboard = types.InlineKeyboardMarkup(inline_keyboard=sub_kb)
+# sub_kb = [
+#     [
+#         InlineKeyboardButton(text='1 Day: 100K VND', callback_data='sub1day'),
+#     ],
+#     [
+#         InlineKeyboardButton(text='7 Days: 400K VND', callback_data='sub7days'),
+#     ],
+#     [
+#         InlineKeyboardButton(text='1 Month: 1M VND', callback_data='sub1month'),
+#     ],
+#     [
+#         InlineKeyboardButton(text='FOREVER: 10M VND', callback_data='subForever'),
+#     ],
+# ]
+# sub_keyboard = types.InlineKeyboardMarkup(inline_keyboard=sub_kb)

@@ -42,31 +42,43 @@ p {
     margin: 0 auto;
 }
 h1 {
-    font-size: 54px;
-    font-weight: 600;
-    margin-top: 50px;
-    margin-bottom: 10px
+    font-size: 2em;
+    font-weight: 400;
+/*    margin-top: 50px;*/
+/*    margin-bottom: 10px*/
 }
 h2 {
-    font-size: 7vh;
-    font-weight: 400;}
+    font-size: 1.5em;
+    font-weight: 200;}
 h3 {
-    font-size: 4vh;
-    font-weight: 300;}
-h4 {
-    font-size: 3vh;
+    font-size: 1em;
     font-weight: 200;
-    color: #bebebe;}
+    margin: 0;}
+h4 {
+    font-size: 0.8em;
+    font-weight: 200;
+    margin: 0;}
 h5 {
-    font-size: 2vh;
+    font-size: 0.6em;
     font-weight: 200;
     margin: 0}
 h6 {
     font-size: 1.8vh;
     font-weight: 200;}
 
+.h_slogan {
+    font-size: 1.2em;
+    font-weight: 200;
+    color: #bebebe;
+}
+.h_balance {
+    font-size: 1.8em;
+    font-weight: 300;
+}
+
 .text_highlight_color{
     color: #9e66d3;
+    font-size: 0.6em;
 }
 
 .logo_preloader {
@@ -76,6 +88,7 @@ h6 {
 /* --- BLOCKS --- */
 .header {
     padding-top: 2vh;
+    margin-bottom: 20px;
     height: 35vh;
 }
 
@@ -84,18 +97,30 @@ h6 {
 }
 
 .block_join_us {
-    height: 15vh;
+    height: 12vh;
     background-image: url('../../static/img/bg_popup.png');
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 10px;
-    padding: 10px;
+/*    padding: 10px;*/
 /*    margin-top: 20px;*/
 /*    margin-bottom: 20px;*/
     text-align: center;
 }
+
+.btn-black {
+    padding: 0px 30px 0px 30px;
+/*    margin-top: 5px;*/
+/*    margin-bottom: 5px;*/
+    color: #fff;
+    background: #000;
+    border-radius:6px;
+    font-size: 18px;
+    border: 0;
+}
+
 .block_rewards {
-    height: 25vh;
+    height: 22vh;
     margin-bottom: 1vh;
     margin-top: 1vh;
 }
@@ -134,21 +159,14 @@ h6 {
 
 /* --------------------------------------3*/
 .block_invite_links {
-    margin-bottom: 10vh;
+    margin-bottom: 12vh;
 }
 
 /* --- BUTTONS --- */
 .btn {
     color: #fff;
 }
-.btn-black {
-    padding: 2px 30px 2px 30px;
-    color: #fff;
-    background: #000;
-    border-radius:6px;
-    font-size: 18px;
-    border: 0;
-}
+
 
 .btn-task {
     padding: 2px 20px 2px 20px;
@@ -165,7 +183,7 @@ h6 {
     border-radius:10px;
     font-size: 16px;
     border: 0;
-    padding-right: 20px;
+/*    padding-right: 20px;*/
 }
 .btn-copy_invite {
 /*    width: 15vh;*/
@@ -211,6 +229,7 @@ h6 {
     color: #fff;
     border-radius:0px !important;
     transition: all 2s ease;
+    padding: 0;
 }
 .nav-link:hover {
     color: #9e66d3 !important;
@@ -293,12 +312,12 @@ input:focus {
 }
 .preloader_text {
     color: #fff;
-    font-size: 7vh;
+    font-size: 2em;
     font-weight: 200;
 }
 .preloader_text_2 {
     color: #fff;
-    font-size: 7vh;
+    font-size: 2.5em;
     font-weight: 200;
 }
 
@@ -398,7 +417,6 @@ input:focus {
     height: 5px;
     animation-delay: 0.2s;
 }
-
 .star:nth-child(2) {
     top: 100%;
     left: 100%;
@@ -406,7 +424,6 @@ input:focus {
     height: 50px;
     animation-delay: 0.2s;
 }
-
 .star:nth-child(3) {
     top: 85%;
     left: 5%;
@@ -414,7 +431,6 @@ input:focus {
     height: 30px;
     animation-delay: 0.4s;
 }
-
 .star:nth-child(4) {
     top: 1%;
     left: 140%;
@@ -422,7 +438,6 @@ input:focus {
     height: 35px;
     animation-delay: 0.6s;
 }
-
 .star:nth-child(5) {
     top: 1%;
     left: -100%;
@@ -430,7 +445,6 @@ input:focus {
     height: 40px;
     animation-delay: 0.8s;
 }
-
 .star:nth-child(6) {
     top: -30%;
     left: 60%;
@@ -438,7 +452,6 @@ input:focus {
     height: 15px;
     animation-delay: 1s;
 }
-
 .star:nth-child(7) {
     top: -45%;
     left: -30%;
@@ -446,7 +459,6 @@ input:focus {
     height: 50px;
     animation-delay: 1.2s;
 }
-
 .star:nth-child(8) {
     top: 60%;
     left: -60%;
@@ -454,7 +466,6 @@ input:focus {
     height: 55px;
     animation-delay: 1.4s;
 }
-
 .star:nth-child(9) {
     top: -50%;
     left: 150%;
@@ -462,7 +473,6 @@ input:focus {
     height: 60px;
     animation-delay: 1.6s;
 }
-
 .star:nth-child(10) {
     top: 70%;
     left: 140%;
@@ -475,4 +485,25 @@ input:focus {
     0% { transform: scale(1); }
     50% { transform: scale(1.5); }
     100% { transform: scale(1); }
+}
+
+@keyframes pulse_balance {
+    0% { transform: scale(1); }
+    50% {
+        transform: scale(1.3);
+        color: #db5d5d;
+    }
+    100% {transform: scale(1); }
+}
+
+.pulse_balance {
+    animation: pulse_balance 1s ease-in-out 1;
+}
+
+
+
+#not-in-telegram, #not-on-mobile {
+    display: none;
+    text-align: center;
+    margin-top: 50px;
 }
