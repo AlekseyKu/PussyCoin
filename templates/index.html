@@ -17,7 +17,7 @@
 
     <!-- Custom styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-    <link rel="stylesheet" href="static/css/style.css">
+<!--    <link rel="stylesheet" href="static/css/style.css">-->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <title>PussyCoin</title>
@@ -25,6 +25,9 @@
 
 </head>
 <body>
+    <div id="customAlert" class="custom-alert container-fluid fixed-bottom" style="display:none;">
+        Link copied!
+    </div>
 
     <div id="preloader">
         <div class="container d-flex flex-column align-items-center">
@@ -104,22 +107,25 @@
 
 <!--- HOME PAGE --->
             <div class="tab-pane active show fade in" id="home" role="tabpanel">
-                <div class="container-fluid main">
-                    <div class="header d-flex flex-column align-items-center">
-                        <h4 class="row h_slogan">Don`t pet</h4>
-                        <img class="row logo" src="static/img/logo.png"/>
-                        <h3 class="row h_balance"> <span id="balance"> {{ balance }} </span> &nbsp PussyCoin</h3>
+                <div class="container-fluid main d-flex flex-column justify-content-between">
+                    <!-- Header Section -->
+                    <div class="header text-center">
+                        <h4 class="h_slogan">Don`t pet</h4>
+                        <img class="logo" src="static/img/logo.png"/>
+                        <h3 class="h_balance">
+                            <span id="balance"> {{ balance }} </span> &nbsp PussyCoin
+                        </h3>
                     </div>
 
-                    <div class="block_join_us d-flex flex-column align-items-center justify-content-center">
-                        <h3 class="row">PussyCoin Community</h3>
+                    <!-- Community Section -->
+                    <div class="block_join_us mt-4 d-flex flex-column align-items-center justify-content-between">
+                        <h4 class="row">PUSSYCOIN COMMUNITY</h4>
                         <h4 class="row">Home for telegram</h4>
-
-<!--                        <button id="joinUsButton" class="btn-black">Join us</button>-->
                         <a href="https://t.me/+8K1Wfb_o_3NhNjk1" id="joinUsButton" class="btn-black"> Join us</a>
                     </div>
 
-                    <div class="block_rewards container-justified d-flex flex-column justify-content-center">
+                    <!-- Rewards Section -->
+                    <div class="block_rewards mt-4 container-justified d-flex flex-column justify-content-center">
                         <h3>Your rewards</h3>
                         <div class="row mb-2 d-flex flex-row align-items-center row_block_rewards">
                             <div class="col text-left">
@@ -183,9 +189,9 @@
                     <div class="block_tasks">
                         <div class="container_task">
                             <a class="row_task task_1 d-flex bd-highlight align-items-center"
-                               href="{{ task_1.link }}"
-                               data-user-id="{{ user_id }}"
-                               target="_blank">
+                                href="{{ task_1.link }}"
+                                data-user-id="{{ user_id }}"
+                                target="_blank">
                                 <div class="p-3 bd-highlight">
                                     <svg class="i_task" version="1.0" xmlns="http://www.w3.org/2000/svg"
                                     width="40" height="40" viewBox="0 0 360.000000 360.000000"
@@ -426,21 +432,24 @@
                     </div>
                     <div class="d-flex bd-highlight">
                         <div class="p-2 flex-fill bd-highlight text-left">{{ count_friends }}</div>
-                        <div class="p-2 flex-fill bd-highlight text-right">Referal bonuses</div>
+                        <div class="p-2 flex-fill bd-highlight text-right">{{ Referal bonuses }}</div>
                     </div>
                     <!-- Динамическое добавление из DB -->
-                    <div class="d-flex bd-highlight">
-                        <div class="col-2 p-2 flex-fill bd-highlight text-left">{AVA}</div>
-                        <div class="p-2 flex-fill bd-highlight text-left">{NAME}</div>
-                        <div class="p-2 flex-fill bd-highlight text-right">{BONUS}</div>
+                    <div id="referral_list">
+                        <!-- referrals -->
                     </div>
+<!--                    <div class="d-flex bd-highlight" id="referral_list">-->
+<!--                        <div class="col-2 p-2 flex-fill bd-highlight text-left">{AVA}</div>-->
+<!--                        <div class="p-2 flex-fill bd-highlight text-left">{NAME}</div>-->
+<!--                        <div class="p-2 flex-fill bd-highlight text-right">{BONUS}</div>-->
+<!--                    </div>-->
                 </div>
                 <div class="block_invite_links fixed-bottom container-fluid">
                     <div class="d-flex bd-highlight">
-                        <button type="button" class="btn-invite_friends" id="invite_big" onclick="sendInviteMessage()">
+                        <button type="button" class="btn-invite_friends" id="invite_big">
                             Invite friends
                         </button>
-                        <button type="button" class="btn-copy_invite ml-auto">
+                        <button type="button" class="btn-copy_invite ml-auto" id="invite_small" onclick="copyInviteMessage()">
                             <i class="bi bi-link-45deg" style="font-size: 1.5rem; color: #fff;"></i>
                         </button>
                     </div>
@@ -570,7 +579,6 @@
                 // Если varMainTask равен 1, просто открываем ссылку
                 if (varMainTask === 1) {
                     window.open(telegramURL, '_blank');
-                    console.error('Вы не можете обновить свой баланс.');
                     return;
                 }
 
@@ -585,12 +593,14 @@
                 .then(response => response.json())
                 .then(data => {
                     window.open(telegramURL, '_blank');
+                    location.reload()
                     if (!data.success) {
                         console.error('Ошибка при обновлении баланса:', data.message);
                     }
                 })
                 .catch(error => {
                     window.open(telegramURL, '_blank');
+                    location.reload()
                     console.error('Ошибка:', error);
                 });
             });
@@ -615,7 +625,6 @@
                 // Если var равен 1, просто открываем ссылку
                 if (varTask2 === 1) {
                     window.open(telegramURL, '_blank');
-                    console.error('Вы не можете обновить свой баланс.');
                     return;
                 }
 
@@ -630,12 +639,14 @@
                 .then(response => response.json())
                 .then(data => {
                     window.open(telegramURL, '_blank');
+                    location.reload()
                     if (!data.success) {
                         console.error('Ошибка при обновлении баланса:', data.message);
                     }
                 })
                 .catch(error => {
                     window.open(telegramURL, '_blank');
+                    location.reload()
                     console.error('Ошибка:', error);
                 });
             });
@@ -675,12 +686,14 @@
                 .then(response => response.json())
                 .then(data => {
                     window.open(telegramURL, '_blank');
+                    location.reload()
                     if (!data.success) {
                         console.error('Ошибка при обновлении баланса:', data.message);
                     }
                 })
                 .catch(error => {
                     window.open(telegramURL, '_blank');
+                    location.reload()
                     console.error('Ошибка:', error);
                 });
             });
@@ -720,12 +733,14 @@
                 .then(response => response.json())
                 .then(data => {
                     window.open(telegramURL, '_blank');
+                    location.reload()
                     if (!data.success) {
                         console.error('Ошибка при обновлении баланса:', data.message);
                     }
                 })
                 .catch(error => {
                     window.open(telegramURL, '_blank');
+                    location.reload()
                     console.error('Ошибка:', error);
                 });
             });
@@ -740,6 +755,7 @@
             const varTask5 = {{ var_task_5 }};
             const telegramURL = 'https://x.com/pussycoincommun?s=21';
             const userId = button.getAttribute('data-user-id');
+
 
             // Изменяем цвет иконки, если varMainTask равен 1
             if (varTask5 === 1) {
@@ -765,12 +781,14 @@
                 .then(response => response.json())
                 .then(data => {
                     window.open(telegramURL, '_blank');
+                    location.reload()
                     if (!data.success) {
                         console.error('Ошибка при обновлении баланса:', data.message);
                     }
                 })
                 .catch(error => {
                     window.open(telegramURL, '_blank');
+                    location.reload()
                     console.error('Ошибка:', error);
                 });
             });
@@ -810,12 +828,14 @@
                 .then(response => response.json())
                 .then(data => {
                     window.open(telegramURL, '_blank');
+                    location.reload()
                     if (!data.success) {
                         console.error('Ошибка при обновлении баланса:', data.message);
                     }
                 })
                 .catch(error => {
                     window.open(telegramURL, '_blank');
+                    location.reload()
                     console.error('Ошибка:', error);
                 });
             });
@@ -855,30 +875,20 @@
                 .then(response => response.json())
                 .then(data => {
                     window.open(telegramURL, '_blank');
+                    location.reload()
                     if (!data.success) {
                         console.error('Ошибка при обновлении баланса:', data.message);
                     }
                 })
                 .catch(error => {
                     window.open(telegramURL, '_blank');
+                    location.reload()
                     console.error('Ошибка:', error);
                 });
             });
         });
     </script>
 
-<!--    JS для отправки сообщения с реферальной ссылкой TODO Потестить на деплое-->
-    <script>
-        function sendInviteMessage() {
-        const referralLink = document.getElementById('referral_link').innerText;
-        if (referralLink) {
-            // Открываем диалог и отправляем сообщение с реферальной ссылкой
-            window.Telegram.WebApp.sendData(referralLink);
-        } else {
-            alert('User or referral code is not defined.');
-        }
-    }
-    </script>
 
 <!--    JS для обновления счетчика активности-->
     <script>
@@ -954,9 +964,9 @@
                 balanceElement.classList.remove('pulse_balance');
             }, 1000);
 
-//            minePussiesElement.classList.add('pulse_balance');
+//            mine_pussiesElement.classList.add('pulse_balance');
 //            setTimeout(() => {
-//                minePussiesElement.classList.remove('pulse_balance');
+//                mine_pussiesElement.classList.remove('pulse_balance');
 //            }, 1000);
 
 
@@ -1010,6 +1020,87 @@
 
     </script>
 
+
+<!--    JS для реферальной ссылки-->
+    <script>
+        document.getElementById('invite_big').addEventListener('click', function() {
+            fetch(`/generate_referral_link?user_id={{ user_id }}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.referral_link) {
+                        // Создаем ссылку для открытия Telegram с реферальным сообщением
+                        const telegramUrl = `tg://msg?text=We eat, sleep and mine pussies. Non-stop. And you? Join US!!!: ${data.referral_link}`;
+
+                        // Редирект в Telegram
+                        window.location.href = telegramUrl;
+                    } else {
+                        console.error('Ошибка при генерации реферальной ссылки:', data.error);
+                    }
+                })
+                .catch(error => console.error('Ошибка:', error));
+        });
+    </script>
+
+<!--    JS для копирования реферальной ссылки-->
+    <script>
+        function copyInviteMessage() {
+        fetch('/generate_referral_link?user_id={{ user_id }}')
+            .then(response => response.json())
+            .then(data => {
+                if (data.referral_link) {
+                    const inviteMessage = `Join this awesome app using my referral link: ${data.referral_link}`;
+
+                    // Копируем ссылку в буфер обмена
+                    navigator.clipboard.writeText(inviteMessage).then(() => {
+                        showCustomAlert();
+                    }).catch(err => {
+                        console.error('Ошибка при копировании ссылки:', err);
+                    });
+                } else {
+                    console.error('Ошибка при генерации реферальной ссылки:', data.error);
+                }
+            })
+            .catch(error => console.error('Ошибка:', error));
+    }
+
+    function showCustomAlert() {
+        const alertBox = document.getElementById('customAlert');
+        alertBox.classList.add('show');
+        alertBox.style.display = 'block';
+
+        setTimeout(() => {
+            alertBox.classList.remove('show');
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 300);
+        }, 1500);  // Показ уведомления на 1.5 секунды
+    }
+
+    </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const userId = "{{ user_id }}"; // ID текущего пользователя
+
+        fetch(`/referrals/${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                const referralList = document.getElementById('referral_list');
+                data.forEach(referral => {
+                    const referralItem = `
+                        <div class="d-flex bd-highlight">
+                            <div class="col-2 p-2 flex-fill bd-highlight text-left">${referral.ava}</div>
+                            <div class="p-2 flex-fill bd-highlight text-left">${referral.name}</div>
+                            <div class="p-2 flex-fill bd-highlight text-right">${referral.bonus} Coins</div>
+                        </div>
+                    `;
+                    referralList.innerHTML += referralItem;
+                });
+            })
+            .catch(error => console.error('Ошибка при загрузке рефералов:', error));
+    });
+    </script>
 
     <!-- jQuery first, then Bootstrap JS -->
 <!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->

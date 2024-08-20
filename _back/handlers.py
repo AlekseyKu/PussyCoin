@@ -11,7 +11,17 @@ storage = MemoryStorage()
 
 @router.message(CommandStart())
 async def start(message: types.Message):
-    await rq.set_user(message.from_user.id, message.from_user.first_name, message.from_user.last_name)
+    text = message.text.strip()
+    args = text.split()
+
+    referral_code = None
+
+    # Проверяем наличие аргумента
+    if len(args) > 1:
+        # Извлекаем реферальный код из URL-аргумента
+        referral_code = args[1]
+
+    await rq.set_user(message.from_user.id, message.from_user.first_name, message.from_user.last_name, referral_code)
     tg_user_id = message.from_user.id
     print(tg_user_id)
     print('информация по пользователю внесена')

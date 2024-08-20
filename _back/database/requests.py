@@ -6,13 +6,21 @@ from _back.database.models import User
 from _back.database.query import account_age as get_account_age
 
 
-async def set_user(id_tg, first_name, last_name):
+async def set_user(id_tg, first_name, last_name, referral_code):
     async with async_session() as session:
         user = await session.scalar(select(User).where(User.id_tg == id_tg))
         
         if not user:
             user_account_age = get_account_age()
-            referral_code = secrets.token_hex(4)
+            generated_referral_code = secrets.token_hex(4)
+            referred_by = None
+
+            if referral_code:
+                referrer = await session.scalar(select(User).where(User.referral_code == referral_code))
+                if referrer:
+                    referred_by = referrer.id_tg
+                    referrer.count_friends += 1
+
             session.add(User(
                 id_tg=id_tg,
                 first_name=first_name,
@@ -21,8 +29,8 @@ async def set_user(id_tg, first_name, last_name):
                 balance=user_account_age,
                 count_friends=0,
                 var_main_task=0,
-                referral_code=referral_code,  # Добавлен реферальный код
-                referred_by=None,  # Новый пользователь не приглашен никем
+                referral_code=generated_referral_code,  # Добавлен реферальный код
+                referred_by=referred_by,  # Новый пользователь не приглашен никем
                 referred_users=[]  # Список приглашенных пользователей пуст
             ))
             await session.commit()

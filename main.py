@@ -48,7 +48,6 @@ async def index():
                                    mine_friends=user.mine_friends,
                                    mine_pussies=user.mine_pussies,
                                    count_friends=user.count_friends,
-                                   referral_link=generate_referral_link(user),
                                    activity_counter=user.activity_counter,
 
                                    var_main_task=user.var_main_task,
@@ -103,6 +102,7 @@ async def var_task_3(user_id):
         else:
             return jsonify({'success': False, 'message': 'Пользователь не найден.'}), 404
 
+
 @app.route('/var_task_4/<int:user_id>', methods=['POST'])
 async def var_task_4(user_id):
     async with async_session() as session:
@@ -116,6 +116,7 @@ async def var_task_4(user_id):
         else:
             return jsonify({'success': False, 'message': 'Пользователь не найден.'}), 404
 
+
 @app.route('/var_task_5/<int:user_id>', methods=['POST'])
 async def var_task_5(user_id):
     async with async_session() as session:
@@ -128,6 +129,7 @@ async def var_task_5(user_id):
             return jsonify({'success': True})
         else:
             return jsonify({'success': False, 'message': 'Пользователь не найден.'}), 404
+
 
 @app.route('/var_task_6/<int:user_id>', methods=['POST'])
 async def var_task_6(user_id):
@@ -179,20 +181,30 @@ async def generate_referral_link():
         user = result.scalar_one_or_none()
         if user:
             referral_link = f"https://t.me/PussyCoinCommunityBot?start={user.referral_code}"
-            return {'referral_link': referral_link}
+            print(referral_link)
+            return jsonify({'referral_link': referral_link})
         else:
-            return {'error': 'User not found'}, 404
+            return jsonify({'error': 'Ошибка при генерации реферального кода'}), 500
 
 
-@app.route('/invite/<referral_code>')
-def invite(referral_code):
-    return f"We eat, sleep and mine pussies. Non-stop. And you? Join US!!! {referral_code}"
+@app.route('/invite/<referral_text>')
+def invite(referral_text):
+    return f"We eat, sleep and mine pussies. Non-stop. And you? Join US!!! {referral_text}"
 
 
-# def generate_referral_link(user):
-#     if user and user.referral_code:
-#         return url_for('invite', referral_code=user.referral_code, _external=True)
-#     return None
+@app.route('/referrals/<int:user_id>')
+async def get_referrals(user_id):
+    async with async_session() as session:
+        user = await session.scalar(select(User).where(User.id_tg == user_id))
+        if user:
+            referrals = await session.execute(select(User).where(User.referred_by == user.id_tg))
+            referral_list = [
+                {'name': ref.first_name, 'bonus': ref.account_age // 10, 'ava': 'A'} for ref in referrals.scalars()
+            ]
+            return jsonify(referral_list)
+        else:
+            return jsonify({'error': 'Пользователь не найден'}), 404
+
 
 
 # POINTS

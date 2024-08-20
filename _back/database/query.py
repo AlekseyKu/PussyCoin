@@ -67,4 +67,3 @@ def update_database(id_tg):
     print('обновление базы данных')
     session.commit()
     session.close()
-
