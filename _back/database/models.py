@@ -37,8 +37,10 @@ class User(Base):
 
     # Поля для реферальной системы
     referral_code: Mapped[str] = mapped_column(String(10), default=None)
+    # referral_bonus: Mapped[int] = mapped_column(default=0)
     referred_by: Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=True)  # Идентификатор пользователя, который пригласил
     referred_users: Mapped[list] = mapped_column(JSON, default=lambda: [])  # Список идентификаторов приглашенных пользователей
+
 
     # Поля для отслеживания активности (для счетчика)
     last_activity_time: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.utcnow)

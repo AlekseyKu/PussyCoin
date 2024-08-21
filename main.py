@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
-from flask import Flask, render_template, request, jsonify, url_for
+from flask import Flask, render_template, request, jsonify
+# from flask_csp import CSP
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.future import select
 
@@ -14,6 +15,12 @@ app.secret_key = random_token
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite+aiosqlite:///db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+
+@app.after_request
+def apply_csp(response):
+    response.headers['Content-Security-Policy'] = "frame-src http: https: https://t.me tg://"
+    return response
 
 
 @app.route('/')
@@ -34,8 +41,12 @@ async def index():
 
         tasks_dict = {f'task_{task.id}': task for task in tasks}
 
+        referral_bonuses = 0
 
         if user:
+            if user.referred_users:
+                referral_bonuses = sum(referral.get('bonus', 0) for referral in user.referred_users)
+
             user = await calculate_points(user)
             await session.commit()
 
@@ -49,6 +60,7 @@ async def index():
                                    mine_pussies=user.mine_pussies,
                                    count_friends=user.count_friends,
                                    activity_counter=user.activity_counter,
+                                   referral_bonuses=referral_bonuses,
 
                                    var_main_task=user.var_main_task,
                                    var_task_2=user.var_task_2,
@@ -180,11 +192,13 @@ async def generate_referral_link():
         result = await session.execute(select(User).where(User.id_tg == user_id))
         user = result.scalar_one_or_none()
         if user:
-            referral_link = f"https://t.me/PussyCoinCommunityBot?start={user.referral_code}"
+            # referral_link = f"https://t.me/PussyCoinCommunityBot?start={user.referral_code}"
+            referral_link = f"https://t.me/pussycoin_test_bot?start={user.referral_code}"
             print(referral_link)
             return jsonify({'referral_link': referral_link})
         else:
             return jsonify({'error': 'Ошибка при генерации реферального кода'}), 500
+
 
 
 @app.route('/invite/<referral_text>')
@@ -197,13 +211,15 @@ async def get_referrals(user_id):
     async with async_session() as session:
         user = await session.scalar(select(User).where(User.id_tg == user_id))
         if user:
-            referrals = await session.execute(select(User).where(User.referred_by == user.id_tg))
+            referrals = user.referred_users
             referral_list = [
-                {'name': ref.first_name, 'bonus': ref.account_age // 10, 'ava': 'A'} for ref in referrals.scalars()
+                {'name': referral['name'], 'bonus': referral['bonus'], 'ava': num + 1}
+                for num, referral in enumerate(referrals)
             ]
             return jsonify(referral_list)
         else:
             return jsonify({'error': 'Пользователь не найден'}), 404
+
 
 
 
@@ -212,8 +228,10 @@ async def calculate_points(user: User):
     now = datetime.utcnow()
     time_diff = (now - user.last_activity_time).total_seconds()  # Calculate time difference in seconds
     additional_points = int(time_diff // 60)
+    print(additional_points)
 
     new_activity_counter = min(user.activity_counter + additional_points, 480)
+    print(new_activity_counter)
 
     # start_var_timer = 480
     # new_timer =
@@ -266,6 +284,10 @@ async def get_and_update_activity_counter(user_id):
         else:
             return jsonify(error="User not found"), 404
 
+
+# app.run(ssl_context=(
+#             'D:\\_py_projects\\PussyCoin\\cert\\localhost.crt', 'D:\\_py_projects\\PussyCoin\\cert\\localhost.key'),
+#             host='0.0.0.0', port=443)
 
 if __name__ == '__main__':
     try:

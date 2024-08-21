@@ -153,7 +153,7 @@
                                 Invite friends
                             </div>
                             <div class="col text-right">
-                                {{ mine_friends }}
+                                {{ referral_bonuses }}
                                 <img class="icon" src="static/img/icon_small.png" width="20" height="20">
                             </div>
                         </div>
@@ -431,8 +431,8 @@
                         <h3>Invite friends to get <br>more PussyCoin</h3>
                     </div>
                     <div class="d-flex bd-highlight">
-                        <div class="p-2 flex-fill bd-highlight text-left">{{ count_friends }}</div>
-                        <div class="p-2 flex-fill bd-highlight text-right">{{ Referal bonuses }}</div>
+                        <div class="p-2 flex-fill bd-highlight text-left">referrals: {{ count_friends }}</div>
+                        <div class="p-2 flex-fill bd-highlight text-right">total: {{ referral_bonuses }}</div>
                     </div>
                     <!-- Динамическое добавление из DB -->
                     <div id="referral_list">
@@ -448,9 +448,6 @@
                     <div class="d-flex bd-highlight">
                         <button type="button" class="btn-invite_friends" id="invite_big">
                             Invite friends
-                        </button>
-                        <button type="button" class="btn-copy_invite ml-auto" id="invite_small" onclick="copyInviteMessage()">
-                            <i class="bi bi-link-45deg" style="font-size: 1.5rem; color: #fff;"></i>
                         </button>
                     </div>
                 </div>
@@ -889,7 +886,6 @@
         });
     </script>
 
-
 <!--    JS для обновления счетчика активности-->
     <script>
             document.addEventListener("DOMContentLoaded", function() {
@@ -1020,7 +1016,6 @@
 
     </script>
 
-
 <!--    JS для реферальной ссылки-->
     <script>
         document.getElementById('invite_big').addEventListener('click', function() {
@@ -1029,7 +1024,9 @@
                 .then(data => {
                     if (data.referral_link) {
                         // Создаем ссылку для открытия Telegram с реферальным сообщением
-                        const telegramUrl = `tg://msg?text=We eat, sleep and mine pussies. Non-stop. And you? Join US!!!: ${data.referral_link}`;
+                        // const telegramUrl = `tg://msg?text=We eat, sleep and mine pussies. Non-stop. And you? Join US!!!: ${data.referral_link}`;
+
+                        const telegramUrl = `https://t.me/share/url?url=We eat, sleep and mine pussies. Non-stop. And you? Join US!!!: ${data.referral_link}`;
 
                         // Редирект в Telegram
                         window.location.href = telegramUrl;
@@ -1043,25 +1040,27 @@
 
 <!--    JS для копирования реферальной ссылки-->
     <script>
-        function copyInviteMessage() {
-        fetch('/generate_referral_link?user_id={{ user_id }}')
+        document.getElementById('invite_small').addEventListener('click', function() {
+        fetch(`/generate_referral_link?user_id={{ user_id }}`)
             .then(response => response.json())
             .then(data => {
                 if (data.referral_link) {
-                    const inviteMessage = `Join this awesome app using my referral link: ${data.referral_link}`;
+                    // Создаем ссылку для копирования в буфер обмена
+                    const referralLink = data.referral_link;
 
                     // Копируем ссылку в буфер обмена
-                    navigator.clipboard.writeText(inviteMessage).then(() => {
+                    navigator.clipboard.writeText(referralLink).then(function() {
                         showCustomAlert();
-                    }).catch(err => {
-                        console.error('Ошибка при копировании ссылки:', err);
+                    }).catch(function(error) {
+                        console.error('Ошибка при копировании ссылки:', error);
                     });
                 } else {
                     console.error('Ошибка при генерации реферальной ссылки:', data.error);
                 }
             })
             .catch(error => console.error('Ошибка:', error));
-    }
+    });
+
 
     function showCustomAlert() {
         const alertBox = document.getElementById('customAlert');
@@ -1078,7 +1077,7 @@
 
     </script>
 
-
+<!--    JS для списка рефералов-->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
         const userId = "{{ user_id }}"; // ID текущего пользователя
@@ -1090,7 +1089,7 @@
                 data.forEach(referral => {
                     const referralItem = `
                         <div class="d-flex bd-highlight">
-                            <div class="col-2 p-2 flex-fill bd-highlight text-left">${referral.ava}</div>
+                            <div class="col-1 p-2 flex-fill bd-highlight text-left">${referral.ava}</div>
                             <div class="p-2 flex-fill bd-highlight text-left">${referral.name}</div>
                             <div class="p-2 flex-fill bd-highlight text-right">${referral.bonus} Coins</div>
                         </div>

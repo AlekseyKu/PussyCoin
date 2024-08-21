@@ -21,6 +21,23 @@ dp = Dispatcher()
 dp.include_router(router)
 
 
+
+# async def get_user_avatar(user_id: int, bot: Bot) -> str:
+#     try:
+#         # Получаем фотографии профиля пользователя
+#         photos = await bot.get_user_profile_photos(user_id)
+#         if photos.total_count > 0:
+#             # Используем первую фотографию
+#             file_id = photos.photos[0][0].file_id
+#             file = await bot.get_file(file_id)
+#             # Создаем полный URL к фотографии
+#             avatar_url = f"https://api.telegram.org/file/bot{bot.token}/{file.file_path}"
+#             return avatar_url
+#     except Exception as e:
+#         print(f"Error fetching avatar: {e}")
+#     return "default-avatar.png"  # Путь к дефолтной иконке
+
+
 async def main():
     await async_main()
     await bot.set_my_commands(commands=start_menu)
