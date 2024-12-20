@@ -192,8 +192,8 @@ async def generate_referral_link():
         result = await session.execute(select(User).where(User.id_tg == user_id))
         user = result.scalar_one_or_none()
         if user:
-            # referral_link = f"https://t.me/PussyCoinCommunityBot?start={user.referral_code}"
-            referral_link = f"https://t.me/pussycoin_test_bot?start={user.referral_code}"
+            referral_link = f"https://t.me/PussyCoinCommunityBot?start={user.referral_code}"
+            # referral_link = f"https://t.me/pussycoin_test_bot?start={user.referral_code}"
             print(referral_link)
             return jsonify({'referral_link': referral_link})
         else:
@@ -285,14 +285,17 @@ async def get_and_update_activity_counter(user_id):
             return jsonify(error="User not found"), 404
 
 
-# app.run(ssl_context=(
+
+# if __name__ == '__main__':
+#     try:
+#         app.run(ssl_context=(
 #             'D:\\_py_projects\\PussyCoin\\cert\\localhost.crt', 'D:\\_py_projects\\PussyCoin\\cert\\localhost.key'),
 #             host='0.0.0.0', port=443)
+#     except KeyboardInterrupt:
+#         print("Exit Flask")
 
 if __name__ == '__main__':
     try:
-        app.run(ssl_context=(
-            'D:\\_py_projects\\PussyCoin\\cert\\localhost.crt', 'D:\\_py_projects\\PussyCoin\\cert\\localhost.key'),
-            host='0.0.0.0', port=443)
+        app.run(host='0.0.0.0', port=443)
     except KeyboardInterrupt:
         print("Exit Flask")
