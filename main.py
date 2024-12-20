@@ -1,7 +1,6 @@
 import os
 from datetime import datetime
 from flask import Flask, render_template, request, jsonify
-# from flask_csp import CSP
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.future import select
 
@@ -285,14 +284,17 @@ async def get_and_update_activity_counter(user_id):
             return jsonify(error="User not found"), 404
 
 
-# app.run(ssl_context=(
+
+# if __name__ == '__main__':
+#     try:
+#         app.run(ssl_context=(
 #             'D:\\_py_projects\\PussyCoin\\cert\\localhost.crt', 'D:\\_py_projects\\PussyCoin\\cert\\localhost.key'),
 #             host='0.0.0.0', port=443)
+#     except KeyboardInterrupt:
+#         print("Exit Flask")
 
 if __name__ == '__main__':
     try:
-        app.run(ssl_context=(
-            'D:\\_py_projects\\PussyCoin\\cert\\localhost.crt', 'D:\\_py_projects\\PussyCoin\\cert\\localhost.key'),
-            host='0.0.0.0', port=443)
+        app.run(host='0.0.0.0', port=443)
     except KeyboardInterrupt:
         print("Exit Flask")

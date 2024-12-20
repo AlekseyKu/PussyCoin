@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
     <!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
 
     <!-- Bootstrap CSS -->
@@ -159,7 +159,7 @@
                         </div>
                     </div>
 
-                    <div class="block_farming d-flex flex-column align-items-center justify-content-center" id="button_mine_pussies" data-user-id="{{ user_id }}">
+                    <div class="block_farming d-flex flex-column align-items-center justify-content-center fixed-bottom" id="button_mine_pussies" data-user-id="{{ user_id }}">
                         <div class="row text-center">
                              <h4>Mine Pussies <span id="activity_counter">{{ activity_counter }}</span> / 480</h4>
                         </div>
@@ -703,7 +703,7 @@
             const button = document.querySelector('.task_4');
             const icon = document.querySelector('.i_task_4');
             const varTask4 = {{ var_task_4 }};
-            const telegramURL = 'https://www.instagram.com/dexstudioapp?igsh=MWhlZ3ZsdjdxNGJ2eQ%3D%3D&utm_source=qr';
+            const telegramURL = 'https://www.instagram.com/pusycoincommunity?igsh=MWhlZ3ZsdjdxNGJ2eQ%3D%3D&utm_source=qr';
             const userId = button.getAttribute('data-user-id');
 
             // Изменяем цвет иконки, если varMainTask равен 1
@@ -1026,7 +1026,7 @@
                         // Создаем ссылку для открытия Telegram с реферальным сообщением
                         // const telegramUrl = `tg://msg?text=We eat, sleep and mine pussies. Non-stop. And you? Join US!!!: ${data.referral_link}`;
 
-                        const telegramUrl = `https://t.me/share/url?url=We eat, sleep and mine pussies. Non-stop. And you? Join US!!!: ${data.referral_link}`;
+                        const telegramUrl = `https://t.me/share/url?url=${data.referral_link} We eat, sleep and mine pussies. Non-stop. And you? Join US!!!`;
 
                         // Редирект в Telegram
                         window.location.href = telegramUrl;

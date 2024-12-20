@@ -1,6 +1,7 @@
 from aiogram import types, Router
 from aiogram.filters import CommandStart
 from aiogram.fsm.storage.memory import MemoryStorage
+from aiogram.types import FSInputFile
 
 from _back.keyboards import get_url
 import _back.database.requests as rq
@@ -26,12 +27,16 @@ async def start(message: types.Message):
     print(tg_user_id)
     print('информация по пользователю внесена')
 
-    start_text = (f'🔥 Hello, {message.from_user.first_name}! '
-                  f'Collect PussyCoin and join community.')
+    preload_path = "static/img/preload.jpg"
+
+    start_text = (f'🔥 Hello, {message.from_user.first_name}! Eat, sleep, and mine PussyCoin. Non-stop!'
+                  f'\nWe are not only game, but and best community.'
+                  f'\nJoin the cat community.'
+                  f'\nPlay and help your cat mine Pussies!')
 
     print('bot started')
 
     play_kb = get_url(message.from_user.id)
 
 
-    await message.answer(text=start_text, reply_markup=play_kb)
+    await message.answer_photo(FSInputFile(path=preload_path), caption=start_text, reply_markup=play_kb)

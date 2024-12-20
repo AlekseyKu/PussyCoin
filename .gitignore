@@ -1,2 +1,7 @@
 # created by virtualenv automatically
 *
+/_front/
+.venv/
+.idea/
+.env
+test

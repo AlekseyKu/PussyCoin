@@ -67,3 +67,7 @@ def update_database(id_tg):
     print('обновление базы данных')
     session.commit()
     session.close()
+
+
+def update_DB():
+    DB_file = open('db.sqlite3', 'r')

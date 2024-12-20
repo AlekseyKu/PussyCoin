@@ -1,4 +1,7 @@
 DEPLOY:
+bot.py
+заменить token на BOT_TOKEN
+
 main.py
 убрать SSL
 заменить referral_link

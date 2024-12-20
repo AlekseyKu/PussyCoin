@@ -14,8 +14,8 @@ start_menu = [
 # url = 'https://dexstudioapp.site'
 
 def get_url(user_id):
-    # url = f'https://dexstudioapp.site?user_id={user_id}'
-    url = f'https://127.0.0.1:443?user_id={user_id}'
+    url = f'https://dexstudioapp.site/pussycoin?user_id={user_id}'
+    # url = f'https://127.0.0.1:443?user_id={user_id}'
 
     rows_play_kb = [
         [

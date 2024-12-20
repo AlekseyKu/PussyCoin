@@ -185,10 +185,13 @@ def reset_counter(id_tg):
     return jsonify({"message": "Counter reset"})
 
 
+# def run_flask():
+#     app.run(ssl_context=(
+#         'D:\\_py_projects\\PussyCoin\\cert\\localhost.crt', 'D:\\_py_projects\\PussyCoin\\cert\\localhost.key'),
+#         host='0.0.0.0', port=443)
+
 def run_flask():
-    app.run(ssl_context=(
-        'D:\\_py_projects\\PussyCoin\\cert\\localhost.crt', 'D:\\_py_projects\\PussyCoin\\cert\\localhost.key'),
-        host='0.0.0.0', port=443)
+    app.run(host='0.0.0.0', port=443)
 
 
 async def main():
