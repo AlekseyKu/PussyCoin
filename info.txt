@@ -31,7 +31,8 @@ Django? (поднимать веб-сервер)
 DEPLOY
 VPS - сервер - купить 17
 Настроить сервер 17-18
-Тест-деплой 
+Тест-деплой
+
 
 Стэк: Python Aoigram 3 (бот telegram), Flask (webapp), Sqlite+Sqlalchemy
 
