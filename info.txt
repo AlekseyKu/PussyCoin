@@ -1,6 +1,6 @@
 DEPLOY:
 bot.py
-заменить token на BOT_TOKEN
+заменить TOKEN
 
 main.py
 убрать SSL

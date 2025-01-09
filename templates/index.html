@@ -32,7 +32,8 @@
     <div id="preloader">
         <div class="container d-flex flex-column align-items-center">
             <div class="preloader_text">Don`t pet</div>
-            <img class="row logo_preloader" src="static/img/logo-duck.png"/>
+<!--            <img class="row logo_preloader" src="static/img/logo-duck.png"/>-->
+            <img class="row logo_preloader" src="{{ url_for('static', filename='img/logo-duck.png') }}"/>
             <div class="preloader_text" style="padding-bottom:10vh">Mine $DDUCK...</div>
             <div class="spinner"></div>
         </div>
@@ -111,7 +112,7 @@
                     <!-- Header Section -->
                     <div class="header text-center">
                         <h4 class="h_slogan">Don`t pet</h4>
-                        <img class="logo" src="static/img/logo-duck.png"/>
+                        <img class="logo" src="{{ url_for('static', filename='img/logo-duck.png') }}"/>
                         <h3 class="h_balance">
                             <span id="balance"> {{ balance }} </span> &nbsp $DDUCK
                         </h3>
@@ -129,32 +130,32 @@
                         <h3>Your rewards</h3>
                         <div class="row mb-2 d-flex flex-row align-items-center row_block_rewards">
                             <div class="col text-left">
-                                <img class="icon" src="static/img/age.svg" alt="Bootstrap" width="20" height="20">
+                                <img class="icon" src="{{ url_for('static', filename='img/age.svg') }}" alt="Bootstrap" width="20" height="20">
                                 Welcome Bonus
                             </div>
                             <div class="col text-right">
                                 {{ account_age }}
-                                <img class="icon" src="static/img/duck_small.png" width="20" height="20">
+                                <img class="icon" src="{{ url_for('static', filename='img/duck_small.png') }}" width="20" height="20">
                             </div>
                         </div>
                         <div class="row mb-2 d-flex flex-row align-items-center row_block_rewards">
                             <div class="col text-left">
-                                <img class="icon" src="static/img/farming.svg" alt="Bootstrap" width="20" height="20">
+                                <img class="icon" src="{{ url_for('static', filename='img/farming.svg') }}" alt="Bootstrap" width="20" height="20">
                                 Mine $DDUCK
                             </div>
                             <div class="col text-right">
                                 <span id="mine_pussies"> {{ mine_pussies }} </span>
-                                <img class="icon" src="static/img/duck_small.png" width="20" height="20">
+                                <img class="icon" src="{{ url_for('static', filename='img/duck_small.png') }}" width="20" height="20">
                             </div>
                         </div>
                         <div class="row mb-2 d-flex flex-row align-items-center row_block_rewards">
                             <div class="col text-left">
-                                <img class="icon" src="static/img/friends.svg" alt="Bootstrap" width="20" height="20">
+                                <img class="icon" src="{{ url_for('static', filename='img/friends.svg') }}" alt="Bootstrap" width="20" height="20">
                                 Invite friends
                             </div>
                             <div class="col text-right">
                                 {{ referral_bonuses }}
-                                <img class="icon" src="static/img/duck_small.png" width="20" height="20">
+                                <img class="icon" src="{{ url_for('static', filename='img/duck_small.png') }}" width="20" height="20">
                             </div>
                         </div>
                     </div>
@@ -338,7 +339,7 @@
             <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
                 <div class="container-fluid main">
                     <div class="header d-flex flex-column align-items-center">
-                        <img class="logo" src="static/img/logo-duck.png">
+                        <img class="logo" src="{{ url_for('static', filename='img/logo-duck.png') }}">
                         <h3>Invite friends to get <br>more $DDUCK</h3>
                     </div>
                     <div class="d-flex bd-highlight">

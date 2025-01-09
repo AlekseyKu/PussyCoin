@@ -22,7 +22,7 @@ def apply_csp(response):
     return response
 
 
-@app.route('/')
+@app.route('/pussycoin')
 async def index():
     user_id = request.args.get('user_id')
 
@@ -32,7 +32,7 @@ async def index():
         # result_tasks = await session.execute(select(Task))
         # tasks = result_tasks.scalars().all()
 
-        task_ids = [1, 2, 3, 4, 5, 6, 7]
+        task_ids = [1, 2, 3, 4]
         result_tasks = await session.execute(
             select(Task).where(Task.id.in_(task_ids))
         )
@@ -300,16 +300,16 @@ async def get_and_update_activity_counter(user_id):
 
 
 
-if __name__ == '__main__':
-    try:
-        app.run(ssl_context=(
-            'D:\\_py_projects\\PussyCoin\\cert\\localhost.crt', 'D:\\_py_projects\\PussyCoin\\cert\\localhost.key'),
-            host='0.0.0.0', port=443)
-    except KeyboardInterrupt:
-        print("Exit Flask")
-
 # if __name__ == '__main__':
 #     try:
-#         app.run(host='0.0.0.0', port=443)
+#         app.run(ssl_context=(
+#             'D:\\_py_projects\\PussyCoin\\cert\\localhost.crt', 'D:\\_py_projects\\PussyCoin\\cert\\localhost.key'),
+#             host='0.0.0.0', port=443)
 #     except KeyboardInterrupt:
 #         print("Exit Flask")
+
+if __name__ == '__main__':
+    try:
+        app.run(host='0.0.0.0', port=8000)
+    except KeyboardInterrupt:
+        print("Exit Flask")
