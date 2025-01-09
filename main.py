@@ -8,7 +8,7 @@ from _back.database.models import User, Task, async_session
 
 # Configurations
 random_token = os.urandom(12).hex()
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/pussycoin/static')
 app.secret_key = random_token
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite+aiosqlite:///db.sqlite3'
@@ -79,7 +79,7 @@ async def index():
             return "Пользователь не найден."
 
 
-@app.route('/var_main_task/<int:user_id>', methods=['POST'])
+@app.route('/api/var_main_task/<int:user_id>', methods=['POST'])
 async def update_balance(user_id):
     async with async_session() as session:
         result = await session.execute(select(User).where(User.id_tg == user_id))
@@ -92,7 +92,7 @@ async def update_balance(user_id):
         else:
             return jsonify({'success': False, 'message': 'Пользователь не найден.'}), 404
 
-@app.route('/var_task_2/<int:user_id>', methods=['POST'])
+@app.route('/api/var_task_2/<int:user_id>', methods=['POST'])
 async def var_task_2(user_id):
     async with async_session() as session:
         result = await session.execute(select(User).where(User.id_tg == user_id))
@@ -105,7 +105,7 @@ async def var_task_2(user_id):
         else:
             return jsonify({'success': False, 'message': 'Пользователь не найден.'}), 404
 
-@app.route('/var_task_3/<int:user_id>', methods=['POST'])
+@app.route('/api/var_task_3/<int:user_id>', methods=['POST'])
 async def var_task_3(user_id):
     async with async_session() as session:
         result = await session.execute(select(User).where(User.id_tg == user_id))
@@ -119,7 +119,7 @@ async def var_task_3(user_id):
             return jsonify({'success': False, 'message': 'Пользователь не найден.'}), 404
 
 
-@app.route('/var_task_4/<int:user_id>', methods=['POST'])
+@app.route('/api/var_task_4/<int:user_id>', methods=['POST'])
 async def var_task_4(user_id):
     async with async_session() as session:
         result = await session.execute(select(User).where(User.id_tg == user_id))
@@ -174,7 +174,7 @@ async def var_task_4(user_id):
 #             return jsonify({'success': False, 'message': 'Пользователь не найден.'}), 404
 
 # PRELOADER
-@app.route('/update-preloader-age/<int:user_id>', methods=['POST'])
+@app.route('/api/update-preloader-age/<int:user_id>', methods=['POST'])
 async def update_preloader_age(user_id):
     async with async_session() as session:
         result = await session.execute(select(User).where(User.id_tg == user_id))
@@ -188,7 +188,7 @@ async def update_preloader_age(user_id):
 
 
 # REFERRALS
-@app.route('/generate_referral_link')
+@app.route('/api/generate_referral_link')
 async def generate_referral_link():
     user_id = request.args.get('user_id')
 
@@ -205,12 +205,12 @@ async def generate_referral_link():
 
 
 
-@app.route('/invite/<referral_text>')
+@app.route('/api/invite/<referral_text>')
 def invite(referral_text):
     return f"We eat, sleep and mine $DDUCK. Non-stop. And you? Join US!!! {referral_text}"
 
 
-@app.route('/referrals/<int:user_id>')
+@app.route('/api/referrals/<int:user_id>')
 async def get_referrals(user_id):
     async with async_session() as session:
         user = await session.scalar(select(User).where(User.id_tg == user_id))
@@ -255,7 +255,7 @@ async def calculate_points(user):
     return user
 
 
-@app.route('/get_activity_counter/<int:user_id>', methods=['GET'])
+@app.route('/api/get_activity_counter/<int:user_id>', methods=['GET'])
 async def get_activity_counter(user_id):
     async with async_session() as session:
         result = await session.execute(select(User).where(User.id_tg == user_id))
@@ -282,7 +282,7 @@ async def get_activity_counter(user_id):
             return jsonify(error="User not found"), 404
 
 
-@app.route('/get_and_update_activity_counter/<int:user_id>', methods=['GET'])
+@app.route('/api/get_and_update_activity_counter/<int:user_id>', methods=['GET'])
 async def get_and_update_activity_counter(user_id):
     async with async_session() as session:
         result = await session.execute(select(User).where(User.id_tg == user_id))

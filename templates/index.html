@@ -454,7 +454,7 @@
             const userId = "{{ user_id }}";  // Подставляем user_id из шаблона Flask
 
             // Отправляем POST-запрос на сервер для обновления show_preloader_age
-            fetch(`/update-preloader-age/${userId}`, {
+            fetch(`/api/update-preloader-age/${userId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -492,7 +492,7 @@
                 }
 
                 // Если varMainTask не равен 1, отправляем запрос для обновления баланса
-                fetch(`/var_main_task/${userId}`, {
+                fetch(`/api/var_main_task/${userId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -538,7 +538,7 @@
                 }
 
                 // Если var не равен 1, отправляем запрос для обновления баланса
-                fetch(`/var_task_2/${userId}`, {
+                fetch(`/api/var_task_2/${userId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -585,7 +585,7 @@
                 }
 
                 // Если var не равен 1, отправляем запрос для обновления баланса
-                fetch(`/var_task_3/${userId}`, {
+                fetch(`/api/var_task_3/${userId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -632,7 +632,7 @@
                 }
 
                 // Если var не равен 1, отправляем запрос для обновления баланса
-                fetch(`/var_task_4/${userId}`, {
+                fetch(`/api/var_task_4/${userId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -805,7 +805,7 @@
         function updateData() {
             const userId = document.getElementById('button_mine_pussies').getAttribute('data-user-id');
 
-            fetch(`/get_activity_counter/${userId}`, {
+            fetch(`/api/get_activity_counter/${userId}`, {
                 method: 'GET',
             })
             .then(response => response.json())
@@ -834,7 +834,7 @@
         function updateActivityCounter() {
             const userId = document.getElementById('button_mine_pussies').getAttribute('data-user-id');
 
-            fetch(`/get_and_update_activity_counter/${userId}`, {
+            fetch(`/api/get_and_update_activity_counter/${userId}`, {
                 method: 'GET',
             })
             .then(response => response.json())
@@ -888,7 +888,7 @@
         function updateActivityCounter() {
             const userId = buttonMinePussies.getAttribute('data-user-id');
 
-            fetch(`/get_and_update_activity_counter/${userId}`, {
+            fetch(`/api/get_and_update_activity_counter/${userId}`, {
                 method: 'GET',
             })
             .then(response => response.json())
@@ -929,14 +929,14 @@
 <!--    JS для реферальной ссылки-->
     <script>
         document.getElementById('invite_big').addEventListener('click', function() {
-            fetch(`/generate_referral_link?user_id={{ user_id }}`)
+            fetch(`/api/generate_referral_link?user_id={{ user_id }}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.referral_link) {
                         // Создаем ссылку для открытия Telegram с реферальным сообщением
                         // const telegramUrl = `tg://msg?text=We eat, sleep and mine pussies. Non-stop. And you? Join US!!!: ${data.referral_link}`;
 
-                        const telegramUrl = `https://t.me/share/url?url=${data.referral_link} We eat, sleep and mine pussies. Non-stop. And you? Join US!!!`;
+                        const telegramUrl = `https://t.me/share/url?url=${data.referral_link} We eat, sleep and mine $DDUCK. Non-stop. And you? Join US!!!`;
 
                         // Редирект в Telegram
                         window.location.href = telegramUrl;
@@ -951,7 +951,7 @@
 <!--    JS для копирования реферальной ссылки-->
     <script>
         document.getElementById('invite_small').addEventListener('click', function() {
-        fetch(`/generate_referral_link?user_id={{ user_id }}`)
+        fetch(`/api/generate_referral_link?user_id={{ user_id }}`)
             .then(response => response.json())
             .then(data => {
                 if (data.referral_link) {
@@ -992,7 +992,7 @@
         document.addEventListener("DOMContentLoaded", function() {
         const userId = "{{ user_id }}"; // ID текущего пользователя
 
-        fetch(`/referrals/${userId}`)
+        fetch(`/api/referrals/${userId}`)
             .then(response => response.json())
             .then(data => {
                 const referralList = document.getElementById('referral_list');
