@@ -14,15 +14,15 @@ start_menu = [
 # url = 'https://dexstudioapp.site'
 
 def get_url(user_id):
-    url = f'https://dexstudioapp.site/pussycoin?user_id={user_id}'
-    # url = f'https://127.0.0.1:443?user_id={user_id}'
+    # url = f'https://dexstudioapp.site/pussycoin?user_id={user_id}'
+    url = f'https://127.0.0.1:443?user_id={user_id}'
 
     rows_play_kb = [
         [
             InlineKeyboardButton(text='PLAY', web_app=WebAppInfo(url=url)),
         ],
         [
-            InlineKeyboardButton(text='JOIN COMMUNITY', url='https://t.me/+8K1Wfb_o_3NhNjk1'),
+            InlineKeyboardButton(text='WATCH VIDEO', url='https://www.youtube.com/watch?v=CJbEClavywA'),
         ],
     ]
     play_kb = types.InlineKeyboardMarkup(inline_keyboard=rows_play_kb)

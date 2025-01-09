@@ -20,7 +20,7 @@
 <!--    <link rel="stylesheet" href="static/css/style.css">-->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    <title>PussyCoin</title>
+    <title>Domestic Duck</title>
 
 
 </head>
@@ -32,8 +32,8 @@
     <div id="preloader">
         <div class="container d-flex flex-column align-items-center">
             <div class="preloader_text">Don`t pet</div>
-            <img class="row logo_preloader" src="static/img/logo_preloader.png"/>
-            <div class="preloader_text" style="padding-bottom:10vh">Mine Pussies...</div>
+            <img class="row logo_preloader" src="static/img/logo-duck.png"/>
+            <div class="preloader_text" style="padding-bottom:10vh">Mine $DDUCK...</div>
             <div class="spinner"></div>
         </div>
     </div>
@@ -59,12 +59,12 @@
                 <div class="star"></div>
                 <div class="star"></div>
 
-                <h3>PussyCoin</h3>
+                <h3>$DDUCK</h3>
+
             </div>
 
             <div class="container d-flex flex-column align-items-center">
                 <button id="continue-button" class="btn btn-primary mt-4">Continue</button>
-                <h4>for age of your telegram account!</h4>
             </div>
 
         </div>
@@ -111,15 +111,15 @@
                     <!-- Header Section -->
                     <div class="header text-center">
                         <h4 class="h_slogan">Don`t pet</h4>
-                        <img class="logo" src="static/img/logo.png"/>
+                        <img class="logo" src="static/img/logo-duck.png"/>
                         <h3 class="h_balance">
-                            <span id="balance"> {{ balance }} </span> &nbsp PussyCoin
+                            <span id="balance"> {{ balance }} </span> &nbsp $DDUCK
                         </h3>
                     </div>
 
                     <!-- Community Section -->
                     <div class="block_join_us mt-4 d-flex flex-column align-items-center justify-content-between">
-                        <h4 class="row">PUSSYCOIN COMMUNITY</h4>
+                        <h4 class="row">Domestic Duck</h4>
                         <h4 class="row">Home for telegram</h4>
                         <a href="https://t.me/+8K1Wfb_o_3NhNjk1" id="joinUsButton" class="btn-black"> Join us</a>
                     </div>
@@ -130,21 +130,21 @@
                         <div class="row mb-2 d-flex flex-row align-items-center row_block_rewards">
                             <div class="col text-left">
                                 <img class="icon" src="static/img/age.svg" alt="Bootstrap" width="20" height="20">
-                                Account age
+                                Welcome Bonus
                             </div>
                             <div class="col text-right">
                                 {{ account_age }}
-                                <img class="icon" src="static/img/icon_small.png" width="20" height="20">
+                                <img class="icon" src="static/img/duck_small.png" width="20" height="20">
                             </div>
                         </div>
                         <div class="row mb-2 d-flex flex-row align-items-center row_block_rewards">
                             <div class="col text-left">
                                 <img class="icon" src="static/img/farming.svg" alt="Bootstrap" width="20" height="20">
-                                Mine Pussies
+                                Mine $DDUCK
                             </div>
                             <div class="col text-right">
                                 <span id="mine_pussies"> {{ mine_pussies }} </span>
-                                <img class="icon" src="static/img/icon_small.png" width="20" height="20">
+                                <img class="icon" src="static/img/duck_small.png" width="20" height="20">
                             </div>
                         </div>
                         <div class="row mb-2 d-flex flex-row align-items-center row_block_rewards">
@@ -154,14 +154,23 @@
                             </div>
                             <div class="col text-right">
                                 {{ referral_bonuses }}
-                                <img class="icon" src="static/img/icon_small.png" width="20" height="20">
+                                <img class="icon" src="static/img/duck_small.png" width="20" height="20">
                             </div>
                         </div>
                     </div>
 
                     <div class="block_farming d-flex flex-column align-items-center justify-content-center fixed-bottom" id="button_mine_pussies" data-user-id="{{ user_id }}">
-                        <div class="row text-center">
-                             <h4>Mine Pussies <span id="activity_counter">{{ activity_counter }}</span> / 480</h4>
+                        <div class="column text-center">
+                            <div>
+                                <h4>Mine $DDUCK</h4>
+                            </div>
+                            <div style="color: #DB5D5D;">
+                                <h4><span id="activity_counter">{{ activity_counter }}</span></h4>
+                            </div>
+                            <div>
+                                <h5> max 0.3 every 6 hours </h5>
+                            </div>
+<!--                             <h4>Mine $DDUCK <span id="activity_counter">{{ activity_counter }}</span> / 0.3</h4>-->
                         </div>
 <!--                        <div class="col-4 text-left">-->
 <!--                            <h5><span id="time">00:00:00</span></h5>-->
@@ -184,7 +193,7 @@
                             <path transform="translate(297,436)" d="m0 0 4 1v2h2l14 14-1 5-5 4-5 6h-2l-2 4-28 28-2 3-5-1-14-14-8-7-8-8 2-5 10-9 6-7 4 2 7 8 4 2 23-23z" fill="#614c8d"/>
                     </svg>
                         <h2>Tasks</h2>
-                        <h4>Complete tasks to earn PussyCoin</h4>
+                        <h4>Complete tasks to earn $DDUCK</h4>
                     </div>
                     <div class="block_tasks">
                         <div class="container_task">
@@ -213,7 +222,7 @@
                                 </div>
                                 <div class="flex-grow-1 bd-highlight text-left">
                                     <h5> {{ task_1.name }} </h5>
-                                    <div class="text_highlight_color">+{{ task_1.coins }} Pussy Coin</div>
+                                    <div class="text_highlight_color">+{{ task_1.coins }} $DDUCK</div>
                                 </div>
                                 <div class="p-3 bd-highlight">
                                     <svg class="i_task_todo i_task_1" fill="currentColor" width="40px" height="40px" viewBox="0 0 24 24" id="d9090658-f907-4d85-8bc1-743b70378e93" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg"><title>prime</title><path id="70fa6808-131f-4233-9c3a-fc089fd0c1c4" data-name="done circle" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0ZM11.52,17L6,12.79l1.83-2.37L11.14,13l4.51-5.08,2.24,2Z"/></svg>
@@ -246,7 +255,7 @@
                                 </div>
                                 <div class="flex-grow-1 bd-highlight text-left">
                                     <h5> {{ task_2.name }} </h5>
-                                    <div class="text_highlight_color">+{{ task_2.coins }} Pussy Coin</div>
+                                    <div class="text_highlight_color">+{{ task_2.coins }} $DDUCK</div>
                                 </div>
                                 <div class="p-3 bd-highlight">
                                     <svg class="i_task_todo i_task_2" fill="currentColor" width="40px" height="40px" viewBox="0 0 24 24" id="d9090658-f907-4d85-8bc1-743b70378e93" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg"><title>prime</title><path id="70fa6808-131f-4233-9c3a-fc089fd0c1c4" data-name="done circle" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0ZM11.52,17L6,12.79l1.83-2.37L11.14,13l4.51-5.08,2.24,2Z"/></svg>
@@ -279,7 +288,7 @@
                                 </div>
                                 <div class="flex-grow-1 bd-highlight text-left">
                                     <h5> {{ task_3.name }} </h5>
-                                    <div class="text_highlight_color">+{{ task_3.coins }} Pussy Coin</div>
+                                    <div class="text_highlight_color">+{{ task_3.coins }} $DDUCK</div>
                                 </div>
                                 <div class="p-3 bd-highlight">
                                     <svg class="i_task_todo i_task_3" fill="currentColor" width="40px" height="40px" viewBox="0 0 24 24" id="d9090658-f907-4d85-8bc1-743b70378e93" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg"><title>prime</title><path id="70fa6808-131f-4233-9c3a-fc089fd0c1c4" data-name="done circle" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0ZM11.52,17L6,12.79l1.83-2.37L11.14,13l4.51-5.08,2.24,2Z"/></svg>
@@ -312,112 +321,14 @@
                                 </div>
                                 <div class="flex-grow-1 bd-highlight text-left">
                                     <h5> {{ task_4.name }} </h5>
-                                    <div class="text_highlight_color">+{{ task_4.coins }} Pussy Coin</div>
+                                    <div class="text_highlight_color">+{{ task_4.coins }} $DDUCK</div>
                                 </div>
                                 <div class="p-3 bd-highlight">
                                     <svg class="i_task_todo i_task_4" fill="currentColor" width="40px" height="40px" viewBox="0 0 24 24" id="d9090658-f907-4d85-8bc1-743b70378e93" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg"><title>prime</title><path id="70fa6808-131f-4233-9c3a-fc089fd0c1c4" data-name="done circle" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0ZM11.52,17L6,12.79l1.83-2.37L11.14,13l4.51-5.08,2.24,2Z"/></svg>
                                 </div>
                             </a>
                         </div>
-                        <div class="container_task">
-                            <a class="row_task task_5 d-flex bd-highlight align-items-center"
-                               href="{{ task_5.link }}"
-                               data-user-id="{{ user_id }}"
-                               target="_blank">
-                                <div class="p-3 bd-highlight">
-                                    <svg class="i_task" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                                    width="40" height="40" viewBox="0 0 360.000000 360.000000"
-                                    preserveAspectRatio="xMidYMid meet">
 
-                                        <g transform="translate(0.000000,360.000000) scale(0.100000,-0.100000)"
-                                        fill="currentColor" stroke="none">
-                                        <path d="M1585 3584 c-769 -99 -1370 -646 -1540 -1402 -106 -466 -9 -976 260
-                                        -1377 95 -141 192 -254 302 -350 485 -424 1144 -561 1746 -364 314 103 586
-                                        280 795 519 601 687 598 1705 -8 2388 -384 432 -986 659 -1555 586z m1005
-                                        -1077 c45 -22 52 -72 35 -216 -38 -305 -147 -984 -195 -1203 -31 -143 -66
-                                        -188 -148 -188 -60 0 -106 26 -422 240 -302 205 -330 228 -330 283 0 44 -5 39
-                                        398 426 171 164 222 218 220 235 -2 11 -11 22 -22 24 -11 3 -169 -97 -415
-                                        -261 -218 -145 -414 -273 -436 -284 -87 -44 -163 -37 -399 36 -152 48 -184 64
-                                        -192 98 -13 52 14 73 211 159 588 258 1016 440 1291 549 286 114 348 130 404
-                                        102z"/>
-                                        </g>
-                                    </svg>
-                                </div>
-                                <div class="flex-grow-1 bd-highlight text-left">
-                                    <h5> {{ task_5.name }} </h5>
-                                    <div class="text_highlight_color">+{{ task_5.coins }} Pussy Coin</div>
-                                </div>
-                                <div class="p-3 bd-highlight">
-                                    <svg class="i_task_todo i_task_5" fill="currentColor" width="40px" height="40px" viewBox="0 0 24 24" id="d9090658-f907-4d85-8bc1-743b70378e93" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg"><title>prime</title><path id="70fa6808-131f-4233-9c3a-fc089fd0c1c4" data-name="done circle" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0ZM11.52,17L6,12.79l1.83-2.37L11.14,13l4.51-5.08,2.24,2Z"/></svg>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="container_task">
-                            <a class="row_task task_6 d-flex bd-highlight align-items-center"
-                               href="{{ task_6.link }}"
-                               data-user-id="{{ user_id }}"
-                               target="_blank">
-                                <div class="p-3 bd-highlight">
-                                    <svg class="i_task" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                                    width="40" height="40" viewBox="0 0 360.000000 360.000000"
-                                    preserveAspectRatio="xMidYMid meet">
-
-                                        <g transform="translate(0.000000,360.000000) scale(0.100000,-0.100000)"
-                                        fill="currentColor" stroke="none">
-                                        <path d="M1585 3584 c-769 -99 -1370 -646 -1540 -1402 -106 -466 -9 -976 260
-                                        -1377 95 -141 192 -254 302 -350 485 -424 1144 -561 1746 -364 314 103 586
-                                        280 795 519 601 687 598 1705 -8 2388 -384 432 -986 659 -1555 586z m1005
-                                        -1077 c45 -22 52 -72 35 -216 -38 -305 -147 -984 -195 -1203 -31 -143 -66
-                                        -188 -148 -188 -60 0 -106 26 -422 240 -302 205 -330 228 -330 283 0 44 -5 39
-                                        398 426 171 164 222 218 220 235 -2 11 -11 22 -22 24 -11 3 -169 -97 -415
-                                        -261 -218 -145 -414 -273 -436 -284 -87 -44 -163 -37 -399 36 -152 48 -184 64
-                                        -192 98 -13 52 14 73 211 159 588 258 1016 440 1291 549 286 114 348 130 404
-                                        102z"/>
-                                        </g>
-                                    </svg>
-                                </div>
-                                <div class="flex-grow-1 bd-highlight text-left">
-                                    <h5> {{ task_6.name }} </h5>
-                                    <div class="text_highlight_color">+{{ task_6.coins }} Pussy Coin</div>
-                                </div>
-                                <div class="p-3 bd-highlight">
-                                    <svg class="i_task_todo i_task_6" fill="currentColor" width="40px" height="40px" viewBox="0 0 24 24" id="d9090658-f907-4d85-8bc1-743b70378e93" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg"><title>prime</title><path id="70fa6808-131f-4233-9c3a-fc089fd0c1c4" data-name="done circle" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0ZM11.52,17L6,12.79l1.83-2.37L11.14,13l4.51-5.08,2.24,2Z"/></svg>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="container_task">
-                            <a class="row_task task_7 d-flex bd-highlight align-items-center"
-                               href="{{ task_7.link }}"
-                               data-user-id="{{ user_id }}"
-                               target="_blank">
-                                <div class="p-3 bd-highlight">
-                                    <svg class="i_task" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                                    width="40" height="40" viewBox="0 0 360.000000 360.000000"
-                                    preserveAspectRatio="xMidYMid meet">
-
-                                        <g transform="translate(0.000000,360.000000) scale(0.100000,-0.100000)"
-                                        fill="currentColor" stroke="none">
-                                        <path d="M1585 3584 c-769 -99 -1370 -646 -1540 -1402 -106 -466 -9 -976 260
-                                        -1377 95 -141 192 -254 302 -350 485 -424 1144 -561 1746 -364 314 103 586
-                                        280 795 519 601 687 598 1705 -8 2388 -384 432 -986 659 -1555 586z m1005
-                                        -1077 c45 -22 52 -72 35 -216 -38 -305 -147 -984 -195 -1203 -31 -143 -66
-                                        -188 -148 -188 -60 0 -106 26 -422 240 -302 205 -330 228 -330 283 0 44 -5 39
-                                        398 426 171 164 222 218 220 235 -2 11 -11 22 -22 24 -11 3 -169 -97 -415
-                                        -261 -218 -145 -414 -273 -436 -284 -87 -44 -163 -37 -399 36 -152 48 -184 64
-                                        -192 98 -13 52 14 73 211 159 588 258 1016 440 1291 549 286 114 348 130 404
-                                        102z"/>
-                                        </g>
-                                    </svg>
-                                </div>
-                                <div class="flex-grow-1 bd-highlight text-left">
-                                    <h5> {{ task_7.name }} </h5>
-                                    <div class="text_highlight_color">+{{ task_7.coins }} Pussy Coin</div>
-                                </div>
-                                <div class="p-3 bd-highlight">
-                                    <svg class="i_task_todo i_task_7" fill="currentColor" width="40px" height="40px" viewBox="0 0 24 24" id="d9090658-f907-4d85-8bc1-743b70378e93" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg"><title>prime</title><path id="70fa6808-131f-4233-9c3a-fc089fd0c1c4" data-name="done circle" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0ZM11.52,17L6,12.79l1.83-2.37L11.14,13l4.51-5.08,2.24,2Z"/></svg>
-                                </div>
-                            </a>
-                        </div>
 
                     </div>
                 </div>
@@ -427,8 +338,8 @@
             <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
                 <div class="container-fluid main">
                     <div class="header d-flex flex-column align-items-center">
-                        <img class="logo" src="static/img/logo.png">
-                        <h3>Invite friends to get <br>more PussyCoin</h3>
+                        <img class="logo" src="static/img/logo-duck.png">
+                        <h3>Invite friends to get <br>more $DDUCK</h3>
                     </div>
                     <div class="d-flex bd-highlight">
                         <div class="p-2 flex-fill bd-highlight text-left">referrals: {{ count_friends }}</div>
@@ -527,7 +438,7 @@
                     document.getElementById('preloader').style.display = 'none';
                     document.getElementById('content').classList.remove('d-none');
                 }
-            }, 500); // 3 секунды
+            }, 1500); // 3 секунды
 
             // Обработка клика на кнопке второго прелоадера
             document.getElementById('continue-button').addEventListener('click', function() {
@@ -744,147 +655,147 @@
         });
     </script>
 
-<!--    JS для обработки обновления баланса task_5 -->
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-            const button = document.querySelector('.task_5');
-            const icon = document.querySelector('.i_task_5');
-            const varTask5 = {{ var_task_5 }};
-            const telegramURL = 'https://x.com/pussycoincommun?s=21';
-            const userId = button.getAttribute('data-user-id');
+<!--&lt;!&ndash;    JS для обработки обновления баланса task_5 &ndash;&gt;-->
+<!--    <script>-->
+<!--    document.addEventListener("DOMContentLoaded", function() {-->
+<!--            const button = document.querySelector('.task_5');-->
+<!--            const icon = document.querySelector('.i_task_5');-->
+<!--            const varTask5 = {{ var_task_5 }};-->
+<!--            const telegramURL = 'https://x.com/pussycoincommun?s=21';-->
+<!--            const userId = button.getAttribute('data-user-id');-->
 
 
-            // Изменяем цвет иконки, если varMainTask равен 1
-            if (varTask5 === 1) {
-                icon.style.color = '#614c8d';
-            }
+<!--            // Изменяем цвет иконки, если varMainTask равен 1-->
+<!--            if (varTask5 === 1) {-->
+<!--                icon.style.color = '#614c8d';-->
+<!--            }-->
 
-            button.addEventListener('click', function() {
-                // Если var равен 1, просто открываем ссылку
-                if (varTask5 === 1) {
-                    window.open(telegramURL, '_blank');
-                    console.error('Вы не можете обновить свой баланс.');
-                    return;
-                }
+<!--            button.addEventListener('click', function() {-->
+<!--                // Если var равен 1, просто открываем ссылку-->
+<!--                if (varTask5 === 1) {-->
+<!--                    window.open(telegramURL, '_blank');-->
+<!--                    console.error('Вы не можете обновить свой баланс.');-->
+<!--                    return;-->
+<!--                }-->
 
-                // Если var не равен 1, отправляем запрос для обновления баланса
-                fetch(`/var_task_5/${userId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ action: 'increment' })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    window.open(telegramURL, '_blank');
-                    location.reload()
-                    if (!data.success) {
-                        console.error('Ошибка при обновлении баланса:', data.message);
-                    }
-                })
-                .catch(error => {
-                    window.open(telegramURL, '_blank');
-                    location.reload()
-                    console.error('Ошибка:', error);
-                });
-            });
-        });
-    </script>
+<!--                // Если var не равен 1, отправляем запрос для обновления баланса-->
+<!--                fetch(`/var_task_5/${userId}`, {-->
+<!--                    method: 'POST',-->
+<!--                    headers: {-->
+<!--                        'Content-Type': 'application/json'-->
+<!--                    },-->
+<!--                    body: JSON.stringify({ action: 'increment' })-->
+<!--                })-->
+<!--                .then(response => response.json())-->
+<!--                .then(data => {-->
+<!--                    window.open(telegramURL, '_blank');-->
+<!--                    location.reload()-->
+<!--                    if (!data.success) {-->
+<!--                        console.error('Ошибка при обновлении баланса:', data.message);-->
+<!--                    }-->
+<!--                })-->
+<!--                .catch(error => {-->
+<!--                    window.open(telegramURL, '_blank');-->
+<!--                    location.reload()-->
+<!--                    console.error('Ошибка:', error);-->
+<!--                });-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
 
-<!--    JS для обработки обновления баланса task_6 -->
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-            const button = document.querySelector('.task_6');
-            const icon = document.querySelector('.i_task_6');
-            const varTask6 = {{ var_task_6 }};
-            const telegramURL = 'https://youtube.com/@pussycoincommunity?si=DMyCquiJ8NRgtC8a';
-            const userId = button.getAttribute('data-user-id');
+<!--&lt;!&ndash;    JS для обработки обновления баланса task_6 &ndash;&gt;-->
+<!--    <script>-->
+<!--    document.addEventListener("DOMContentLoaded", function() {-->
+<!--            const button = document.querySelector('.task_6');-->
+<!--            const icon = document.querySelector('.i_task_6');-->
+<!--            const varTask6 = {{ var_task_6 }};-->
+<!--            const telegramURL = 'https://youtube.com/@pussycoincommunity?si=DMyCquiJ8NRgtC8a';-->
+<!--            const userId = button.getAttribute('data-user-id');-->
 
-            // Изменяем цвет иконки, если varMainTask равен 1
-            if (varTask6 === 1) {
-                icon.style.color = '#614c8d';
-            }
+<!--            // Изменяем цвет иконки, если varMainTask равен 1-->
+<!--            if (varTask6 === 1) {-->
+<!--                icon.style.color = '#614c8d';-->
+<!--            }-->
 
-            button.addEventListener('click', function() {
-                // Если var равен 1, просто открываем ссылку
-                if (varTask6 === 1) {
-                    window.open(telegramURL, '_blank');
-                    console.error('Вы не можете обновить свой баланс.');
-                    return;
-                }
+<!--            button.addEventListener('click', function() {-->
+<!--                // Если var равен 1, просто открываем ссылку-->
+<!--                if (varTask6 === 1) {-->
+<!--                    window.open(telegramURL, '_blank');-->
+<!--                    console.error('Вы не можете обновить свой баланс.');-->
+<!--                    return;-->
+<!--                }-->
 
-                // Если var не равен 1, отправляем запрос для обновления баланса
-                fetch(`/var_task_6/${userId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ action: 'increment' })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    window.open(telegramURL, '_blank');
-                    location.reload()
-                    if (!data.success) {
-                        console.error('Ошибка при обновлении баланса:', data.message);
-                    }
-                })
-                .catch(error => {
-                    window.open(telegramURL, '_blank');
-                    location.reload()
-                    console.error('Ошибка:', error);
-                });
-            });
-        });
-    </script>
+<!--                // Если var не равен 1, отправляем запрос для обновления баланса-->
+<!--                fetch(`/var_task_6/${userId}`, {-->
+<!--                    method: 'POST',-->
+<!--                    headers: {-->
+<!--                        'Content-Type': 'application/json'-->
+<!--                    },-->
+<!--                    body: JSON.stringify({ action: 'increment' })-->
+<!--                })-->
+<!--                .then(response => response.json())-->
+<!--                .then(data => {-->
+<!--                    window.open(telegramURL, '_blank');-->
+<!--                    location.reload()-->
+<!--                    if (!data.success) {-->
+<!--                        console.error('Ошибка при обновлении баланса:', data.message);-->
+<!--                    }-->
+<!--                })-->
+<!--                .catch(error => {-->
+<!--                    window.open(telegramURL, '_blank');-->
+<!--                    location.reload()-->
+<!--                    console.error('Ошибка:', error);-->
+<!--                });-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
 
-<!--    JS для обработки обновления баланса task_7 -->
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-            const button = document.querySelector('.task_7');
-            const icon = document.querySelector('.i_task_7');
-            const varTask7 = {{ var_task_7 }};
-            const telegramURL = 'https://youtube.com/@ajoworldfacts?si=MTx3aSbzWSMhN3jP';
-            const userId = button.getAttribute('data-user-id');
+<!--&lt;!&ndash;    JS для обработки обновления баланса task_7 &ndash;&gt;-->
+<!--    <script>-->
+<!--    document.addEventListener("DOMContentLoaded", function() {-->
+<!--            const button = document.querySelector('.task_7');-->
+<!--            const icon = document.querySelector('.i_task_7');-->
+<!--            const varTask7 = {{ var_task_7 }};-->
+<!--            const telegramURL = 'https://youtube.com/@ajoworldfacts?si=MTx3aSbzWSMhN3jP';-->
+<!--            const userId = button.getAttribute('data-user-id');-->
 
-            // Изменяем цвет иконки, если varMainTask равен 1
-            if (varTask7 === 1) {
-                icon.style.color = '#614c8d';
-            }
+<!--            // Изменяем цвет иконки, если varMainTask равен 1-->
+<!--            if (varTask7 === 1) {-->
+<!--                icon.style.color = '#614c8d';-->
+<!--            }-->
 
-            button.addEventListener('click', function() {
-                // Если var равен 1, просто открываем ссылку
-                if (varTask7 === 1) {
-                    window.open(telegramURL, '_blank');
-                    console.error('Вы не можете обновить свой баланс.');
-                    return;
-                }
+<!--            button.addEventListener('click', function() {-->
+<!--                // Если var равен 1, просто открываем ссылку-->
+<!--                if (varTask7 === 1) {-->
+<!--                    window.open(telegramURL, '_blank');-->
+<!--                    console.error('Вы не можете обновить свой баланс.');-->
+<!--                    return;-->
+<!--                }-->
 
-                // Если var не равен 1, отправляем запрос для обновления баланса
-                fetch(`/var_task_7/${userId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ action: 'increment' })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    window.open(telegramURL, '_blank');
-                    location.reload()
-                    if (!data.success) {
-                        console.error('Ошибка при обновлении баланса:', data.message);
-                    }
-                })
-                .catch(error => {
-                    window.open(telegramURL, '_blank');
-                    location.reload()
-                    console.error('Ошибка:', error);
-                });
-            });
-        });
-    </script>
+<!--                // Если var не равен 1, отправляем запрос для обновления баланса-->
+<!--                fetch(`/var_task_7/${userId}`, {-->
+<!--                    method: 'POST',-->
+<!--                    headers: {-->
+<!--                        'Content-Type': 'application/json'-->
+<!--                    },-->
+<!--                    body: JSON.stringify({ action: 'increment' })-->
+<!--                })-->
+<!--                .then(response => response.json())-->
+<!--                .then(data => {-->
+<!--                    window.open(telegramURL, '_blank');-->
+<!--                    location.reload()-->
+<!--                    if (!data.success) {-->
+<!--                        console.error('Ошибка при обновлении баланса:', data.message);-->
+<!--                    }-->
+<!--                })-->
+<!--                .catch(error => {-->
+<!--                    window.open(telegramURL, '_blank');-->
+<!--                    location.reload()-->
+<!--                    console.error('Ошибка:', error);-->
+<!--                });-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
 
 <!--    JS для обновления счетчика активности-->
     <script>
@@ -900,9 +811,9 @@
             .then(data => {
                 if ('mine_pussies' in data && 'activity_counter' in data && 'balance' in data) {
                     // Обновление значений на странице
-                    document.getElementById('mine_pussies').innerText = data.mine_pussies;
-                    document.getElementById('activity_counter').innerText = data.activity_counter;
-                    document.getElementById('balance').innerText = data.balance;
+                    document.getElementById('mine_pussies').innerText = parseFloat(data.mine_pussies).toFixed(5);
+                    document.getElementById('activity_counter').innerText = parseFloat(data.activity_counter).toFixed(5);
+                    document.getElementById('balance').innerText = parseFloat(data.balance).toFixed(5);
                 } else if ('error' in data) {
                     console.error(data.error);
                 }
@@ -939,9 +850,8 @@
 
         // Автоматическое обновление activity_counter каждые 60 секунд
 //        updateActivityCounter();  // Первое обновление при загрузке страницы
-        setInterval(updateActivityCounter, 60000);  // Обновление каждые 60 секунд (60000 миллисекунд)
+        setInterval(updateActivityCounter, 2000);  // Обновление каждые 60 секунд (60000 миллисекунд)
     });
-
 
     </script>
 
@@ -1012,7 +922,6 @@
         updateActivityCounter();  // Первое обновление при загрузке страницы
         setInterval(updateActivityCounter, 60000);  // Обновление каждые 60 секунд (60000 миллисекунд)
     });
-
 
     </script>
 

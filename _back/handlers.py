@@ -27,12 +27,14 @@ async def start(message: types.Message):
     print(tg_user_id)
     print('информация по пользователю внесена')
 
-    preload_path = "static/img/preload.jpg"
+    preload_path = "static/img/tg_screen.png"
 
-    start_text = (f'🔥 Hello, {message.from_user.first_name}! Eat, sleep, and mine PussyCoin. Non-stop!'
+    start_text = (f'🔥 Hello, {message.from_user.first_name}! Eat, sleep, and mine $DDUCK. Non-stop!'
                   f'\nWe are not only game, but and best community.'
-                  f'\nJoin the cat community.'
-                  f'\nPlay and help your cat mine Pussies!')
+                  f'\nJoin the Domestic Duck community.'
+                  f'\nPlay and help your Domestic Duck mine $DDUCK!')
+
+    #TODO
 
     print('bot started')
 

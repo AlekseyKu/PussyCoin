@@ -19,12 +19,12 @@ from sqlalchemy.orm import sessionmaker
 
 from _back.handlers import router
 from _back.keyboards import start_menu, get_url
-from _back.database.models import async_main, Counter, User
+from _back.database.models import async_main, User
 from _back.database.query import get_account_info_from_db
 
 load_dotenv()
 
-token = os.environ.get('BOT_TOKEN')
+token = os.environ.get('DDUCK_TOKEN')
 bot = Bot(token=token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp = Dispatcher(storage=MemoryStorage())
 

@@ -14,7 +14,7 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 def account_age():
-    result = randint(2000, 7000)
+    result = 0.5
     return result
 
 
@@ -63,7 +63,7 @@ def update_database(id_tg):
     session = Session()
     user = session.query(User).filter_by(id_tg=id_tg).first()
     user.var_task_main = 1
-    user.balance += 1000
+    user.balance += 0.3
     print('обновление базы данных')
     session.commit()
     session.close()
