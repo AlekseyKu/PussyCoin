@@ -13,7 +13,8 @@ from _back.database.models import async_main
 
 load_dotenv()
 
-token = os.environ.get('DDUCK_TOKEN')
+# token = os.environ.get('DDUCK_TOKEN')
+token = os.environ.get('TOKEN')
 bot = Bot(token=token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp = Dispatcher()
 
