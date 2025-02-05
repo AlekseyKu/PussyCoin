@@ -8,6 +8,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-size: 1.2rem;
 }
 
 html {
@@ -69,7 +70,7 @@ h2 {
     font-size: 1.5rem;
     font-weight: 200;}
 h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 200;
     margin: 0;}
 h4 {
@@ -143,7 +144,7 @@ h6 {
 }
 
 .block_farming {
-    height: 10vh;
+    height: 18vh;
 /*    border: 2px solid;*/
 /*    border-radius: 10px;*/
 /*    border-color: #614c8d;*/
@@ -184,7 +185,7 @@ h6 {
 
 /* --- BUTTONS --- */
 .btn {
-    color: #fff;
+    color: #000;
 }
 
 
@@ -555,4 +556,297 @@ input:focus {
     border-radius:10px;
     font-size: 16px;
     border: 0;
+}
+
+/*Modal adds  */
+
+
+/* Modal Header background: #614c8d;*/
+.telegram-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border: 1px solid #333;
+    border-radius: 12px;
+    margin: 10px auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+}
+/* Full-screen Image within Modal */
+.ad-banner-full {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Header */
+.telegram-modal-header {
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+
+    background-color: #333;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+}
+
+/* Modal Body */
+.telegram-modal-body {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    overflow-y: auto; /* Enable scrolling if content overflows */
+    width: 100%;
+    box-sizing: border-box;
+    align-items: flex-end; /* Align content to the bottom */
+}
+.body-content {
+    width: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Ad Image */
+.ad-banner {
+    max-width: 100%; /* Fit within the modal width */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 40vh; /* Limit height to 40% of the screen */
+    object-fit: contain; /* Scale image proportionally */
+    margin-bottom: 20px; /* Spacing below the image */
+}
+
+/* Ad Text */
+.ad-text {
+    font-size: 16px;
+    color: #ffc107;
+    margin: 10px 0 20px;
+    line-height: 1.5;
+}
+
+/* Ad Button */
+.ad-links {
+    margin-top: 20px;
+}
+
+.ad-links .btn {
+    background-color: #ffc107; /* Telegram blue */
+    color: #000;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.ad-links .btn:hover {
+    background-color: #006699;
+}
+
+/* Footer Section */
+.telegram-modal-footer {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    border-top: 1px solid #ddd;
+}
+.telegram-stars-balance {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the icon and the balance block */
+    z-index: 1000;
+}
+
+/* Icon inside a circle */
+.star-icon {
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    border-radius: 50%; /* Makes the icon a circle */
+    background-color: #fff; /* Background color of the circle */
+    padding: 5px; /* Inner padding for the image */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+    object-fit: contain; /* Ensure the image fits within the circle */
+}
+
+/* Balance in a rounded rectangle */
+#top-balance {
+    display: inline-block;
+    background-color: #f8f9fa; /* Light background for the balance block */
+    padding: 5px 10px; /* Adjust padding as needed */
+    border-radius: 12px; /* Rounded corners */
+    font-size: 14px; /* Font size for the balance text */
+    font-weight: bold;
+    color: #333; /* Text color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for the balance block */
+}
+
+.telegram-modal-header h4 {
+    margin: 0;
+    color: #ff9800;
+}
+
+.telegram-modal-body {
+    padding: 15px;
+}
+
+.ad-banner {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.ad-text {
+    margin: 20px 0;
+}
+
+.ad-text h5 {
+    color: #ff9800;
+}
+.ad-links {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: #6200ea;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #3700b3;
+}
+
+.btn-secondary {
+    background-color: #03dac6;
+    color: #000;
+}
+
+.btn-secondary:disabled {
+    background-color: #555;
+    color: #bbb;
+}
+
+.telegram-modal-footer {
+    background-color: #333;
+    padding: 10px;
+    border-radius: 0 0 8px 8px;
+    text-align: center;
+}
+
+.telegram-modal-footer p {
+    margin: 0;
+    color: #bbb;
+}
+
+.telegram-modal-footer {
+    background-color: #333;
+    padding: 10px;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.footer-content span {
+    font-size: 14px;
+    color: #bbb;
+}
+
+#timer {
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+.close-button {
+    width: 40px;
+    height: 40px;
+    background-color: #6200ea;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.close-button:hover {
+    opacity: 1;
+}
+
+.close-button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.close-icon {
+    font-size: 20px;
+}
+/* Footer Section */
+.telegram-modal-footer {
+    width: 100%;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:
 }

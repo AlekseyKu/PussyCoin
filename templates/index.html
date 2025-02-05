@@ -33,7 +33,7 @@
         <div class="container d-flex flex-column align-items-center">
             <div class="preloader_text">Don`t pet</div>
 <!--            <img class="row logo_preloader" src="static/img/logo-duck.png"/>-->
-            <img class="row logo_preloader" src="{{ url_for('static', filename='img/logo-duck.png') }}"/>
+            <img class="row logo_preloader" src="{{ url_for('static', filename='img/sticker.png') }}"/>
             <div class="preloader_text" style="padding-bottom:10vh">Mine $DDUCK...</div>
             <div class="spinner"></div>
         </div>
@@ -112,7 +112,7 @@
                     <!-- Header Section -->
                     <div class="header text-center">
                         <h4 class="h_slogan">Don`t pet</h4>
-                        <img class="logo" src="{{ url_for('static', filename='img/logo-duck.png') }}"/>
+                        <img class="logo" src="{{ url_for('static', filename='img/logo-duck2.png') }}"/>
                         <h3 class="h_balance">
                             <span id="balance"> {{ balance }} </span> &nbsp $DDUCK
                         </h3>
@@ -120,9 +120,9 @@
 
                     <!-- Community Section -->
                     <div class="block_join_us mt-4 d-flex flex-column align-items-center justify-content-between">
-                        <h4 class="row">Domestic Duck</h4>
-                        <h4 class="row">Home for telegram</h4>
-                        <a href="https://t.me/+8K1Wfb_o_3NhNjk1" id="joinUsButton" class="btn-black"> Join us</a>
+                        <h4 class="row">We eat, sleep and mine $DDUCK</h4>
+                        <h4 class="row"> Non-stop. And you?</h4>
+                        <a href="https://t.me/DomesticDuckBot?start=15feac5b" id="joinUsButton" class="btn-black"> Join us</a>
                     </div>
 
                     <!-- Rewards Section -->
@@ -148,7 +148,7 @@
                                 <img class="icon" src="{{ url_for('static', filename='img/duck_small.png') }}" width="20" height="20">
                             </div>
                         </div>
-                        <div class="row mb-2 d-flex flex-row align-items-center row_block_rewards">
+                        <!--div class="row mb-2 d-flex flex-row align-items-center row_block_rewards">
                             <div class="col text-left">
                                 <img class="icon" src="{{ url_for('static', filename='img/friends.svg') }}" alt="Bootstrap" width="20" height="20">
                                 Invite friends
@@ -157,7 +157,7 @@
                                 {{ referral_bonuses }}
                                 <img class="icon" src="{{ url_for('static', filename='img/duck_small.png') }}" width="20" height="20">
                             </div>
-                        </div>
+                        </div-->
                     </div>
 
                     <div class="block_farming d-flex flex-column align-items-center justify-content-center fixed-bottom" id="button_mine_pussies" data-user-id="{{ user_id }}">
@@ -166,20 +166,58 @@
                                 <h4>Mine $DDUCK</h4>
                             </div>
                             <div style="color: #DB5D5D;">
-                                <h4><span id="activity_counter">{{ activity_counter }}</span></h4>
+                                <h3><span id="activity_counter">{{ activity_counter }}</span></h3>
                             </div>
                             <div>
                                 <h5> max 0.3 every 6 hours </h5>
                             </div>
-<!--                             <h4>Mine $DDUCK <span id="activity_counter">{{ activity_counter }}</span> / 0.3</h4>-->
                         </div>
-<!--                        <div class="col-4 text-left">-->
-<!--                            <h5><span id="time">00:00:00</span></h5>-->
-<!--                        </div>-->
+                        <!-- Claim Button -->
+                        <button id="claim-button" class="btn btn-warning mt-3">Claim</button>
                     </div>
                 </div>
             </div>
 
+<!-- Ads Window (Modal) -->
+            <div id="adsModal" class="telegram-modal" style="display: none;">
+                <!-- Full-Screen Ad Image -->
+                <img src="https://ahuenny.com/cdn/shop/files/20240124_vo1kos_28.jpg?v=1727175324&width=1070" 
+                    alt="Ad Banner" 
+                    class="ad-banner-full" />
+
+                <!-- Header Section -->
+                <div class="telegram-modal-header">
+                    <h4>Sponsored Content</h4>
+                </div>
+
+                <!-- Body Section -->
+                <div class="telegram-modal-body">
+                    <!-- Body Content aligned to bottom -->
+                    <div class="body-content">
+                        <!-- Ad Text -->
+                        <div class="ad-text">
+                            <p>Life isn't perfect. Your suit is!</p>
+                            <h5>Exclusive Offer</h5>
+                            <p>Get up to 50% off on your next purchase. Click the button below to learn more about our premium suits!</p>
+                        </div>
+
+                        <!-- Ad Button -->
+                        <div class="ad-links">
+                            <a href="https://ahuenny.com" target="_blank" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Section -->
+                <div class="telegram-modal-footer">
+                    <div class="footer-content">
+                        <span>Ad closes in <span id="timer">10</span> seconds...</span>
+                        <button id="closeAdsButton" class="close-button" disabled>
+                            <i class="close-icon">✖</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
 <!--- TASKS PAGE --->
             <div class="tab-pane fade" id="tasks" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="container-fluid main">
@@ -339,7 +377,7 @@
             <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
                 <div class="container-fluid main">
                     <div class="header d-flex flex-column align-items-center">
-                        <img class="logo" src="{{ url_for('static', filename='img/logo-duck.png') }}">
+                        <img class="logo" src="{{ url_for('static', filename='img/logo-duck2.png') }}">
                         <h3>Invite friends to get <br>more $DDUCK</h3>
                     </div>
                     <div class="d-flex bd-highlight">
@@ -366,7 +404,7 @@
             </div>
         </div>
     </div>
-
+    <script src="static/js/activityCounter.js"></script>
 <!--    <div id="not-in-telegram">-->
 <!--        <h2>Please open this app inside Telegram.</h2>-->
 <!--    </div>-->
@@ -800,31 +838,68 @@
 
 <!--    JS для обновления счетчика активности-->
     <script>
-            document.addEventListener("DOMContentLoaded", function() {
-        // Функция для обновления счетчика активности
-        function updateData() {
-            const userId = document.getElementById('button_mine_pussies').getAttribute('data-user-id');
+        document.addEventListener("DOMContentLoaded", function() {
+            function showAdsModal() {
+                const adsModal = document.getElementById('adsModal');
+                const timerElement = document.getElementById('timer');
+                const closeAdsButton = document.getElementById('closeAdsButton');
+                let timeLeft = 10; // 10 seconds countdown
+                let buttonEnableTime = 3; // Enable the close button after 3 seconds
 
-            fetch(`/api/get_activity_counter/${userId}`, {
-                method: 'GET',
-            })
-            .then(response => response.json())
-            .then(data => {
-                if ('mine_pussies' in data && 'activity_counter' in data && 'balance' in data) {
-                    // Обновление значений на странице
-                    document.getElementById('mine_pussies').innerText = parseFloat(data.mine_pussies).toFixed(5);
-                    document.getElementById('activity_counter').innerText = parseFloat(data.activity_counter).toFixed(5);
-                    document.getElementById('balance').innerText = parseFloat(data.balance).toFixed(5);
-                } else if ('error' in data) {
-                    console.error(data.error);
+                // Show the modal
+                adsModal.style.display = 'flex';
+                closeAdsButton.disabled = true; 
+
+                // Start the countdown
+                const timer = setInterval(() => {
+                    timeLeft--;
+                    timerElement.textContent = timeLeft;
+
+                    // Enable the close button after 3 seconds
+                    if (timeLeft === 7) {
+                        closeAdsButton.disabled = false;
+                    }
+
+                    if (timeLeft <= 0) {
+                        clearInterval(timer);
+                        closeAdModal();
+                    }
+                }, 1000);
+
+                // Close the modal when the close button is clicked
+                closeAdsButton.addEventListener('click', closeAdModal);
+
+                function closeAdModal() {
+                    clearInterval(timer);
+                    adsModal.style.display = 'none';
+                    document.getElementById('app_content').style.display = 'block';
                 }
-            })
-            .catch(error => console.error('Ошибка:', error));
-        }
+            }
 
-        // Обновление при нажатии на кнопку
-        document.getElementById('button_mine_pussies').addEventListener('click', updateData);
-    });
+            function updateData() {
+                const userId = document.getElementById('button_mine_pussies').getAttribute('data-user-id');
+
+                fetch(`/api/get_activity_counter/${userId}`, {
+                    method: 'GET',
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if ('mine_pussies' in data && 'activity_counter' in data && 'balance' in data) {
+                        document.getElementById('mine_pussies').innerText = parseFloat(data.mine_pussies).toFixed(5);
+                        document.getElementById('activity_counter').innerText = parseFloat(data.activity_counter).toFixed(5);
+                        document.getElementById('balance').innerText = parseFloat(data.balance).toFixed(5);
+                    } else if ('error' in data) {
+                        console.error(data.error);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+
+            document.getElementById('claim-button').addEventListener('click', function () {
+                updateData();
+                showAdsModal();
+            });
+        });
     </script>
 
 <!--    JS для обновления значения activity_counter с сервера, периодично.-->
@@ -1010,7 +1085,7 @@
             .catch(error => console.error('Ошибка при загрузке рефералов:', error));
     });
     </script>
-
+    
     <!-- jQuery first, then Bootstrap JS -->
 <!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
 

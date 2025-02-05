@@ -3,6 +3,7 @@ from datetime import datetime
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.future import select
+from pathlib import Path
 
 from _back.database.models import User, Task, async_session
 
@@ -62,7 +63,7 @@ async def index():
                                    show_preloader_age=user.show_preloader_age,
                                    id_refer=user.id_refer,
                                    mine_friends=user.mine_friends,
-                                   mine_pussies=user.mine_pussies,
+                                   mine_pussies=round(user.mine_pussies,5),
                                    count_friends=user.count_friends,
                                    activity_counter=rounded_activity_counter,
                                    referral_bonuses=referral_bonuses,
@@ -302,9 +303,10 @@ async def get_and_update_activity_counter(user_id):
 
 
 if __name__ == '__main__':
+    print(f'{Path(__file__).parent}/cert/localhost.crt')
     try:
         app.run(ssl_context=(
-            'D:\\_py_projects\\PussyCoin\\cert\\localhost.crt', 'D:\\_py_projects\\PussyCoin\\cert\\localhost.key'),
+            f'{Path(__file__).parent}/cert/localhost.crt', f'{Path(__file__).parent}/cert/localhost.key'),
             host='0.0.0.0', port=443)
     except KeyboardInterrupt:
         print("Exit Flask")
