@@ -23,8 +23,8 @@ def apply_csp(response):
     return response
 
 
-# @app.route('/pussycoin')
-@app.route('/')
+@app.route('/pussycoin')
+# @app.route('/')
 async def index():
     user_id = request.args.get('user_id')
 
@@ -302,17 +302,17 @@ async def get_and_update_activity_counter(user_id):
 
 
 
-if __name__ == '__main__':
-    print(f'{Path(__file__).parent}/cert/localhost.crt')
-    try:
-        app.run(ssl_context=(
-            f'{Path(__file__).parent}/cert/localhost.crt', f'{Path(__file__).parent}/cert/localhost.key'),
-            host='0.0.0.0', port=443)
-    except KeyboardInterrupt:
-        print("Exit Flask")
-
 # if __name__ == '__main__':
+#     print(f'{Path(__file__).parent}/cert/localhost.crt')
 #     try:
-#         app.run(host='0.0.0.0', port=8000)
+#         app.run(ssl_context=(
+#             f'{Path(__file__).parent}/cert/localhost.crt', f'{Path(__file__).parent}/cert/localhost.key'),
+#             host='0.0.0.0', port=443)
 #     except KeyboardInterrupt:
 #         print("Exit Flask")
+
+if __name__ == '__main__':
+    try:
+        app.run(host='0.0.0.0', port=8000)
+    except KeyboardInterrupt:
+        print("Exit Flask")
