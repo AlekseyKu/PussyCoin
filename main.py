@@ -9,7 +9,7 @@ from _back.database.models import User, Task, async_session
 
 # Configurations
 random_token = os.urandom(12).hex()
-app = Flask(__name__, static_url_path='/static')
+app = Flask(__name__, static_url_path='/static', static_folder='static')
 app.secret_key = random_token
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite+aiosqlite:///db.sqlite3'
